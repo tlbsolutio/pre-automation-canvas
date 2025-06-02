@@ -1,0 +1,982 @@
+<script type="text/javascript">
+        var gk_isXlsx = false;
+        var gk_xlsxFileLookup = {};
+        var gk_fileData = {};
+        function filledCell(cell) {
+          return cell !== '' && cell != null;
+        }
+        function loadFileData(filename) {
+        if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
+            try {
+                var workbook = XLSX.read(gk_fileData[filename], { type: 'base64' });
+                var firstSheetName = workbook.SheetNames[0];
+                var worksheet = workbook.Sheets[firstSheetName];
+
+                // Convert sheet to JSON to filter blank rows
+                var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, blankrows: false, defval: '' });
+                // Filter out blank rows (rows where all cells are empty, null, or undefined)
+                var filteredData = jsonData.filter(row => row.some(filledCell));
+
+                // Heuristic to find the header row by ignoring rows with fewer filled cells than the next row
+                var headerRowIndex = filteredData.findIndex((row, index) =>
+                  row.filter(filledCell).length >= filteredData[index + 1]?.filter(filledCell).length
+                );
+                // Fallback
+                if (headerRowIndex === -1 || headerRowIndex > 25) {
+                  headerRowIndex = 0;
+                }
+
+                // Convert filtered JSON back to CSV
+                var csv = XLSX.utils.aoa_to_sheet(filteredData.slice(headerRowIndex)); // Create a new sheet from filtered array of arrays
+                csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
+                return csv;
+            } catch (e) {
+                console.error(e);
+                return "";
+            }
+        }
+        return gk_fileData[filename] || "";
+        }
+        </script><!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Toile de Pré-Automatisation</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+        
+        .header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+        
+        .content {
+            display: flex;
+            min-height: 600px;
+        }
+        
+        .form-section {
+            flex: 2;
+            padding: 40px;
+        }
+        
+        .brief-section {
+            flex: 1;
+            background: #f8fafc;
+            padding: 40px;
+            border-left: 1px solid #e2e8f0;
+        }
+        
+        .step {
+            margin-bottom: 40px;
+            opacity: 0.3;
+            transition: opacity 0.3s ease;
+        }
+        
+        .step.active {
+            opacity: 1;
+        }
+        
+        .step.completed {
+            opacity: 0.7;
+        }
+        
+        .step-number {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            background: #667eea;
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 30px;
+            font-weight: bold;
+            margin-right: 15px;
+        }
+        
+        .step-title {
+            font-size: 1.3em;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #2d3748;
+        }
+        
+        .step-prompt {
+            color: #4a5568;
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+        
+        .input-container {
+            position: relative;
+            margin-bottom: 15px;
+        }
+        
+        textarea, input {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 16px;
+            font-family: inherit;
+            transition: border-color 0.3s ease;
+            resize: vertical;
+            min-height: 60px;
+        }
+        
+        textarea:focus, input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        
+        .feedback {
+            margin-top: 10px;
+            padding: 12px 15px;
+            border-radius: 8px;
+            font-size: 14px;
+            line-height: 1.4;
+            transition: all 0.3s ease;
+        }
+        
+        .feedback.positive {
+            background: #f0fff4;
+            color: #22543d;
+            border-left: 4px solid #38a169;
+        }
+        
+        .feedback.warning {
+            background: #fffbf0;
+            color: #744210;
+            border-left: 4px solid #ed8936;
+        }
+        
+        .feedback.hint {
+            background: #f7fafc;
+            color: #2d3748;
+            border-left: 4px solid #a0aec0;
+        }
+        
+        .brief-container {
+            position: sticky;
+            top: 40px;
+        }
+        
+        .brief-title {
+            font-size: 1.4em;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #2d3748;
+        }
+        
+        .brief-content {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            border: 1px solid #e2e8f0;
+        }
+        
+        .brief-item {
+            margin-bottom: 15px;
+            padding: 12px;
+            background: #f8fafc;
+            border-radius: 6px;
+            border-left: 3px solid #667eea;
+        }
+        
+        .brief-label {
+            font-weight: 600;
+            color: #4a5568;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 5px;
+        }
+        
+        .brief-value {
+            color: #2d3748;
+            font-size: 14px;
+            line-height: 1.4;
+        }
+        
+        .brief-summary {
+            margin-top: 25px;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 8px;
+            font-weight: 500;
+            line-height: 1.6;
+        }
+        
+        .copy-button, .reset-button {
+            width: 100%;
+            margin-top: 15px;
+            padding: 15px 20px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+        
+        .copy-button {
+            background: linear-gradient(135deg, #38a169 0%, #48bb78 100%);
+            color: white;
+        }
+        
+        .reset-button {
+            background: linear-gradient(135deg, #e53e3e 0%, #f56565 100%);
+            color: white;
+        }
+        
+        .copy-button:hover, .reset-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+        }
+        
+        .copy-button:active, .reset-button:active {
+            transform: translateY(0);
+        }
+        
+        .copy-button.copied {
+            background: linear-gradient(135deg, #4299e1 0%, #63b3ed 100%);
+        }
+        
+        .recommendation-section {
+            margin-top: 25px;
+            padding: 20px;
+            background: #f8fafc;
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+        }
+        
+        .recommendation-title {
+            font-size: 1.2em;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #2d3748;
+        }
+        
+        .recommendation-item {
+            margin-bottom: 15px;
+            padding: 12px;
+            background: white;
+            border-radius: 6px;
+            border-left: 3px solid #38a169;
+        }
+        
+        .recommendation-tool {
+            font-weight: 600;
+            color: #2d3748;
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+        
+        .recommendation-tool a {
+            color: #667eea;
+            text-decoration: none;
+        }
+        
+        .recommendation-tool a:hover {
+            text-decoration: underline;
+        }
+        
+        .recommendation-reason {
+            color: #4a5568;
+            font-size: 13px;
+            line-height: 1.4;
+        }
+        
+        .feedback-section {
+            margin-top: 25px;
+            padding: 20px;
+            background: #f8fafc;
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+        }
+        
+        .feedback-title {
+            font-size: 1.2em;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #2d3748;
+        }
+        
+        .feedback-form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .feedback-form label {
+            font-size: 14px;
+            color: #2d3748;
+            font-weight: 500;
+        }
+        
+        .feedback-form select, .feedback-form textarea {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+        
+        .feedback-form button {
+            padding: 10px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+        
+        .feedback-form button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+        }
+        
+        .toast {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #2d3748;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-size: 14px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .toast.show {
+            opacity: 1;
+        }
+        
+        .progress-bar {
+            height: 4px;
+            background: #e2e8f0;
+            margin: 20px 40px;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            transition: width 0.5s ease;
+            width: 0%;
+        }
+        
+        @media (max-width: 768px) {
+            .content {
+                flex-direction: column;
+            }
+            
+            .brief-section {
+                border-left: none;
+                border-top: 1px solid #e2e8f0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Toile de Pré-Automatisation</h1>
+            <p>Planifions votre processus avant de l’automatiser</p>
+        </div>
+        
+        <div class="progress-bar">
+            <div class="progress-fill" id="progressFill"></div>
+        </div>
+        
+        <div class="content">
+            <div class="form-section">
+                <div class="step active" id="step1">
+                    <div class="step-title">
+                        <span class="step-number">1</span>
+                        Identifier la Tâche
+                    </div>
+                    <div class="step-prompt">
+                        Décrivez une tâche que vous effectuez régulièrement et qui semble fastidieuse ou répétitive.
+                    </div>
+                    <div class="input-container">
+                        <textarea id="task" placeholder="Par ex., Chaque semaine, je mets à jour manuellement notre tableur de statuts clients en vérifiant les e-mails et les outils de gestion de projet..."></textarea>
+                        <div class="feedback hint" id="taskFeedback">
+                            Les bonnes candidates sont les tâches que vous effectuez de la même manière à chaque fois — idéalement hebdomadaires ou quotidiennes.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="step" id="step2">
+                    <div class="step-title">
+                        <span class="step-number">2</span>
+                        Quel est le Déclencheur ?
+                    </div>
+                    <div class="step-prompt">
+                        Qu’est-ce qui vous pousse à démarrer cette tâche ? Est-ce basé sur le temps, un événement ou dépendant d’autre chose ?
+                    </div>
+                    <div class="input-container">
+                        <textarea id="trigger" placeholder="Par ex., Chaque lundi matin, ou Quand je reçois un e-mail de fin de projet, ou Après notre réunion d’équipe hebdomadaire..."></textarea>
+                        <div class="feedback hint" id="triggerFeedback">
+                            Essayez d’identifier un événement ou un moment précis où cela commence.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="step" id="step3">
+                    <div class="step-title">
+                        <span class="step-number">3</span>
+                        De Quelles Informations Avez-vous Besoin ?
+                    </div>
+                    <div class="step-prompt">
+                        Quelles informations vous faut-il pour accomplir cette tâche ?
+                    </div>
+                    <div class="input-container">
+                        <textarea id="inputs" placeholder="Par ex., Noms des clients depuis notre CRM, statuts des projets depuis Asana, chiffres du budget depuis notre feuille de calcul..."></textarea>
+                        <div class="feedback hint" id="inputsFeedback">
+                            Pensez à l’origine de ces informations — un outil, une personne, un fichier, etc.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="step" id="step4">
+                    <div class="step-title">
+                        <span class="step-number">4</span>
+                        Quel est le Résultat ?
+                    </div>
+                    <div class="step-prompt">
+                        Quel est le résultat final que vous produisez ? Un document, un message, un enregistrement, une mise à jour... ?
+                    </div>
+                    <div class="input-container">
+                        <textarea id="output" placeholder="Par ex., Lignes mises à jour dans Google Sheets, résumé envoyé par e-mail à l’équipe, nouveaux enregistrements dans notre base de données..."></textarea>
+                        <div class="feedback hint" id="outputFeedback">
+                            Que n’auriez-vous plus à faire manuellement si cela était automatisé ?
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="step" id="step5">
+                    <div class="step-title">
+                        <span class="step-number">5</span>
+                        Outils Impliqués
+                    </div>
+                    <div class="step-prompt">
+                        Quels outils ou applications utilisez-vous pendant ce processus ?
+                    </div>
+                    <div class="input-container">
+                        <input type="text" id="tools" placeholder="Par ex., Gmail, Google Sheets, Asana, Slack...">
+                        <div class="feedback hint" id="toolsFeedback">
+                            Ne mentionnez que les outils que vous utilisez réellement durant le processus.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="step" id="step6">
+                    <div class="step-title">
+                        <span class="step-number">6</span>
+                        Que Peut-il Mal Tourner ?
+                    </div>
+                    <div class="step-prompt">
+                        Quel est le pire scénario si cette automatisation échoue ou fait une erreur ?
+                    </div>
+                    <div class="input-container">
+                        <textarea id="risks" placeholder="Par ex., Des données erronées sont envoyées aux clients, des mises à jour importantes sont manquées, des enregistrements en double sont créés..."></textarea>
+                        <div class="feedback hint" id="risksFeedback">
+                            Cela aide à déterminer si vous avez besoin d’alertes d’erreur ou d’étapes de vérification humaine.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="brief-section">
+                <div class="brief-container">
+                    <div class="brief-title">📋 Votre Brief d’Automatisation</div>
+                    <div class="brief-content">
+                        <div class="brief-item">
+                            <div class="brief-label">Tâche</div>
+                            <div class="brief-value" id="briefTask">Commencez à remplir le formulaire pour voir votre brief...</div>
+                        </div>
+                        
+                        <div class="brief-item">
+                            <div class="brief-label">Déclencheur</div>
+                            <div class="brief-value" id="briefTrigger">—</div>
+                        </div>
+                        
+                        <div class="brief-item">
+                            <div class="brief-label">Sources d’Entrée</div>
+                            <div class="brief-value" id="briefInputs">—</div>
+                        </div>
+                        
+                        <div class="brief-item">
+                            <div class="brief-label">Résultat</div>
+                            <div class="brief-value" id="briefOutput">—</div>
+                        </div>
+                        
+                        <div class="brief-item">
+                            <div class="brief-label">Outils</div>
+                            <div class="brief-value" id="briefTools">—</div>
+                        </div>
+                        
+                        <div class="brief-item">
+                            <div class="brief-label">Niveau de Risque</div>
+                            <div class="brief-value" id="briefRisks">—</div>
+                        </div>
+                        
+                        <div class="brief-summary" id="briefSummary" style="display: none;">
+                            <strong>Résumé de l’Automatisation :</strong><br>
+                            <span id="summaryText"></span>
+                        </div>
+                        
+                        <div class="recommendation-section" id="recommendationSection" style="display: none;">
+                            <div class="recommendation-title">🛠 Outils Recommandés</div>
+                            <div id="recommendationContent"></div>
+                        </div>
+                        
+                        <div class="feedback-section" id="feedbackSection" style="display: none;">
+                            <div class="feedback-title">💬 Votre Avis</div>
+                            <!-- Replace FORM_ENDPOINT with your Formspree or Google Form URL -->
+                            <form class="feedback-form" action="FORM_ENDPOINT" method="POST">
+                                <label for="helpful">Cet outil vous a-t-il été utile ?</label>
+                                <select id="helpful" name="helpful">
+                                    <option value="5">5 - Très utile</option>
+                                    <option value="4">4 - Utile</option>
+                                    <option value="3">3 - Neutre</option>
+                                    <option value="2">2 - Peu utile</option>
+                                    <option value="1">1 - Pas utile</option>
+                                </select>
+                                <label for="suggestions">Que changeriez-vous ou amélioreriez-vous ?</label>
+                                <textarea id="suggestions" name="suggestions" placeholder="Par ex., Ajouter plus de suggestions d’outils, raccourcir le formulaire..."></textarea>
+                                <button type="submit">Envoyer l’Avis</button>
+                            </form>
+                        </div>
+                        
+                        <button class="copy-button" id="copyButton" style="display: none;" onclick="copyBriefToClipboard()">
+                            📋 Copier le Brief dans le Presse-papiers
+                        </button>
+                        <button class="reset-button" id="resetButton" onclick="resetForm()">
+                            🔄 Réinitialiser le Formulaire
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="toast" id="toast"></div>
+
+    <script>
+        const fields = ['task', 'trigger', 'inputs', 'output', 'tools', 'risks'];
+        const briefElements = ['briefTask', 'briefTrigger', 'briefInputs', 'briefOutput', 'briefTools', 'briefRisks'];
+        
+        let currentStep = 1;
+        const totalSteps = 6;
+        const AIRTABLE_API_KEY = 'pat2wKkg7FkTG515r.bc7bc4e9a2f9398f09ca4686de7eee353fc83c2d6764c1480a25d987dcd66821';
+        const AIRTABLE_BASE_ID = 'appQiJj57Bgx05M4F';
+        const AIRTABLE_TABLE_NAME = 'Database_n8n';
+
+        // Load saved data from localStorage
+        function loadSavedData() {
+            fields.forEach((field, index) => {
+                const savedValue = localStorage.getItem(`automationCanvas_${field}`);
+                if (savedValue) {
+                    const element = document.getElementById(field);
+                    element.value = savedValue;
+                    updateFeedback(field, savedValue);
+                    updateBrief(field, savedValue, index);
+                    if (savedValue.trim()) {
+                        activateNextStep(index + 2);
+                    }
+                }
+            });
+            updateProgress();
+            updateRecommendations();
+            updateSummary();
+            showToast('Données enregistrées chargées');
+        }
+        
+        // Save data to localStorage
+        function saveData(field, value) {
+            localStorage.setItem(`automationCanvas_${field}`, value);
+            showToast('Progression enregistrée');
+        }
+        
+        // Reset form and clear localStorage
+        function resetForm() {
+            fields.forEach(field => {
+                const element = document.getElementById(field);
+                element.value = '';
+                localStorage.removeItem(`automationCanvas_${field}`);
+                updateFeedback(field, '');
+                updateBrief(field, '', fields.indexOf(field));
+            });
+            updateProgress();
+            updateRecommendations();
+            updateSummary();
+            for (let i = 1; i <= totalSteps; i++) {
+                const step = document.getElementById(`step${i}`);
+                step.classList.remove('active', 'completed');
+            }
+            document.getElementById('step1').classList.add('active');
+            currentStep = 1;
+            showToast('Formulaire réinitialisé');
+        }
+        
+        // Show toast notification
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            toast.textContent = message;
+            toast.classList.add('show');
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 2000);
+        }
+        
+        // Initialize event listeners
+        fields.forEach((field, index) => {
+            const element = document.getElementById(field);
+            element.addEventListener('input', () => {
+                const value = element.value;
+                saveData(field, value);
+                updateFeedback(field, value);
+                updateBrief(field, value, index);
+                updateProgress();
+                updateRecommendations();
+                updateSummary();
+                
+                if (value.trim()) {
+                    const nextStepIndex = index + 2;
+                    activateNextStep(nextStepIndex);
+                }
+            });
+        });
+        
+        function updateFeedback(field, value) {
+            const feedbackElement = document.getElementById(field + 'Feedback');
+            
+            switch(field) {
+                case 'task':
+                    if (value.length > 20) {
+                        const taskKeywords = [
+                            'chaque', 'hebdomadaire', 'quotidien', 'quotidiennement', 'mensuel', 'journalier',
+                            'tous les', 'toutes les', 'souvent', 'régulièrement', 'périodique', 'répétitif', 'automatique'
+                        ];
+                        const hasRepetitionIndicator = taskKeywords.some(word => value.toLowerCase().includes(word)) ||
+                            (value.split(' ').length > 5 && value.toLowerCase().includes('je'));
+                        if (hasRepetitionIndicator) {
+                            showFeedback(feedbackElement, '✅ Cette tâche semble idéale pour l’automatisation !', 'positive');
+                        } else {
+                            showFeedback(feedbackElement, '💡 Essayez de mentionner à quelle fréquence vous effectuez cette tâche.', 'warning');
+                        }
+                    } else {
+                        showFeedback(feedbackElement, 'Les bonnes candidates sont les tâches que vous effectuez de la même manière à chaque fois — idéalement hebdomadaires ou quotidiennes.', 'hint');
+                    }
+                    break;
+                    
+                case 'trigger':
+                    if (value.length > 10) {
+                        const triggerKeywords = [
+                            'chaque', 'quand', 'après', 'lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi', 'quotidien', 'hebdomadaire',
+                            'tous les', 'toutes les', 'lorsque', 'dès que', 'à chaque fois', 'une fois', 'tous les matins', 'tous les soirs',
+                            'périodiquement', 'souvent', 'régulièrement', 'mensuellement', 'journalier', 'automatiquement', 'démarre', 'commence'
+                        ];
+                        const hasTriggerIndicator = triggerKeywords.some(word => value.toLowerCase().includes(word)) ||
+                            value.toLowerCase().includes('je reçois') || value.toLowerCase().includes('l’équipe');
+                        if (hasTriggerIndicator) {
+                            showFeedback(feedbackElement, '✅ Déclencheur clair identifié !', 'positive');
+                        } else {
+                            showFeedback(feedbackElement, '⚠️ Essayez d’identifier un événement ou un moment précis où cela commence.', 'warning');
+                        }
+                    } else {
+                        showFeedback(feedbackElement, 'Essayez d’identifier un événement ou un moment précis où cela commence.', 'hint');
+                    }
+                    break;
+                    
+                case 'inputs':
+                    if (value.length > 15) {
+                        showFeedback(feedbackElement, '✅ Bien - vous avez identifié vos sources de données.', 'positive');
+                    } else {
+                        showFeedback(feedbackElement, 'Pensez à l’origine de ces informations — un outil, une personne, un fichier, etc.', 'hint');
+                    }
+                    break;
+                    
+                case 'output':
+                    if (value.length > 15) {
+                        showFeedback(feedbackElement, '✅ Résultat clair défini !', 'positive');
+                    } else {
+                        showFeedback(feedbackElement, 'Que n’auriez-vous plus à faire manuellement si cela était automatisé ?', 'hint');
+                    }
+                    break;
+                    
+                case 'tools':
+                    if (value.length > 5) {
+                        const toolCount = value.split(',').length;
+                        if (toolCount <= 3) {
+                            showFeedback(feedbackElement, '✅ Nombre d’outils raisonnable - cela devrait être gérable à automatiser.', 'positive');
+                        } else {
+                            showFeedback(feedbackElement, '⚠️ Beaucoup d’outils impliqués - cela pourrait être complexe à automatiser.', 'warning');
+                        }
+                    } else {
+                        showFeedback(feedbackElement, 'Ne mentionnez que les outils que vous utilisez réellement durant le processus.', 'hint');
+                    }
+                    break;
+                    
+                case 'risks':
+                    if (value.length > 15) {
+                        if (value.toLowerCase().includes('client') || value.toLowerCase().includes('customer') || value.toLowerCase().includes('argent')) {
+                            showFeedback(feedbackElement, '🚨 Automatisation à haut risque - envisagez d’ajouter des étapes de vérification humaine.', 'warning');
+                        } else {
+                            showFeedback(feedbackElement, '✅ Niveau de risque évalué - prêt à planifier la gestion des erreurs.', 'positive');
+                        }
+                    } else {
+                        showFeedback(feedbackElement, 'Cela aide à déterminer si vous avez besoin d’alertes d’erreur ou d’étapes de vérification humaine.', 'hint');
+                    }
+                    break;
+            }
+        }
+        
+        function showFeedback(element, message, type) {
+            element.textContent = message;
+            element.className = `feedback ${type}`;
+        }
+        
+        function updateBrief(field, value, index) {
+            const briefElement = document.getElementById(briefElements[index]);
+            if (value.trim()) {
+                briefElement.textContent = value.substring(0, 100) + (value.length > 100 ? '...' : '');
+            } else {
+                briefElement.textContent = '—';
+            }
+            
+            updateSummary();
+        }
+        
+        function updateSummary() {
+            const task = document.getElementById('task').value;
+            const trigger = document.getElementById('trigger').value;
+            const inputs = document.getElementById('inputs').value;
+            const output = document.getElementById('output').value;
+            const tools = document.getElementById('tools').value;
+            const risks = document.getElementById('risks').value;
+            
+            if (task && trigger && output) {
+                const summary = `Quand ${trigger.toLowerCase()}, collecter ${inputs || 'les informations nécessaires'} et créer ${output.toLowerCase()}${tools ? ` en utilisant ${tools}` : ''}. ${risks ? 'Surveiller les éventuels problèmes de précision des données.' : ''}`;
+                
+                document.getElementById('summaryText').textContent = summary;
+                document.getElementById('briefSummary').style.display = 'block';
+                document.getElementById('copyButton').style.display = 'block';
+                document.getElementById('feedbackSection').style.display = 'block';
+            } else {
+                document.getElementById('briefSummary').style.display = 'none';
+                document.getElementById('copyButton').style.display = 'none';
+                document.getElementById('feedbackSection').style.display = 'none';
+            }
+        }
+        
+        function updateProgress() {
+            const filledFields = fields.filter(field => document.getElementById(field).value.trim().length > 0).length;
+            const progress = (filledFields / totalSteps) * 100;
+            document.getElementById('progressFill').style.width = progress + '%';
+        }
+        
+        function activateNextStep(stepIndex) {
+            if (stepIndex <= totalSteps) {
+                const currentStepElement = document.getElementById(`step${stepIndex}`);
+                if (currentStepElement && !currentStepElement.classList.contains('active')) {
+                    for (let i = 1; i < stepIndex; i++) {
+                        const prevStep = document.getElementById(`step${i}`);
+                        if (prevStep) {
+                            prevStep.classList.remove('active');
+                            prevStep.classList.add('completed');
+                        }
+                    }
+                    currentStepElement.classList.remove('completed');
+                    currentStepElement.classList.add('active');
+                    currentStep = stepIndex;
+                }
+            }
+        }
+        
+        function copyBriefToClipboard() {
+            const task = document.getElementById('task').value || '—';
+            const trigger = document.getElementById('trigger').value || '—';
+            const inputs = document.getElementById('inputs').value || '—';
+            const output = document.getElementById('output').value || '—';
+            const tools = document.getElementById('tools').value || '—';
+            const risks = document.getElementById('risks').value || '—';
+            const summary = document.getElementById('summaryText').textContent || '—';
+            
+            const recommendations = getToolRecommendations();
+            const recommendationText = recommendations.length > 0
+                ? `\n\n🛠 Outils Recommandés :\n${recommendations.map(r => `${r.tool}: ${r.reason} (${r.link})`).join('\n')}`
+                : '';
+            
+            const fullText = `📋 Brief d’Automatisation
+
+Tâche :
+${task}
+
+Déclencheur :
+${trigger}
+
+Sources d’Entrée :
+${inputs}
+
+Résultat :
+${output}
+
+Outils :
+${tools}
+
+Niveau de Risque :
+${risks}
+
+—
+💡 Résumé :
+${summary}${recommendationText}
+`;
+            
+            navigator.clipboard.writeText(fullText).then(() => {
+                const btn = document.getElementById('copyButton');
+                btn.textContent = '✅ Copié !';
+                btn.classList.add('copied');
+                showToast('Brief copié dans le presse-papiers');
+                setTimeout(() => {
+                    btn.textContent = '📋 Copier le Brief dans le Presse-papiers';
+                    btn.classList.remove('copied');
+                }, 2000);
+            }).catch(() => {
+                alert('Erreur lors de la copie dans le presse-papiers.');
+            });
+        }
+        
+        async function fetchToolsFromAirtable() {
+            const url = `https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/${AIRTABLE_TABLE_NAME}`;
+            try {
+                const response = await fetch(url, {
+                    headers: {
+                        Authorization: `Bearer ${AIRTABLE_API_KEY}`,
+                        'Content-Type': 'application/json'
+                    }
+                });
+                if (!response.ok) {
+                    throw new Error(`Erreur lors de la récupération des outils: ${response.status}`);
+                }
+                const data = await response.json();
+                console.log('Données brutes Airtable:', data); // Débogage
+                return data.records.map(record => ({
+                    id: record.id,
+                    name: record.fields.Nom || 'Sans nom',
+                    description: record.fields.Description || 'Aucune description disponible',
+                    link: `https://wikisaas.bubbleapps.io/version-test/saas_page1?saasID=${record.id}`,
+                    keywords: record.fields.Mots_clés ? record.fields.Mots_clés.split(',').map(k => k.trim().toLowerCase()) : []
+                }));
+            } catch (error) {
+                console.error('Erreur Airtable:', error);
+                showToast('Erreur lors du chargement des outils recommandés.');
+                return [];
+            }
+        }
+        
+        let cachedTools = null;
+        
+        async function getToolRecommendations() {
+            const task = document.getElementById('task').value.toLowerCase();
+            const trigger = document.getElementById('trigger').value.toLowerCase();
+            const tools = document.getElementById('tools').value.toLowerCase();
+            const risks = document.getElementById('risks').value.toLowerCase();
+            const inputs = document.getElementById('inputs').value.toLowerCase();
+            const output = document.getElementById('output').value.toLowerCase();
+            
+            if (!cachedTools) {
+                cachedTools = await fetchToolsFromAirtable();
+                console.log('Outils récupérés:', cachedTools); // Débogage
+            }
+            
+            const recommendations = [];
+            
+            cachedTools.forEach(tool => {
+                const matchesTask = tool.keywords.some(keyword => task.includes(keyword));
+                const matchesTrigger = tool.keywords.some(keyword => trigger.includes(keyword));
+                const matchesInputs = tool.keywords.some(keyword => inputs.includes(keyword));
+                const matchesOutput = tool.keywords.some(keyword => output.includes(keyword));
+                const matchesTools = tools && tool.keywords.some(keyword => tools.includes(keyword));
+                const matchesRisks = risks.includes('client') || risks.includes('argent') ? tool.keywords.includes('sécurité') : true;
+
+                if ((matchesTask || matchesTrigger || matchesInputs || matchesOutput || matchesTools) && matchesRisks) {
+                    recommendations.push({
+                        tool: tool.name,
+                        reason: tool.description,
+                        link: tool.link
+                    });
+                }
+            });
+            
+            console.log('Recommandations générées:', recommendations); // Débogage
+            return recommendations;
+        }
+        
+        function updateRecommendationsDisplay(recommendations) {
+            const recommendationContent = document.getElementById('recommendationContent');
+            if (recommendations.length > 0) {
+                recommendationContent.innerHTML = recommendations.map(r => `
+                    <div class="recommendation-item">
+                        <div class="recommendation-tool"><a href="${r.link}" target="_blank">${r.tool}</a></div>
+                        <div class="recommendation-reason">${r.reason}</div>
+                    </div>
+                `).join('');
+                document.getElementById('recommendationSection').style.display = 'block';
+            } else {
+                document.getElementById('recommendationSection').style.display = 'none';
+            }
+        }
+        
+        async function updateRecommendations() {
+            const recommendations = await getToolRecommendations();
+            updateRecommendationsDisplay(recommendations);
+        }
+        
+        // Initialize: Load saved data and set up first step
+        loadSavedData();
+        activateNextStep(1);
+    </script>
+</body>
+</html>
