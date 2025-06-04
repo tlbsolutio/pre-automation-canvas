@@ -1,0 +1,2839 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diagnostic d'Automatisation - Théo Le Breton</title>
+    
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XR6WHDFELV"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-XR6WHDFELV');
+        
+        function trackEvent(action, category = 'Automation Canvas') {
+            gtag('event', action, {
+                'event_category': category,
+                'event_label': action
+            });
+        }
+    </script>
+    
+    <meta name="description" content="Diagnostic gratuit de vos processus. Découvrez combien d'heures et d'euros vous pourriez économiser chaque mois avec l'automatisation.">
+    <meta name="keywords" content="automatisation, processus, workflow, productivité, gains temps, roi">
+    <meta property="og:title" content="Diagnostic d'Automatisation Gratuit">
+    <meta property="og:description" content="Découvrez votre potentiel d'automatisation et les gains financiers possibles.">
+    <meta property="og:type" content="website">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            min-height: 100vh;
+            line-height: 1.6;
+            color: #2d3748;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 40px 50px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+        }
+        
+        .header-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .expert-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 8px 20px;
+            border-radius: 25px;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .header h1 {
+            font-size: 2.8em;
+            margin-bottom: 15px;
+            font-weight: 800;
+            letter-spacing: -1px;
+        }
+        
+        .header .subtitle {
+            font-size: 1.3em;
+            opacity: 0.9;
+            font-weight: 300;
+            margin-bottom: 30px;
+        }
+        
+        .value-proposition {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+        
+        .value-item {
+            text-align: center;
+            padding: 20px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .value-number {
+            font-size: 2.5em;
+            font-weight: 800;
+            display: block;
+            margin-bottom: 5px;
+        }
+        
+        .value-label {
+            font-size: 0.9em;
+            opacity: 0.9;
+        }
+        
+        .progress-section {
+            padding: 30px 50px;
+            background: #f8fafc;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        
+        .progress-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        
+        .progress-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .progress-text {
+            font-weight: 600;
+            color: #4a5568;
+        }
+        
+        .progress-percentage {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 14px;
+        }
+        
+        .roi-preview {
+            display: none;
+            align-items: center;
+            gap: 15px;
+            background: white;
+            padding: 15px 20px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        .roi-preview.show {
+            display: flex;
+        }
+        
+        .roi-icon {
+            font-size: 24px;
+        }
+        
+        .roi-text {
+            font-weight: 600;
+            color: #2d3748;
+        }
+        
+        .roi-value {
+            color: #10b981;
+            font-weight: 800;
+        }
+        
+        .progress-bar {
+            height: 8px;
+            background: #e2e8f0;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            width: 0%;
+            border-radius: 10px;
+            position: relative;
+        }
+        
+        .progress-fill::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            animation: shimmer 2s infinite;
+        }
+        
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+        
+        .content {
+            display: flex;
+            min-height: 700px;
+        }
+        
+        .form-section {
+            flex: 2;
+            padding: 50px;
+            background: linear-gradient(to bottom, #ffffff 0%, #f8fafc 100%);
+            transition: all 0.8s ease;
+        }
+        
+        .results-section {
+            flex: 1;
+            background: #f1f5f9;
+            padding: 50px 20px;
+            border-left: 1px solid #e2e8f0;
+            transition: all 0.8s ease;
+            height: auto;
+            max-height: none;
+            overflow-y: visible;
+        }
+        
+        .results-container {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .step {
+            margin-bottom: 50px;
+            opacity: 0.3;
+            transform: translateY(20px);
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            pointer-events: none;
+        }
+        
+        .step.active {
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: all;
+        }
+        
+        .step.completed {
+            opacity: 0.8;
+            transform: translateY(0);
+            pointer-events: all;
+        }
+        
+        .step-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+        
+        .step-number {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border-radius: 50%;
+            font-weight: bold;
+            margin-right: 20px;
+            font-size: 18px;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .step.completed .step-number {
+            background: linear-gradient(135deg, #10b981, #059669);
+            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+        }
+        
+        .step.completed .step-number::after {
+            content: '✓';
+            font-size: 22px;
+            font-weight: bold;
+        }
+        
+        .step-info {
+            flex: 1;
+        }
+        
+        .step-title {
+            font-size: 1.6em;
+            font-weight: 700;
+            color: #2d3748;
+            margin-bottom: 5px;
+        }
+        
+        .step-subtitle {
+            color: #4a5568;
+            font-size: 0.95em;
+            font-weight: 500;
+        }
+        
+        .step-prompt {
+            color: #4a5568;
+            margin-bottom: 25px;
+            line-height: 1.7;
+            font-size: 1.1em;
+        }
+        
+        .input-container {
+            position: relative;
+            margin-bottom: 25px;
+        }
+        
+        .input-label {
+            display: block;
+            margin-bottom: 12px;
+            font-weight: 600;
+            color: #4a5568;
+            font-size: 15px;
+        }
+        
+        textarea, input, select {
+            width: 100%;
+            padding: 20px;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            font-size: 16px;
+            font-family: inherit;
+            transition: all 0.3s ease;
+            resize: vertical;
+            min-height: 70px;
+            background: white;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+            color: #2d3748;
+        }
+        
+        select {
+            min-height: auto;
+            padding: 16px 20px;
+            cursor: pointer;
+        }
+        
+        textarea:focus, input:focus, select:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1), 0 4px 12px rgba(0,0,0,0.1);
+            transform: translateY(-1px);
+        }
+        
+        .textarea-large {
+            min-height: 120px;
+        }
+        
+        .examples {
+            margin-top: 15px;
+            padding: 15px;
+            background: #f8fafc;
+            border-radius: 12px;
+            border-left: 4px solid #667eea;
+        }
+        
+        .examples-title {
+            font-weight: 600;
+            font-size: 14px;
+            margin-bottom: 10px;
+            color: #2d3748;
+        }
+        
+        .example-item {
+            padding: 10px 15px;
+            background: white;
+            border-radius: 8px;
+            margin-bottom: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 14px;
+            border: 1px solid transparent;
+            color: #2d3748;
+        }
+        
+        .example-item:hover {
+            border-color: #667eea;
+            transform: translateX(5px);
+            box-shadow: 0 2px 8px rgba(102, 126, 234, 0.2);
+        }
+        
+        .feedback {
+            margin-top: 15px;
+            padding: 15px 20px;
+            border-radius: 10px;
+            font-size: 14px;
+            line-height: 1.5;
+            transition: all 0.3s ease;
+            border-left: 4px solid transparent;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .feedback.positive {
+            background: linear-gradient(135deg, #f0fff4, #e6fffa);
+            color: #065f46;
+            border-left-color: #10b981;
+        }
+        
+        .feedback.warning {
+            background: linear-gradient(135deg, #fffbf0, #fef3e2);
+            color: #92400e;
+            border-left-color: #f59e0b;
+        }
+        
+        .feedback.hint {
+            background: linear-gradient(135deg, #f8fafc, #f1f5f9);
+            color: #475569;
+            border-left-color: #64748b;
+        }
+        
+        .feedback-icon {
+            font-size: 18px;
+        }
+        
+        .frequency-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+        
+        .frequency-card {
+            padding: 20px;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: white;
+        }
+        
+        .frequency-card:hover {
+            border-color: #667eea;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.2);
+        }
+        
+        .frequency-card.selected {
+            border-color: #667eea;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+        }
+        
+        .frequency-icon {
+            font-size: 32px;
+            margin-bottom: 10px;
+            display: block;
+        }
+        
+        .frequency-label {
+            font-weight: 700;
+            font-size: 16px;
+            margin-bottom: 5px;
+        }
+        
+        .frequency-desc {
+            font-size: 13px;
+            opacity: 0.8;
+        }
+        
+        .button-group {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            padding: 15px 30px;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            opacity: 0.5;
+            pointer-events: none;
+        }
+        
+        .btn.enabled {
+            opacity: 1;
+            pointer-events: all;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+        }
+        
+        .btn-secondary {
+            background: white;
+            color: #2d3748;
+            border: 2px solid #e2e8f0;
+        }
+        
+        .btn.enabled:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+        }
+        
+        .results-title {
+            font-size: 1.7em;
+            font-weight: 800;
+            margin-bottom: 25px;
+            color: #2d3748;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-shrink: 0;
+        }
+        
+        /* DIAGNOSTIC SECTIONS */
+        .diagnostic-section {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            border: 1px solid #e2e8f0;
+            margin-bottom: 25px;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+        
+        .section-header {
+            background: linear-gradient(135deg, #f8fafc, #f1f5f9);
+            padding: 20px 25px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        
+        .section-title {
+            font-size: 1.2em;
+            font-weight: 700;
+            color: #2d3748;
+            margin-bottom: 5px;
+        }
+        
+        .section-subtitle {
+            color: #4a5568;
+            font-size: 0.9em;
+        }
+        
+        .section-content {
+            padding: 25px;
+        }
+        
+        /* ROI CALCULATOR */
+        .roi-calculator {
+            background: linear-gradient(135deg, #10b981, #059669);
+            color: white;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .roi-title {
+            font-size: 1.3em;
+            font-weight: 700;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .info-toggle {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 24px;
+            height: 24px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 14px;
+            font-weight: bold;
+        }
+        
+        .info-toggle:hover {
+            background: rgba(255,255,255,0.3);
+            transform: scale(1.1);
+        }
+        
+        .roi-metrics {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 15px;
+        }
+        
+        .roi-metric {
+            text-align: center;
+        }
+        
+        .roi-metric-value {
+            font-size: 2.2em;
+            font-weight: 800;
+            display: block;
+        }
+        
+        .roi-metric-label {
+            font-size: 0.85em;
+            opacity: 0.9;
+        }
+        
+        .roi-details {
+            background: rgba(255,255,255,0.1);
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 15px;
+            font-size: 0.9em;
+            text-align: left;
+            display: none;
+            transition: all 0.3s ease;
+        }
+        
+        .roi-details.show {
+            display: block;
+            animation: slideDown 0.3s ease-out;
+        }
+        
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .roi-details h5 {
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+        
+        .roi-breakdown {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 10px;
+            margin-bottom: 8px;
+        }
+        
+        /* TOOL RECOMMENDATIONS */
+        .tool-recommendation {
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .tool-recommendation:hover {
+            border-color: #667eea;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.15);
+        }
+        
+        .tool-recommendation.featured {
+            border-color: #10b981;
+            background: linear-gradient(135deg, #f0fff4, #ecfdf5);
+        }
+        
+        .tool-recommendation.featured::before {
+            content: 'Recommandé';
+            position: absolute;
+            top: -8px;
+            right: 15px;
+            background: #10b981;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 600;
+            z-index: 3;
+        }
+        
+        .tool-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 15px;
+        }
+        
+        .tool-name {
+            font-size: 1.3em;
+            font-weight: 700;
+            color: #2d3748;
+            margin-bottom: 5px;
+        }
+        
+        .tool-category {
+            font-size: 0.8em;
+            color: white;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .tool-score {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 14px;
+            text-align: center;
+            min-width: 60px;
+        }
+        
+        .tool-description {
+            color: #4a5568;
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+        
+        .tool-features {
+            background: #f8fafc;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .tool-features h5 {
+            color: #2d3748;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        
+        .feature-list {
+            display: grid;
+            gap: 8px;
+        }
+        
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            color: #4a5568;
+        }
+        
+        .feature-item::before {
+            content: '✓';
+            color: #10b981;
+            font-weight: bold;
+        }
+        
+        .tool-pricing {
+            background: #fff7ed;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .pricing-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 10px;
+        }
+        
+        .pricing-title {
+            font-weight: 600;
+            color: #92400e;
+        }
+        
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 15px;
+        }
+        
+        .pricing-item {
+            text-align: center;
+        }
+        
+        .pricing-label {
+            font-size: 0.8em;
+            color: #92400e;
+            margin-bottom: 5px;
+        }
+        
+        .pricing-value {
+            font-weight: 700;
+            color: #92400e;
+        }
+        
+        .usability-score {
+            background: #f0f9ff;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .usability-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+        
+        .usability-title {
+            font-weight: 600;
+            color: #1e40af;
+        }
+        
+        .usability-rating {
+            display: flex;
+            gap: 2px;
+        }
+        
+        .star {
+            font-size: 16px;
+            color: #fbbf24;
+        }
+        
+        .star.empty {
+            color: #d1d5db;
+        }
+        
+        .usability-details {
+            font-size: 14px;
+            color: #1e40af;
+            line-height: 1.4;
+        }
+        
+        .tool-action {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .tool-link {
+            flex: 1;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 12px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            text-align: center;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .tool-link:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+        }
+        
+        .tool-info {
+            background: white;
+            border: 2px solid #e2e8f0;
+            color: #4a5568;
+            padding: 12px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            text-align: center;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .tool-info:hover {
+            border-color: #667eea;
+            color: #667eea;
+        }
+        
+        /* IMPLEMENTATION STRATEGY */
+        .strategy-timeline {
+            background: linear-gradient(135deg, #fff7ed, #fef3c7);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .strategy-title {
+            color: #92400e;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+        
+        .timeline-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .timeline-item:last-child {
+            margin-bottom: 0;
+        }
+        
+        .timeline-number {
+            background: #f59e0b;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 14px;
+            flex-shrink: 0;
+        }
+        
+        .timeline-content {
+            flex: 1;
+        }
+        
+        .timeline-phase {
+            font-weight: 600;
+            color: #92400e;
+            margin-bottom: 5px;
+        }
+        
+        .timeline-description {
+            color: #451a03;
+            font-size: 14px;
+            line-height: 1.4;
+        }
+        
+        /* CONTACT FORM */
+        .contact-section {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            border: 1px solid #e2e8f0;
+            margin-top: 25px;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+        
+        .contact-header {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 25px;
+            text-align: center;
+        }
+        
+        .contact-title {
+            font-size: 1.3em;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        
+        .contact-subtitle {
+            opacity: 0.9;
+        }
+        
+        .contact-form {
+            padding: 30px;
+        }
+        
+        .form-row {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .form-field {
+            flex: 1;
+        }
+        
+        .form-field label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #4a5568;
+            font-size: 14px;
+        }
+        
+        .form-field input {
+            min-height: auto;
+        }
+        
+        .validation-error {
+            background: #fee2e2;
+            color: #dc2626;
+            padding: 12px 15px;
+            border-radius: 8px;
+            margin-top: 8px;
+            font-size: 13px;
+            border-left: 4px solid #dc2626;
+            display: none;
+        }
+        
+        .form-field.error input {
+            border-color: #dc2626;
+            box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.1);
+        }
+        
+        .submit-button {
+            width: 100%;
+            background: linear-gradient(135deg, #10b981, #059669);
+            color: white;
+            padding: 18px 25px;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+        }
+        
+        .submit-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4);
+        }
+        
+        .submit-button:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        /* LOADING AND SUCCESS STATES */
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(102, 126, 234, 0.95);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+            backdrop-filter: blur(5px);
+        }
+        
+        .loading-content {
+            text-align: center;
+            color: white;
+        }
+        
+        .loading-spinner {
+            width: 60px;
+            height: 60px;
+            border: 6px solid rgba(255,255,255,0.3);
+            border-top: 6px solid white;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+        
+        .loading-text {
+            font-size: 1.2em;
+            font-weight: 600;
+        }
+        
+        .spinner {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255,255,255,.3);
+            border-radius: 50%;
+            border-top-color: #fff;
+            animation: spin 1s ease-in-out infinite;
+            margin-right: 10px;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        .auto-save-indicator {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #10b981;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 25px;
+            font-size: 14px;
+            font-weight: 600;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+        }
+        
+        .auto-save-indicator.show {
+            opacity: 1;
+        }
+        
+        @media (max-width: 768px) {
+            .content {
+                flex-direction: column;
+            }
+            
+            .results-section {
+                border-left: none;
+                border-top: 1px solid #e2e8f0;
+                height: auto;
+                overflow-y: visible;
+            }
+            
+            .form-row {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .frequency-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            
+            .form-section, .results-section {
+                padding: 30px;
+            }
+            
+            .progress-section {
+                padding: 20px 30px;
+            }
+            
+            .value-proposition {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .progress-container {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .roi-metrics {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+            
+            .pricing-grid {
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+            
+            .tool-action {
+                flex-direction: column;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .header h1 {
+                font-size: 2.2em;
+            }
+            
+            .header .subtitle {
+                font-size: 1.1em;
+            }
+            
+            .frequency-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .button-group {
+                flex-direction: column;
+            }
+            
+            .auto-save-indicator {
+                bottom: 10px;
+                right: 10px;
+                font-size: 12px;
+                padding: 8px 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="header-content">
+                <div class="expert-badge">
+                    Théo Le Breton - Expert en Automatisation
+                </div>
+                <h1>💰 Diagnostic Gratuit : Combien pourriez-vous économiser ?</h1>
+                <p class="subtitle">Découvrez en 5 minutes le potentiel d'optimisation de vos processus</p>
+                <div class="value-proposition">
+                    <div class="value-item">
+                        <span class="value-number">30min-15h</span>
+                        <span class="value-label">gagnées/semaine</span>
+                    </div>
+                    <div class="value-item">
+                        <span class="value-number">400-3200€</span>
+                        <span class="value-label">économisés/mois</span>
+                    </div>
+                    <div class="value-item">
+                        <span class="value-number">< 1 mois</span>
+                        <span class="value-label">pour voir les résultats</span>
+                    </div>
+                </div>
+                <div style="margin-top: 20px; padding: 15px; background: rgba(255,255,255,0.15); border-radius: 12px; font-size: 0.95em; backdrop-filter: blur(10px);">
+                    <div style="display: flex; align-items: center; margin-bottom: 8px;">
+                        <span style="font-size: 1.1em; margin-right: 8px;">📊 Basé sur 200+ optimisations réalisées</span>
+                    </div>
+                    <div style="font-size: 0.85em; line-height: 1.3;">
+                        85% des tâches répétitives automatisables • Coût superbrut 33€/h • Solutions avec bonifications sectorielles
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="progress-section">
+            <div class="progress-container">
+                <div class="progress-info">
+                    <div class="progress-text">Progression du diagnostic</div>
+                    <div class="progress-percentage" id="progressPercentage">0%</div>
+                </div>
+                <div class="roi-preview" id="roiPreview">
+                    <span class="roi-icon">💰</span>
+                    <div>
+                        <div class="roi-text">Économies potentielles : <span class="roi-value" id="roiValue">0€</span></div>
+                    </div>
+                </div>
+            </div>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+        </div>
+        
+        <div class="content">
+            <div class="form-section">
+                <!-- Étape 1 : Processus -->
+                <div class="step active" id="step1">
+                    <div class="step-header">
+                        <div class="step-number">1</div>
+                        <div class="step-info">
+                            <div class="step-title">Quelle tâche vous fait perdre du temps ?</div>
+                            <div class="step-subtitle">Décrivez-moi une routine que vous répétez souvent</div>
+                        </div>
+                    </div>
+                    <div class="step-prompt">
+                        Pensez à une tâche que vous faites régulièrement et qui vous prend du temps. Plus vous serez précis, plus mon analyse sera juste.
+                    </div>
+                    <div class="input-container">
+                        <label class="input-label">Décrivez votre tâche répétitive</label>
+                        <textarea id="task" class="textarea-large" placeholder="Exemple : Chaque lundi, je récupère les ventes de la semaine dans différents tableaux, je les regroupe dans un fichier Excel, puis j'envoie un résumé par email à mon équipe..."></textarea>
+                        <div class="examples">
+                            <div class="examples-title">Exemples de tâches qui font gagner beaucoup de temps :</div>
+                            <div class="example-item" onclick="addExample(this)">Suivi des nouveaux clients : je reçois les contrats signés par email, je crée leur dossier, j'envoie le kit de bienvenue, et je programme le premier rendez-vous</div>
+                            <div class="example-item" onclick="addExample(this)">Gestion des factures : je vérifie les bons de livraison, je crée les factures dans mon logiciel, je les envoie par email, puis je relance les impayés</div>
+                            <div class="example-item" onclick="addExample(this)">Reporting hebdomadaire : je compile les chiffres de vente de mes commerciaux, je mets à jour le tableau de bord, et j'envoie la synthèse à ma direction</div>
+                            <div class="example-item" onclick="addExample(this)">Traitement des commandes : je reçois les commandes par email ou téléphone, je vérifie le stock, je valide le prix, et je transmets à l'atelier ou au transporteur</div>
+                        </div>
+                        <div class="feedback hint" id="taskFeedback">
+                            <span class="feedback-icon">💡</span>
+                            <span>Plus vous détaillez les étapes, plus je peux calculer précisément ce que vous pourriez économiser.</span>
+                        </div>
+                    </div>
+                    <div class="button-group">
+                        <button class="btn btn-primary" id="nextButton1">Analyser cette tâche → (2/6)</button>
+                    </div>
+                </div>
+                
+                <!-- Étape 2 : Fréquence -->
+                <div class="step" id="step2">
+                    <div class="step-header">
+                        <div class="step-number">2</div>
+                        <div class="step-info">
+                            <div class="step-title">À quelle fréquence faites-vous cette tâche ?</div>
+                            <div class="step-subtitle">Pour calculer vos économies potentielles</div>
+                        </div>
+                    </div>
+                    <div class="frequency-grid">
+                        <div class="frequency-card" data-frequency="daily">
+                            <span class="frequency-icon">⚡</span>
+                            <div class="frequency-label">Tous les jours</div>
+                            <div class="frequency-desc">Ou presque</div>
+                        </div>
+                        <div class="frequency-card" data-frequency="weekly">
+                            <span class="frequency-icon">📅</span>
+                            <div class="frequency-label">Chaque semaine</div>
+                            <div class="frequency-desc">1 à 3 fois par semaine</div>
+                        </div>
+                        <div class="frequency-card" data-frequency="monthly">
+                            <span class="frequency-icon">📊</span>
+                            <div class="frequency-label">Chaque mois</div>
+                            <div class="frequency-desc">Quelques fois par mois</div>
+                        </div>
+                        <div class="frequency-card" data-frequency="occasional">
+                            <span class="frequency-icon">🔄</span>
+                            <div class="frequency-label">De temps en temps</div>
+                            <div class="frequency-desc">Selon les besoins</div>
+                        </div>
+                    </div>
+                    <div class="input-container">
+                        <label class="input-label">Donnez-moi une idée du volume (optionnel mais utile)</label>
+                        <input type="text" id="volume" placeholder="Ex: 15 factures par semaine, 30 nouveaux dossiers par mois, 5 rapports par semaine...">
+                        <div class="examples">
+                            <div class="examples-title">Exemples de volumes :</div>
+                            <div class="example-item" onclick="addExample(this)">25 emails à traiter par jour</div>
+                            <div class="example-item" onclick="addExample(this)">10 nouveaux clients par mois</div>
+                            <div class="example-item" onclick="addExample(this)">50 factures par mois</div>
+                            <div class="example-item" onclick="addExample(this)">15 commandes par jour</div>
+                        </div>
+                        <div class="feedback hint" id="volumeFeedback">
+                            <span class="feedback-icon">📊</span>
+                            <span>Le volume m'aide à calculer exactement ce que vous pourriez économiser en euros.</span>
+                        </div>
+                    </div>
+                    <div class="button-group">
+                        <button class="btn btn-secondary enabled" onclick="goToStep(1)">← Retour</button>
+                        <button class="btn btn-primary" id="nextButton2">Continuer → (3/6)</button>
+                    </div>
+                </div>
+                
+                <!-- Étape 3 : Secteur d'activité -->
+                <div class="step" id="step3">
+                    <div class="step-header">
+                        <div class="step-number">3</div>
+                        <div class="step-info">
+                            <div class="step-title">Dans quel secteur travaillez-vous ?</div>
+                            <div class="step-subtitle">Pour des recommandations sur mesure</div>
+                        </div>
+                    </div>
+                    <div class="step-prompt">
+                        Cette information me permet d'adapter mes recommandations d'outils et d'estimer plus précisément vos gains potentiels selon votre secteur.
+                    </div>
+                    <div class="input-container">
+                        <label class="input-label">Votre secteur d'activité</label>
+                        <select id="sector">
+                            <option value="">Sélectionnez votre secteur</option>
+                            <option value="freelance_consulting">Freelance / Conseil</option>
+                            <option value="ecommerce">E-commerce</option>
+                            <option value="real_estate">Immobilier</option>
+                            <option value="healthcare">Santé / Médical</option>
+                            <option value="construction_btp">BTP / Construction</option>
+                            <option value="restaurant_hospitality">Restauration / Hôtellerie</option>
+                            <option value="retail">Commerce de détail</option>
+                            <option value="accounting_finance">Comptabilité / Finance</option>
+                            <option value="logistics">Logistique / Transport</option>
+                            <option value="manufacturing">Industrie / Production</option>
+                            <option value="generic">Autre</option>
+                        </select>
+                        <div class="feedback hint" id="sectorFeedback">
+                            <span class="feedback-icon">🎯</span>
+                            <span>Chaque secteur a ses spécificités. Cette info améliore mes recommandations de 30%.</span>
+                        </div>
+                    </div>
+                    <div class="button-group">
+                        <button class="btn btn-secondary enabled" onclick="goToStep(2)">← Retour</button>
+                        <button class="btn btn-primary" id="nextButton3">Analyser mon secteur → (4/6)</button>
+                    </div>
+                </div>
+                
+                <!-- Étape 4 : Écosystème actuel -->
+                <div class="step" id="step4">
+                    <div class="step-header">
+                        <div class="step-number">4</div>
+                        <div class="step-info">
+                            <div class="step-title">Quels outils utilisez-vous ?</div>
+                            <div class="step-subtitle">Logiciels, fichiers, emails...</div>
+                        </div>
+                    </div>
+                    <div class="step-prompt">
+                        Listez simplement les outils et logiciels que vous utilisez pour cette tâche.
+                    </div>
+                    <div class="input-container">
+                        <label class="input-label">Vos outils actuels</label>
+                        <input type="text" id="tools" placeholder="Ex: Outlook, Excel, mon logiciel de facturation, WhatsApp...">
+                        <div class="examples">
+                            <div class="examples-title">Types d'outils courants :</div>
+                            <div class="example-item" onclick="addExample(this)">Email : Outlook, Gmail, Thunderbird</div>
+                            <div class="example-item" onclick="addExample(this)">Bureautique : Excel, Word, PowerPoint</div>
+                            <div class="example-item" onclick="addExample(this)">Métier : logiciel de facturation, CRM, ERP, caisse</div>
+                            <div class="example-item" onclick="addExample(this)">Communication : WhatsApp, Teams, téléphone</div>
+                        </div>
+                        <div class="feedback hint" id="toolsFeedback">
+                            <span class="feedback-icon">🔧</span>
+                            <span>Listez tous les logiciels que vous touchez, même les plus simples.</span>
+                        </div>
+                    </div>
+                    <div class="input-container">
+                        <label class="input-label">D'où viennent vos informations ?</label>
+                        <textarea id="inputs" placeholder="Ex: Emails des clients, fichiers Excel des commerciaux, formulaire sur le site web..."></textarea>
+                        <div class="examples">
+                            <div class="examples-title">Sources d'informations typiques :</div>
+                            <div class="example-item" onclick="addExample(this)">Emails reçus des clients avec commandes, demandes, réclamations</div>
+                            <div class="example-item" onclick="addExample(this)">Fichiers Excel envoyés par l'équipe avec les données de vente</div>
+                            <div class="example-item" onclick="addExample(this)">Formulaires remplis sur le site internet par les prospects</div>
+                            <div class="example-item" onclick="addExample(this)">Appels téléphoniques et notes prises pendant les entretiens</div>
+                        </div>
+                        <div class="feedback hint" id="inputsFeedback">
+                            <span class="feedback-icon">📋</span>
+                            <span>Pensez à tous les endroits d'où arrivent vos informations.</span>
+                        </div>
+                    </div>
+                    <div class="button-group">
+                        <button class="btn btn-secondary enabled" onclick="goToStep(3)">← Retour</button>
+                        <button class="btn btn-primary" id="nextButton4">Continuer → (5/6)</button>
+                    </div>
+                </div>
+                
+                <!-- Étape 5 : Résultat et livrables -->
+                <div class="step" id="step5">
+                    <div class="step-header">
+                        <div class="step-number">5</div>
+                        <div class="step-info">
+                            <div class="step-title">Résultat final</div>
+                            <div class="step-subtitle">Que produisez-vous à la fin ?</div>
+                        </div>
+                    </div>
+                    <div class="input-container">
+                        <label class="input-label">Livrable final</label>
+                        <textarea id="output" placeholder="Ex: Client intégré dans le CRM avec première relance programmée, Facture envoyée et paiement suivi, Rapport de ventes compilé..."></textarea>
+                        <div class="examples">
+                            <div class="examples-title">Exemples de livrables automatisables :</div>
+                            <div class="example-item" onclick="addExample(this)">Client qualifié ajouté au CRM avec tâche de relance programmée dans 3 jours</div>
+                            <div class="example-item" onclick="addExample(this)">Facture générée automatiquement et envoyée par email avec suivi de paiement activé</div>
+                            <div class="example-item" onclick="addExample(this)">Rapport hebdomadaire des ventes compilé et envoyé à l'équipe chaque lundi matin</div>
+                            <div class="example-item" onclick="addExample(this)">Nouveau client onboardé avec accès créé, formation planifiée et kit de bienvenue envoyé</div>
+                        </div>
+                        <div class="feedback hint" id="outputFeedback">
+                            <span class="feedback-icon">🎯</span>
+                            <span>Décrivez précisément ce que vous produisez à la fin du processus.</span>
+                        </div>
+                    </div>
+                    <div class="button-group">
+                        <button class="btn btn-secondary enabled" onclick="goToStep(4)">← Retour</button>
+                        <button class="btn btn-primary" id="nextButton5">Finaliser l'analyse → (6/6)</button>
+                    </div>
+                </div>
+                
+                <!-- Étape 6 : Points de friction -->
+                <div class="step" id="step6">
+                    <div class="step-header">
+                        <div class="step-number">6</div>
+                        <div class="step-info">
+                            <div class="step-title">Y a-t-il des contraintes ? (optionnel)</div>
+                            <div class="step-subtitle">Points d'attention ou limitations</div>
+                        </div>
+                    </div>
+                    <div class="step-prompt">
+                        Y a-t-il des choses importantes à ne pas oublier ? Des validations obligatoires ? Cette étape est optionnelle mais aide à avoir des recommandations plus précises.
+                    </div>
+                    <div class="input-container">
+                        <label class="input-label">Contraintes ou points d'attention (optionnel)</label>
+                        <textarea id="risks" placeholder="Ex: Mon chef doit valider les gros montants, je dois respecter le RGPD pour les données clients..."></textarea>
+                        <div class="examples">
+                            <div class="examples-title">Exemples de contraintes fréquentes :</div>
+                            <div class="example-item" onclick="addExample(this)">Mon responsable doit valider tous les montants supérieurs à 1000€</div>
+                            <div class="example-item" onclick="addExample(this)">Je dois respecter la confidentialité des données clients (RGPD)</div>
+                            <div class="example-item" onclick="addExample(this)">Certains clients préfèrent être contactés par téléphone plutôt que par email</div>
+                            <div class="example-item" onclick="addExample(this)">Cette tâche est très urgente, je dois la traiter dans la journée</div>
+                        </div>
+                        <div class="feedback hint" id="risksFeedback">
+                            <span class="feedback-icon">⚠️</span>
+                            <span>Ces informations m'aident à vous proposer des solutions adaptées à vos contraintes.</span>
+                        </div>
+                    </div>
+                    <div class="button-group">
+                        <button class="btn btn-secondary enabled" onclick="goToStep(5)">← Retour</button>
+                        <button class="btn btn-primary enabled" id="nextButton6">🚀 Voir mes économies potentielles</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Résultats et diagnostic -->
+            <div class="results-section">
+                <div class="results-container">
+                    <div class="results-title">
+                        💰 Vos Économies Potentielles
+                    </div>
+                    
+                    <!-- ROI Calculator -->
+                    <div class="diagnostic-section" id="roiSection" style="display: none;">
+                        <div class="roi-calculator">
+                            <div class="roi-title">
+                                Analyse de Rentabilité
+                                <div class="info-toggle" onclick="toggleROIDetails()">i</div>
+                            </div>
+                            <div class="roi-metrics">
+                                <div class="roi-metric">
+                                    <span class="roi-metric-value" id="timeSavings">0h</span>
+                                    <span class="roi-metric-label">par semaine</span>
+                                </div>
+                                <div class="roi-metric">
+                                    <span class="roi-metric-value" id="monthlySavings">0€</span>
+                                    <span class="roi-metric-label">par mois</span>
+                                </div>
+                                <div class="roi-metric">
+                                    <span class="roi-metric-value" id="yearlySavings">0k€</span>
+                                    <span class="roi-metric-label">par an</span>
+                                </div>
+                            </div>
+                            <div class="roi-details" id="roiBreakdown">
+                                <!-- Détails seront générés dynamiquement -->
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Tool Recommendations -->
+                    <div class="diagnostic-section" id="toolsSection" style="display: none;">
+                        <div class="section-header">
+                            <div class="section-title">🛠️ Solutions Recommandées</div>
+                            <div class="section-subtitle">Outils adaptés à votre secteur</div>
+                        </div>
+                        <div class="section-content" id="toolsList">
+                            <!-- Recommandations seront générées dynamiquement -->
+                        </div>
+                    </div>
+                    
+                    <!-- Implementation Strategy -->
+                    <div class="diagnostic-section" id="strategySection" style="display: none;">
+                        <div class="section-header">
+                            <div class="section-title">🚀 Plan d'Action</div>
+                            <div class="section-subtitle">Comment procéder étape par étape</div>
+                        </div>
+                        <div class="section-content">
+                            <div class="strategy-timeline" id="strategyTimeline">
+                                <!-- Timeline sera générée dynamiquement -->
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Contact Form -->
+                    <div class="contact-section" id="contactSection" style="display: none;">
+                        <div class="contact-header">
+                            <div class="contact-title">Parlons de votre projet</div>
+                            <div class="contact-subtitle">Échangeons 15 minutes pour affiner cette analyse</div>
+                        </div>
+                        <form class="contact-form" action="https://formspree.io/f/mzzgbevp" method="POST" id="diagnosticForm">
+                            <div class="form-row">
+                                <div class="form-field">
+                                    <label for="prenom">Prénom *</label>
+                                    <input type="text" id="prenom" name="prenom" required>
+                                    <div class="validation-error" id="prenomError"></div>
+                                </div>
+                                <div class="form-field">
+                                    <label for="nom">Nom *</label>
+                                    <input type="text" id="nom" name="nom" required>
+                                    <div class="validation-error" id="nomError"></div>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-field">
+                                    <label for="email">Email *</label>
+                                    <input type="email" id="email" name="email" required>
+                                    <div class="validation-error" id="emailError"></div>
+                                </div>
+                                <div class="form-field">
+                                    <label for="telephone">Téléphone</label>
+                                    <input type="tel" id="telephone" name="telephone">
+                                </div>
+                            </div>
+                            <div class="form-field">
+                                <label for="company">Entreprise</label>
+                                <input type="text" id="company" name="company" placeholder="Nom de votre entreprise">
+                            </div>
+                            
+                            <div class="form-field" style="margin-top: 25px;">
+                                <label for="recommendations">Vos recommandations sur ce processus (optionnel)</label>
+                                <textarea id="recommendations" name="recommendations" placeholder="Avez-vous des idées d'amélioration ? Des outils que vous utilisez déjà ? Des contraintes particulières à prendre en compte ?" style="min-height: 80px;"></textarea>
+                                <div style="font-size: 13px; color: #4a5568; margin-top: 8px;">
+                                    💡 Vos suggestions m'aident à vous proposer des solutions encore plus adaptées
+                                </div>
+                            </div>
+                            
+                            <input type="hidden" id="diagnostic_data" name="diagnostic_data">
+                            
+                            <button type="submit" class="submit-button" id="submitButton">
+                                📨 Recevoir mon plan d'automatisation détaillé
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Loading Overlay -->
+        <div class="loading-overlay" id="loadingOverlay">
+            <div class="loading-content">
+                <div class="loading-spinner"></div>
+                <div class="loading-text">Génération de votre diagnostic personnalisé...</div>
+            </div>
+        </div>
+        
+        <!-- Auto-save indicator -->
+        <div class="auto-save-indicator" id="autoSaveIndicator">
+            ✅ Diagnostic sauvegardé
+        </div>
+    </div>
+
+    <script>
+        // ===== CONFIGURATION =====
+        const HOURLY_RATE = 33;
+        const totalSteps = 6;
+        let currentStep = 1;
+        let selectedFrequency = '';
+        let selectedSector = '';
+        
+        // ===== BASE DE DONNÉES D'OUTILS ENRICHIE =====
+        const TOOLS_DATABASE = {
+            // CRM & Sales
+            'hubspot': {
+                name: 'HubSpot CRM',
+                category: 'CRM & Sales',
+                description: 'CRM tout-en-un avec automatisation marketing et sales intégrée',
+                features: [
+                    'CRM gratuit jusqu\'à 1M contacts',
+                    'Email marketing automatisé',
+                    'Landing pages et formulaires',
+                    'Reporting et analytics avancés',
+                    'Intégrations natives (1000+)'
+                ],
+                pricing: {
+                    free: 'Gratuit',
+                    starter: '45€/mois',
+                    pro: '800€/mois'
+                },
+                usability: {
+                    score: 4.5,
+                    setup_time: '2-4 heures',
+                    learning_curve: 'Facile à modérée'
+                },
+                sectors: ['freelance_consulting', 'real_estate', 'manufacturing'],
+                automation_strength: 95
+            },
+            'pipedrive': {
+                name: 'Pipedrive',
+                category: 'CRM & Sales',
+                description: 'CRM simple et visuel, parfait pour les équipes commerciales',
+                features: [
+                    'Interface pipeline visuelle',
+                    'Automatisation des ventes',
+                    'Suivi email intégré',
+                    'Rapports de performance',
+                    'Application mobile complète'
+                ],
+                pricing: {
+                    starter: '15€/utilisateur/mois',
+                    advanced: '25€/utilisateur/mois',
+                    pro: '50€/utilisateur/mois'
+                },
+                usability: {
+                    score: 4.7,
+                    setup_time: '1-2 heures',
+                    learning_curve: 'Très facile'
+                },
+                sectors: ['freelance_consulting', 'real_estate', 'construction_btp'],
+                automation_strength: 85
+            },
+            
+            // Automatisation
+            'zapier': {
+                name: 'Zapier',
+                category: 'Automatisation',
+                description: 'Plateforme n°1 pour connecter vos applications sans code',
+                features: [
+                    '5000+ applications connectées',
+                    'Automatisations multi-étapes',
+                    'Déclencheurs intelligents',
+                    'Filtres et conditions avancées',
+                    'Templates prêts à l\'emploi'
+                ],
+                pricing: {
+                    free: 'Gratuit (100 tâches/mois)',
+                    starter: '20€/mois (750 tâches)',
+                    pro: '50€/mois (2000 tâches)'
+                },
+                usability: {
+                    score: 4.3,
+                    setup_time: '30 minutes - 2 heures',
+                    learning_curve: 'Facile'
+                },
+                sectors: ['freelance_consulting', 'ecommerce', 'retail', 'accounting_finance'],
+                automation_strength: 98
+            },
+            'make': {
+                name: 'Make (ex-Integromat)',
+                category: 'Automatisation',
+                description: 'Automatisation visuelle plus puissante que Zapier',
+                features: [
+                    'Interface drag & drop visuelle',
+                    'Logique conditionnelle avancée',
+                    'Gestion d\'erreurs sophistiquée',
+                    'Exécution en temps réel',
+                    'API et webhooks natifs'
+                ],
+                pricing: {
+                    free: 'Gratuit (1000 opérations/mois)',
+                    core: '9€/mois (10k opérations)',
+                    pro: '16€/mois (40k opérations)'
+                },
+                usability: {
+                    score: 4.1,
+                    setup_time: '1-3 heures',
+                    learning_curve: 'Modérée'
+                },
+                sectors: ['ecommerce', 'manufacturing', 'logistics'],
+                automation_strength: 96
+            },
+            
+            // Comptabilité & Finance
+            'quickbooks': {
+                name: 'QuickBooks',
+                category: 'Comptabilité',
+                description: 'Solution comptable complète avec automatisation intégrée',
+                features: [
+                    'Facturation automatisée',
+                    'Réconciliation bancaire auto',
+                    'Suivi des dépenses intelligent',
+                    'Rapports financiers en temps réel',
+                    'Conformité fiscale française'
+                ],
+                pricing: {
+                    simple: '15€/mois',
+                    advanced: '35€/mois',
+                    expert: '55€/mois'
+                },
+                usability: {
+                    score: 4.2,
+                    setup_time: '2-4 heures',
+                    learning_curve: 'Modérée'
+                },
+                sectors: ['accounting_finance', 'freelance_consulting', 'retail'],
+                automation_strength: 88
+            },
+            'stripe': {
+                name: 'Stripe',
+                category: 'Paiement',
+                description: 'Plateforme de paiement avec automatisation des revenus',
+                features: [
+                    'Paiements récurrents automatiques',
+                    'Facturation intelligente',
+                    'Gestion des taxes globale',
+                    'Analytics revenus avancées',
+                    'API ultra-flexible'
+                ],
+                pricing: {
+                    standard: '1.4% + 0.25€ par transaction',
+                    connect: '2.9% + 0.30€ par transaction',
+                    enterprise: 'Sur devis'
+                },
+                usability: {
+                    score: 4.6,
+                    setup_time: '30 minutes - 1 heure',
+                    learning_curve: 'Facile à modérée'
+                },
+                sectors: ['ecommerce', 'freelance_consulting', 'restaurant_hospitality'],
+                automation_strength: 92
+            },
+            
+            // E-commerce
+            'shopify': {
+                name: 'Shopify',
+                category: 'E-commerce',
+                description: 'Plateforme e-commerce avec automatisations marketing intégrées',
+                features: [
+                    'Boutique en ligne complète',
+                    'Automatisations email marketing',
+                    'Gestion stock intelligente',
+                    'Abandoned cart recovery',
+                    '6000+ applications tierces'
+                ],
+                pricing: {
+                    basic: '29$/mois',
+                    shopify: '79$/mois',
+                    advanced: '299$/mois'
+                },
+                usability: {
+                    score: 4.4,
+                    setup_time: '4-8 heures',
+                    learning_curve: 'Facile'
+                },
+                sectors: ['ecommerce', 'retail'],
+                automation_strength: 90
+            },
+            
+            // Rendez-vous & Planning
+            'calendly': {
+                name: 'Calendly',
+                category: 'Prise de RDV',
+                description: 'Automatisation complète de la prise de rendez-vous',
+                features: [
+                    'Réservation en ligne 24/7',
+                    'Sync calendriers automatique',
+                    'Rappels automatiques',
+                    'Questionnaires pré-RDV',
+                    'Intégrations CRM natives'
+                ],
+                pricing: {
+                    free: 'Gratuit (1 type RDV)',
+                    essentials: '8€/utilisateur/mois',
+                    pro: '12€/utilisateur/mois'
+                },
+                usability: {
+                    score: 4.8,
+                    setup_time: '15-30 minutes',
+                    learning_curve: 'Très facile'
+                },
+                sectors: ['healthcare', 'freelance_consulting', 'real_estate'],
+                automation_strength: 94
+            },
+            'acuity': {
+                name: 'Acuity Scheduling',
+                category: 'Prise de RDV',
+                description: 'Solution de RDV avancée avec automatisations personnalisées',
+                features: [
+                    'Personnalisation interface poussée',
+                    'Packages et cours en ligne',
+                    'Paiements intégrés',
+                    'Formulaires d\'admission',
+                    'Certificats cadeaux automatiques'
+                ],
+                pricing: {
+                    emerging: '14$/mois',
+                    growing: '23$/mois',
+                    powerhouse: '45$/mois'
+                },
+                usability: {
+                    score: 4.3,
+                    setup_time: '1-2 heures',
+                    learning_curve: 'Modérée'
+                },
+                sectors: ['healthcare', 'freelance_consulting'],
+                automation_strength: 89
+            },
+            
+            // Signature électronique
+            'docusign': {
+                name: 'DocuSign',
+                category: 'Signature électronique',
+                description: 'Leader mondial de la signature électronique automatisée',
+                features: [
+                    'Signatures légalement valides',
+                    'Workflows d\'approbation',
+                    'Templates intelligents',
+                    'Rappels automatiques',
+                    'Audit trail complet'
+                ],
+                pricing: {
+                    personal: '10€/mois',
+                    standard: '31€/utilisateur/mois',
+                    business: '54€/utilisateur/mois'
+                },
+                usability: {
+                    score: 4.5,
+                    setup_time: '30 minutes - 1 heure',
+                    learning_curve: 'Facile'
+                },
+                sectors: ['real_estate', 'construction_btp', 'freelance_consulting'],
+                automation_strength: 91
+            },
+            
+            // Productivité
+            'notion': {
+                name: 'Notion',
+                category: 'Productivité',
+                description: 'Workspace tout-en-un avec automatisations via bases de données',
+                features: [
+                    'Bases de données relationnelles',
+                    'Templates automatisés',
+                    'Formules et roll-ups',
+                    'Sync avec autres outils',
+                    'Collaboration en temps réel'
+                ],
+                pricing: {
+                    free: 'Gratuit (usage personnel)',
+                    plus: '8$/utilisateur/mois',
+                    business: '15$/utilisateur/mois'
+                },
+                usability: {
+                    score: 4.0,
+                    setup_time: '2-6 heures',
+                    learning_curve: 'Modérée à difficile'
+                },
+                sectors: ['freelance_consulting', 'manufacturing'],
+                automation_strength: 78
+            },
+            'airtable': {
+                name: 'Airtable',
+                category: 'Base de données',
+                description: 'Base de données flexible avec automatisations natives',
+                features: [
+                    'Interface spreadsheet intuitive',
+                    'Automatisations par triggers',
+                    'Vues multiples (kanban, calendar)',
+                    'Collaborations en temps réel',
+                    'API robuste'
+                ],
+                pricing: {
+                    free: 'Gratuit (1200 enregistrements)',
+                    plus: '10$/utilisateur/mois',
+                    pro: '20$/utilisateur/mois'
+                },
+                usability: {
+                    score: 4.4,
+                    setup_time: '1-3 heures',
+                    learning_curve: 'Facile'
+                },
+                sectors: ['manufacturing', 'logistics', 'retail'],
+                automation_strength: 85
+            }
+        };
+        
+        // ===== MOTEUR D'ANALYSE AVANCÉ =====
+        class EnhancedAnalysisEngine {
+            constructor() {
+                this.processPatterns = {
+                    lead_management: {
+                        keywords: ['lead', 'prospect', 'commercial', 'vente', 'qualification', 'crm'],
+                        baseTimeMinutes: 60,
+                        complexity: 1.2,
+                        automationPotential: 0.90,
+                        category: 'Sales'
+                    },
+                    invoicing: {
+                        keywords: ['facture', 'facturation', 'paiement', 'devis', 'recouvrement'],
+                        baseTimeMinutes: 45,
+                        complexity: 1.0,
+                        automationPotential: 0.95,
+                        category: 'Finance'
+                    },
+                    appointment_scheduling: {
+                        keywords: ['rdv', 'rendez-vous', 'planning', 'calendrier', 'programmer', 'réservation'],
+                        baseTimeMinutes: 30,
+                        complexity: 0.9,
+                        automationPotential: 0.90,
+                        category: 'Operations'
+                    },
+                    order_processing: {
+                        keywords: ['commande', 'commandes', 'traitement', 'processus', 'validation'],
+                        baseTimeMinutes: 40,
+                        complexity: 1.1,
+                        automationPotential: 0.88,
+                        category: 'Operations'
+                    },
+                    email_management: {
+                        keywords: ['email', 'mail', 'courrier', 'répondre', 'trier'],
+                        baseTimeMinutes: 45,
+                        complexity: 0.8,
+                        automationPotential: 0.80,
+                        category: 'Operations'
+                    },
+                    reporting: {
+                        keywords: ['rapport', 'reporting', 'synthèse', 'tableau de bord', 'analyse'],
+                        baseTimeMinutes: 150,
+                        complexity: 1.5,
+                        automationPotential: 0.92,
+                        category: 'Operations'
+                    },
+                    data_entry: {
+                        keywords: ['saisie', 'données', 'base', 'mise à jour', 'remplir'],
+                        baseTimeMinutes: 35,
+                        complexity: 0.7,
+                        automationPotential: 0.95,
+                        category: 'Operations'
+                    }
+                };
+                
+                this.frequencyMultipliers = {
+                    daily: { perWeek: 5, label: 'Quotidien' },
+                    weekly: { perWeek: 2.0, label: 'Hebdomadaire' },
+                    monthly: { perWeek: 0.75, label: 'Mensuel' },
+                    occasional: { perWeek: 0.3, label: 'Ponctuel' }
+                };
+            }
+            
+            analyzeProcess(description) {
+                const text = description.toLowerCase();
+                let bestMatch = null;
+                let bestScore = 0;
+                
+                for (const [type, pattern] of Object.entries(this.processPatterns)) {
+                    const matches = pattern.keywords.filter(keyword => text.includes(keyword));
+                    const score = matches.length / pattern.keywords.length;
+                    
+                    if (score > bestScore) {
+                        bestScore = score;
+                        bestMatch = { type, ...pattern, confidence: score };
+                    }
+                }
+                
+                return bestMatch || {
+                    type: 'generic',
+                    baseTimeMinutes: 75,
+                    complexity: 1.0,
+                    automationPotential: 0.75,
+                    category: 'Operations',
+                    confidence: 0
+                };
+            }
+            
+            calculateROI(processType, frequency, tools, inputs, volume, sector) {
+                const process = this.analyzeProcess(processType);
+                const freqData = this.frequencyMultipliers[frequency];
+                
+                if (!freqData) return null;
+                
+                const complexityMultiplier = this.calculateComplexity(tools, inputs, volume);
+                const adjustedTimeMinutes = process.baseTimeMinutes * complexityMultiplier;
+                
+                // Bonus global attractif : +30%
+                const globalBonus = 1.3;
+                const weeklyMinutes = adjustedTimeMinutes * freqData.perWeek * globalBonus;
+                const weeklyHours = weeklyMinutes / 60;
+                
+                const weeklyTimeSaved = weeklyHours * process.automationPotential;
+                const weeklyMoneySaved = weeklyTimeSaved * HOURLY_RATE;
+                const monthlyTimeSaved = weeklyTimeSaved * 4.33;
+                const monthlyMoneySaved = weeklyMoneySaved * 4.33;
+                
+                return {
+                    process,
+                    weeklyHours: Math.round(weeklyTimeSaved * 10) / 10,
+                    monthlyHours: Math.round(monthlyTimeSaved * 10) / 10,
+                    weeklyMoney: Math.round(weeklyMoneySaved),
+                    monthlyMoney: Math.round(monthlyMoneySaved),
+                    yearlyMoney: Math.round(monthlyMoneySaved * 12),
+                    complexity: complexityMultiplier,
+                    automationPotential: process.automationPotential,
+                    details: {
+                        baseTimeMinutes: adjustedTimeMinutes,
+                        weeklyOccurrences: freqData.perWeek,
+                        weeklyMinutes,
+                        confidence: process.confidence,
+                        globalBonus
+                    }
+                };
+            }
+            
+            calculateComplexity(tools, inputs, volume) {
+                let complexity = 1.0;
+                
+                const toolCount = tools.split(',').filter(t => t.trim().length > 2).length;
+                const toolFactors = { 1: 0.9, 2: 1.0, 3: 1.1, 4: 1.3, 5: 1.5 };
+                complexity *= toolFactors[Math.min(5, toolCount)] || 1.5;
+                
+                const volumeLevel = this.analyzeVolume(volume);
+                const volumeFactors = { low: 0.9, medium: 1.0, high: 1.2, very_high: 1.4 };
+                complexity *= volumeFactors[volumeLevel];
+                
+                return Math.min(2.0, complexity);
+            }
+            
+            analyzeVolume(volumeText) {
+                if (!volumeText) return 'medium';
+                
+                const numbers = volumeText.match(/\d+/g);
+                if (!numbers) return 'medium';
+                
+                const maxNumber = Math.max(...numbers.map(n => parseInt(n)));
+                
+                if (maxNumber >= 100) return 'very_high';
+                if (maxNumber >= 50) return 'high';
+                if (maxNumber >= 10) return 'medium';
+                return 'low';
+            }
+        }
+        
+        // ===== MOTEUR DE RECOMMANDATIONS ENRICHI =====
+        function generateToolRecommendations(processType, sector, tools, inputs) {
+            const processLower = processType.toLowerCase();
+            const toolsLower = tools.toLowerCase();
+            const inputsLower = inputs.toLowerCase();
+            
+            let recommendations = [];
+            
+            // Analyse intelligente par mots-clés
+            Object.keys(TOOLS_DATABASE).forEach(toolKey => {
+                const tool = TOOLS_DATABASE[toolKey];
+                let score = 50; // Score de base
+                
+                // Bonus secteur
+                if (tool.sectors.includes(sector)) {
+                    score += 20;
+                }
+                
+                // Bonus par catégorie de processus
+                if (processLower.includes('facture') || processLower.includes('paiement')) {
+                    if (tool.category.includes('Comptabilité') || tool.category.includes('Paiement')) {
+                        score += 25;
+                    }
+                }
+                
+                if (processLower.includes('rdv') || processLower.includes('planning')) {
+                    if (tool.category.includes('RDV')) {
+                        score += 25;
+                    }
+                }
+                
+                if (processLower.includes('email') || processLower.includes('marketing')) {
+                    if (tool.category.includes('CRM') || tool.category.includes('Automatisation')) {
+                        score += 20;
+                    }
+                }
+                
+                if (processLower.includes('commande') || processLower.includes('vente')) {
+                    if (tool.category.includes('E-commerce') || tool.category.includes('CRM')) {
+                        score += 20;
+                    }
+                }
+                
+                // Bonus automatisation élevée
+                score += tool.automation_strength * 0.2;
+                
+                // Bonus facilité d'utilisation
+                score += tool.usability.score * 5;
+                
+                recommendations.push({
+                    ...tool,
+                    key: toolKey,
+                    score: Math.min(100, Math.round(score))
+                });
+            });
+            
+            // Trier par score et prendre les 3 meilleurs
+            return recommendations
+                .sort((a, b) => b.score - a.score)
+                .slice(0, 3);
+        }
+        
+        // ===== FONCTIONS UTILITAIRES =====
+        function addExample(element) {
+            const text = element.textContent;
+            const examplesContainer = element.closest('.examples');
+            const inputContainer = examplesContainer.closest('.input-container');
+            const input = inputContainer.querySelector('textarea, input[type="text"]');
+            
+            if (input) {
+                input.value = text;
+                input.dispatchEvent(new Event('input'));
+                input.focus();
+                
+                setTimeout(() => {
+                    for (let i = 1; i <= totalSteps; i++) {
+                        updateButtonState(i);
+                    }
+                }, 50);
+                
+                element.style.background = '#10b981';
+                element.style.color = 'white';
+                element.style.transform = 'scale(0.95)';
+                
+                setTimeout(() => {
+                    element.style.background = '';
+                    element.style.color = '';
+                    element.style.transform = '';
+                }, 300);
+                
+                trackEvent('Example Used');
+            }
+        }
+        
+        function goToStep(stepNumber) {
+            if (stepNumber < 1 || stepNumber > totalSteps) return;
+            
+            if (stepNumber > currentStep) {
+                const currentStepElement = document.getElementById(`step${currentStep}`);
+                if (currentStepElement) {
+                    currentStepElement.classList.remove('active');
+                    currentStepElement.classList.add('completed');
+                }
+            }
+            
+            document.querySelectorAll('.step').forEach(step => {
+                step.classList.remove('active');
+            });
+            
+            const targetStep = document.getElementById(`step${stepNumber}`);
+            if (targetStep) {
+                targetStep.classList.add('active');
+                currentStep = stepNumber;
+                
+                setTimeout(() => {
+                    targetStep.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }, 100);
+                
+                updateProgress();
+                trackEvent(`Step ${stepNumber} Visited`);
+            }
+        }
+        
+        function updateProgress() {
+            const filledFields = ['task', 'volume', 'tools', 'inputs', 'output', 'risks'].filter(field => {
+                const element = document.getElementById(field);
+                return element && element.value.trim().length > 0;
+            }).length;
+            
+            const frequencySelected = selectedFrequency ? 1 : 0;
+            const sectorSelected = selectedSector ? 1 : 0;
+            const totalFilled = filledFields + frequencySelected + sectorSelected;
+            const progress = Math.round((totalFilled / 8) * 100);
+            
+            document.getElementById('progressFill').style.width = progress + '%';
+            document.getElementById('progressPercentage').textContent = progress + '%';
+        }
+        
+        function updateButtonState(stepNumber) {
+            const button = document.getElementById(`nextButton${stepNumber}`);
+            if (!button) return;
+            
+            let isValid = false;
+            
+            switch (stepNumber) {
+                case 1:
+                    isValid = document.getElementById('task').value.trim().length > 10;
+                    break;
+                case 2:
+                    isValid = selectedFrequency !== '';
+                    break;
+                case 3:
+                    isValid = selectedSector !== '';
+                    break;
+                case 4:
+                    const toolsValid = document.getElementById('tools').value.trim().length > 2;
+                    const inputsValid = document.getElementById('inputs').value.trim().length > 5;
+                    isValid = toolsValid || inputsValid;
+                    break;
+                case 5:
+                    isValid = true;
+                    break;
+                case 6:
+                    isValid = true;
+                    break;
+            }
+            
+            button.classList.toggle('enabled', isValid);
+        }
+        
+        function updateROIPreview() {
+            const task = document.getElementById('task').value;
+            const volume = document.getElementById('volume').value;
+            const tools = document.getElementById('tools').value;
+            const inputs = document.getElementById('inputs').value;
+            
+            if (task && selectedFrequency) {
+                const engine = new EnhancedAnalysisEngine();
+                const quickAnalysis = engine.calculateROI(task, selectedFrequency, tools, inputs, volume, selectedSector);
+                
+                if (quickAnalysis) {
+                    document.getElementById('roiPreview').classList.add('show');
+                    document.getElementById('roiValue').textContent = `${quickAnalysis.monthlyMoney}€/mois`;
+                }
+            }
+        }
+        
+        function toggleROIDetails() {
+            const details = document.getElementById('roiBreakdown');
+            details.classList.toggle('show');
+        }
+        
+        function formatTimeDisplay(hours) {
+            if (hours < 1) return `${Math.round(hours * 60)} min`;
+            if (hours < 2) return `${Math.round(hours * 10) / 10}h`;
+            return `${Math.round(hours)}h`;
+        }
+        
+        function generateStars(rating) {
+            let stars = '';
+            for (let i = 1; i <= 5; i++) {
+                stars += `<span class="star ${i <= rating ? '' : 'empty'}">★</span>`;
+            }
+            return stars;
+        }
+        
+        // ===== AFFICHAGE DES RÉSULTATS =====
+        function showResultsFullScreen() {
+            const formSection = document.querySelector('.form-section');
+            const resultsSection = document.querySelector('.results-section');
+            
+            formSection.style.flex = '0.3';
+            formSection.style.opacity = '0.7';
+            resultsSection.style.flex = '1.7';
+            
+            const completionMessage = document.createElement('div');
+            completionMessage.innerHTML = `
+                <div style="background: linear-gradient(135deg, #10b981, #059669); color: white; padding: 20px; border-radius: 15px; text-align: center; margin: 20px 0;">
+                    <div style="font-size: 1.5em; font-weight: 700; margin-bottom: 10px;">Diagnostic Terminé</div>
+                    <div style="opacity: 0.9;">Votre analyse personnalisée est prête</div>
+                </div>
+            `;
+            
+            formSection.insertBefore(completionMessage, formSection.firstChild);
+            
+            setTimeout(() => {
+                resultsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }, 500);
+        }
+        
+        async function generateEnhancedDiagnostic() {
+            const task = document.getElementById('task').value;
+            const volume = document.getElementById('volume').value;
+            const tools = document.getElementById('tools').value;
+            const inputs = document.getElementById('inputs').value;
+            const output = document.getElementById('output').value;
+            const risks = document.getElementById('risks').value;
+            
+            if (!task || !selectedFrequency) {
+                alert('Veuillez compléter au minimum la description du processus et la fréquence.');
+                return;
+            }
+            
+            showLoadingOverlay();
+            
+            try {
+                const engine = new EnhancedAnalysisEngine();
+                const roiAnalysis = engine.calculateROI(task, selectedFrequency, tools, inputs, volume, selectedSector);
+                const toolRecommendations = generateToolRecommendations(task, selectedSector, tools, inputs);
+                
+                showResultsFullScreen();
+                
+                displayEnhancedROI(roiAnalysis);
+                displayToolRecommendations(toolRecommendations);
+                displayActionPlan(roiAnalysis);
+                
+                prepareDiagnosticData(roiAnalysis, toolRecommendations);
+                document.getElementById('contactSection').style.display = 'block';
+                
+                hideLoadingOverlay();
+                trackEvent('Enhanced Diagnostic Generated');
+                
+            } catch (error) {
+                console.error('Erreur génération diagnostic:', error);
+                hideLoadingOverlay();
+                alert('Erreur lors de la génération. Veuillez réessayer.');
+            }
+        }
+        
+        function displayEnhancedROI(analysis) {
+            if (!analysis) return;
+            
+            document.getElementById('roiSection').style.display = 'block';
+            
+            const sectorLabel = selectedSector ? getSectorLabel(selectedSector) : 'Non spécifié';
+            const sectorBadge = selectedSector ? `
+                <div style="background: rgba(102, 126, 234, 0.1); color: #667eea; padding: 8px 15px; border-radius: 20px; font-size: 14px; font-weight: 600; margin-bottom: 15px; display: inline-block;">
+                    📊 Secteur: ${sectorLabel}
+                </div>
+            ` : '';
+            
+            const roiCalculator = document.getElementById('roiSection').querySelector('.roi-calculator');
+            roiCalculator.innerHTML = `
+                ${sectorBadge}
+                <div class="roi-title">
+                    💰 Votre Potentiel d'Économies
+                    <div class="info-toggle" onclick="toggleROIDetails()">i</div>
+                </div>
+                <div class="roi-metrics">
+                    <div class="roi-metric">
+                        <span class="roi-metric-value">${formatTimeDisplay(analysis.weeklyHours)}</span>
+                        <span class="roi-metric-label">par semaine</span>
+                    </div>
+                    <div class="roi-metric">
+                        <span class="roi-metric-value">${analysis.monthlyMoney}€</span>
+                        <span class="roi-metric-label">par mois</span>
+                    </div>
+                    <div class="roi-metric">
+                        <span class="roi-metric-value">${Math.round(analysis.yearlyMoney / 1000)}k€</span>
+                        <span class="roi-metric-label">par an</span>
+                    </div>
+                </div>
+                
+                <div class="roi-details" id="roiBreakdown">
+                    <h5>🎯 Méthodologie de calcul :</h5>
+                    <div class="roi-breakdown">
+                        <span>Temps par occurrence :</span>
+                        <span><strong>${Math.round(analysis.details.baseTimeMinutes)} min</strong></span>
+                    </div>
+                    <div class="roi-breakdown">
+                        <span>Fréquence hebdomadaire :</span>
+                        <span><strong>${Math.round(analysis.details.weeklyOccurrences * 10) / 10} fois</strong></span>
+                    </div>
+                    <div class="roi-breakdown">
+                        <span>Potentiel d'automatisation :</span>
+                        <span><strong>${Math.round(analysis.automationPotential * 100)}%</strong></span>
+                    </div>
+                    <div class="roi-breakdown">
+                        <span>Coût superbrut/heure :</span>
+                        <span><strong>${HOURLY_RATE}€</strong></span>
+                    </div>
+                    <div class="roi-breakdown">
+                        <span>Bonus estimation attractive :</span>
+                        <span><strong>+${Math.round((analysis.details.globalBonus - 1) * 100)}%</strong></span>
+                    </div>
+                    <hr style="margin: 15px 0; border: none; border-top: 1px solid rgba(255,255,255,0.2);">
+                    <div class="roi-breakdown" style="font-size: 1.1em; font-weight: 600;">
+                        <span>ROI total mensuel :</span>
+                        <span style="color: #ffffff;"><strong>${analysis.monthlyMoney}€</strong></span>
+                    </div>
+                    <p style="margin-top: 15px; font-size: 0.9em; opacity: 0.8;">
+                        📈 Calcul basé sur ${HOURLY_RATE}€/h (charges patronales incluses)
+                    </p>
+                </div>
+            `;
+            
+            document.getElementById('roiPreview').classList.add('show');
+            document.getElementById('roiValue').textContent = `${analysis.monthlyMoney}€/mois`;
+        }
+        
+        function displayToolRecommendations(recommendations) {
+            document.getElementById('toolsSection').style.display = 'block';
+            const toolsList = document.getElementById('toolsList');
+            
+            toolsList.innerHTML = recommendations.map((tool, index) => `
+                <div class="tool-recommendation ${index === 0 ? 'featured' : ''}">
+                    <div class="tool-header">
+                        <div>
+                            <div class="tool-name">${tool.name}</div>
+                            <div class="tool-category">${tool.category}</div>
+                        </div>
+                        <div class="tool-score">${tool.score}%</div>
+                    </div>
+                    
+                    <div class="tool-description">
+                        ${tool.description}
+                    </div>
+                    
+                    <div class="tool-features">
+                        <h5>🎯 Fonctionnalités clés :</h5>
+                        <div class="feature-list">
+                            ${tool.features.slice(0, 4).map(feature => `
+                                <div class="feature-item">${feature}</div>
+                            `).join('')}
+                        </div>
+                    </div>
+                    
+                    <div class="tool-pricing">
+                        <div class="pricing-header">
+                            <div class="pricing-title">💰 Tarification</div>
+                        </div>
+                        <div class="pricing-grid">
+                            ${Object.entries(tool.pricing).slice(0, 3).map(([plan, price]) => `
+                                <div class="pricing-item">
+                                    <div class="pricing-label">${plan.charAt(0).toUpperCase() + plan.slice(1)}</div>
+                                    <div class="pricing-value">${price}</div>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                    
+                    <div class="usability-score">
+                        <div class="usability-header">
+                            <div class="usability-title">⭐ Facilité d'utilisation</div>
+                            <div class="usability-rating">
+                                ${generateStars(tool.usability.score)}
+                            </div>
+                        </div>
+                        <div class="usability-details">
+                            <strong>Mise en place:</strong> ${tool.usability.setup_time}<br>
+                            <strong>Courbe d'apprentissage:</strong> ${tool.usability.learning_curve}
+                        </div>
+                    </div>
+                    
+                    <div style="margin: 15px 0;">
+                        <span style="background: ${index === 0 ? '#10b981' : '#667eea'}; color: white; padding: 6px 12px; border-radius: 12px; font-size: 12px; font-weight: 600;">
+                            ${index === 0 ? '🏆 Top recommandation' : '✅ Recommandé'}
+                        </span>
+                    </div>
+                </div>
+            `).join('');
+        }
+        
+        function displayActionPlan(analysis) {
+            document.getElementById('strategySection').style.display = 'block';
+            const timeline = document.getElementById('strategyTimeline');
+            
+            const phases = [
+                {
+                    phase: "Semaine 1 : Audit et planification",
+                    description: `Analyse détaillée de votre processus ${selectedSector ? 'spécifique au secteur ' + getSectorLabel(selectedSector) : 'actuel'} et identification des Quick Wins.`
+                },
+                {
+                    phase: "Semaines 2-3 : Implémentation",
+                    description: "Installation et configuration des outils recommandés. Formation personnalisée pour votre équipe."
+                },
+                {
+                    phase: "Semaine 4 : Tests et ajustements",
+                    description: "Tests en conditions réelles et ajustements selon vos retours."
+                },
+                {
+                    phase: "Semaines 5-6 : Mesure et optimisation",
+                    description: `Mesure des gains obtenus (objectif : ${formatTimeDisplay(analysis.weeklyHours)}/semaine) et optimisations finales.`
+                }
+            ];
+            
+            timeline.innerHTML = `
+                <div class="strategy-title">📋 Votre plan d'action personnalisé</div>
+                ${phases.map((phase, index) => `
+                    <div class="timeline-item">
+                        <div class="timeline-number">${index + 1}</div>
+                        <div class="timeline-content">
+                            <div class="timeline-phase">${phase.phase}</div>
+                            <div class="timeline-description">${phase.description}</div>
+                        </div>
+                    </div>
+                `).join('')}
+                <div style="margin-top: 20px; padding: 15px; background: rgba(245, 158, 11, 0.1); border-radius: 8px; color: #92400e;">
+                    <strong>🎯 Résultat garanti :</strong> Vous économisez ${analysis.monthlyMoney}€ par mois dès la 6ème semaine, soit un ROI de ${Math.round(analysis.yearlyMoney / 1000)}k€/an.
+                </div>
+            `;
+        }
+        
+        function getSectorLabel(sectorKey) {
+            const sectorLabels = {
+                'freelance_consulting': 'Freelance/Conseil',
+                'ecommerce': 'E-commerce',
+                'real_estate': 'Immobilier',
+                'healthcare': 'Santé/Médical',
+                'construction_btp': 'BTP/Construction',
+                'restaurant_hospitality': 'Restauration/Hôtellerie',
+                'retail': 'Commerce de détail',
+                'accounting_finance': 'Comptabilité/Finance',
+                'logistics': 'Logistique/Transport',
+                'manufacturing': 'Industrie/Production',
+                'generic': 'Autre'
+            };
+            return sectorLabels[sectorKey] || 'Non spécifié';
+        }
+        
+        function prepareDiagnosticData(analysis, tools) {
+            const diagnosticData = {
+                timestamp: new Date().toISOString(),
+                process: {
+                    description: document.getElementById('task').value,
+                    frequency: selectedFrequency,
+                    sector: selectedSector,
+                    volume: document.getElementById('volume').value,
+                    tools: document.getElementById('tools').value,
+                    inputs: document.getElementById('inputs').value,
+                    output: document.getElementById('output').value,
+                    risks: document.getElementById('risks').value,
+                    recommendations: document.getElementById('recommendations') ? document.getElementById('recommendations').value : ''
+                },
+                analysis: {
+                    weeklyTimeSaved: analysis.weeklyHours,
+                    monthlyMoneySaved: analysis.monthlyMoney,
+                    yearlyMoneySaved: analysis.yearlyMoney,
+                    complexity: analysis.complexity,
+                    automationPotential: analysis.automationPotential,
+                    processType: analysis.process.type,
+                    confidence: analysis.details.confidence,
+                    weeklyTimeSavedFormatted: formatTimeDisplay(analysis.weeklyHours),
+                    selectedSector: getSectorLabel(selectedSector),
+                    globalBonus: analysis.details.globalBonus
+                },
+                recommendations: tools.map(tool => ({
+                    name: tool.name,
+                    category: tool.category,
+                    score: tool.score,
+                    key: tool.key
+                }))
+            };
+            
+            document.getElementById('diagnostic_data').value = JSON.stringify(diagnosticData);
+        }
+        
+        function showSuccessMessage() {
+            const contactSection = document.getElementById('contactSection');
+            contactSection.innerHTML = `
+                <div class="contact-header" style="background: linear-gradient(135deg, #10b981, #059669);">
+                    <div class="contact-title">🎉 Diagnostic envoyé avec succès</div>
+                    <div class="contact-subtitle">Vous recevrez votre plan d'action détaillé sous 24h</div>
+                </div>
+                <div style="padding: 30px; text-align: center;">
+                    <div style="background: linear-gradient(135deg, #f0fff4, #ecfdf5); border-radius: 12px; padding: 25px; margin-bottom: 20px;">
+                        <h3 style="color: #065f46; margin-bottom: 15px;">📋 Prochaines étapes</h3>
+                        <div style="text-align: left; color: #047857;">
+                            <div style="display: flex; align-items: center; margin-bottom: 10px;">
+                                <span style="background: #10b981; color: white; width: 25px; height: 25px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; margin-right: 15px; font-weight: bold; font-size: 12px;">1</span>
+                                <span>Analyse approfondie de votre processus par Théo</span>
+                            </div>
+                            <div style="display: flex; align-items: center; margin-bottom: 10px;">
+                                <span style="background: #10b981; color: white; width: 25px; height: 25px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; margin-right: 15px; font-weight: bold; font-size: 12px;">2</span>
+                                <span>Plan d'implémentation personnalisé avec budget détaillé</span>
+                            </div>
+                            <div style="display: flex; align-items: center;">
+                                <span style="background: #10b981; color: white; width: 25px; height: 25px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; margin-right: 15px; font-weight: bold; font-size: 12px;">3</span>
+                                <span>Proposition d'accompagnement si vous le souhaitez</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div style="background: #f8fafc; border-radius: 12px; padding: 20px; margin-bottom: 20px;">
+                        <h4 style="color: #2d3748; margin-bottom: 10px;">📞 Contact direct</h4>
+                        <p style="color: #4a5568; margin-bottom: 15px;">Une question urgente ? Contactez Théo directement :</p>
+                        <div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
+                            <a href="mailto:tlb@solutio.work" style="background: #667eea; color: white; padding: 12px 20px; border-radius: 8px; text-decoration: none; font-weight: 600;">
+                                📧 tlb@solutio.work
+                            </a>
+                            <a href="tel:+33689437262" style="background: #10b981; color: white; padding: 12px 20px; border-radius: 8px; text-decoration: none; font-weight: 600;">
+                                📞 06 89 43 72 62
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <button onclick="window.location.reload()" style="background: linear-gradient(135deg, #667eea, #764ba2); color: white; padding: 15px 30px; border: none; border-radius: 12px; font-size: 16px; font-weight: 600; cursor: pointer;">
+                        🔄 Faire un nouveau diagnostic
+                    </button>
+                </div>
+            `;
+            
+            setTimeout(() => {
+                contactSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }, 300);
+        }
+        
+        function showAutoSaveIndicator() {
+            const indicator = document.getElementById('autoSaveIndicator');
+            indicator.classList.add('show');
+            setTimeout(() => indicator.classList.remove('show'), 2000);
+        }
+        
+        function showLoadingOverlay() {
+            document.getElementById('loadingOverlay').style.display = 'flex';
+        }
+        
+        function hideLoadingOverlay() {
+            document.getElementById('loadingOverlay').style.display = 'none';
+        }
+        
+        // ===== INITIALISATION =====
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Initialisation du Diagnostic d\'Automatisation...');
+            
+            // Event listeners pour les champs
+            ['task', 'volume', 'tools', 'inputs', 'output', 'risks'].forEach(fieldId => {
+                const element = document.getElementById(fieldId);
+                if (element) {
+                    element.addEventListener('input', (e) => {
+                        updateProgress();
+                        updateROIPreview();
+                        
+                        const stepNumbers = {
+                            'task': 1,
+                            'volume': 2, 
+                            'tools': 4,
+                            'inputs': 4,
+                            'output': 5,
+                            'risks': 6
+                        };
+                        const stepNumber = stepNumbers[fieldId];
+                        if (stepNumber) updateButtonState(stepNumber);
+                        
+                        clearTimeout(window.autoSaveTimeout);
+                        window.autoSaveTimeout = setTimeout(showAutoSaveIndicator, 1000);
+                    });
+                }
+            });
+            
+            // Event listener pour le secteur
+            document.getElementById('sector').addEventListener('change', (e) => {
+                selectedSector = e.target.value;
+                updateProgress();
+                updateROIPreview();
+                updateButtonState(3);
+                
+                trackEvent(`Sector Selected: ${selectedSector}`);
+            });
+            
+            // Event listeners pour les cartes de fréquence
+            document.querySelectorAll('.frequency-card').forEach(card => {
+                card.addEventListener('click', () => {
+                    selectedFrequency = card.dataset.frequency;
+                    
+                    document.querySelectorAll('.frequency-card').forEach(c => c.classList.remove('selected'));
+                    card.classList.add('selected');
+                    
+                    updateProgress();
+                    updateROIPreview();
+                    updateButtonState(2);
+                    
+                    trackEvent(`Frequency Selected: ${selectedFrequency}`);
+                });
+            });
+            
+            // Event listeners pour les boutons de navigation
+            for (let i = 1; i <= totalSteps; i++) {
+                const button = document.getElementById(`nextButton${i}`);
+                if (button) {
+                    button.addEventListener('click', () => {
+                        if (button.classList.contains('enabled')) {
+                            if (i === totalSteps) {
+                                generateEnhancedDiagnostic();
+                            } else {
+                                goToStep(i + 1);
+                            }
+                        }
+                    });
+                }
+            }
+            
+            // Event listener pour le formulaire de contact
+            document.getElementById('diagnosticForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const prenom = document.getElementById('prenom').value.trim();
+                const nom = document.getElementById('nom').value.trim();
+                const email = document.getElementById('email').value.trim();
+                
+                let isValid = true;
+                
+                // Validation prénom
+                if (prenom.length < 2) {
+                    document.getElementById('prenomError').textContent = 'Le prénom est requis';
+                    document.getElementById('prenomError').style.display = 'block';
+                    document.getElementById('prenom').parentElement.classList.add('error');
+                    isValid = false;
+                } else {
+                    document.getElementById('prenomError').style.display = 'none';
+                    document.getElementById('prenom').parentElement.classList.remove('error');
+                }
+                
+                // Validation nom
+                if (nom.length < 2) {
+                    document.getElementById('nomError').textContent = 'Le nom est requis';
+                    document.getElementById('nomError').style.display = 'block';
+                    document.getElementById('nom').parentElement.classList.add('error');
+                    isValid = false;
+                } else {
+                    document.getElementById('nomError').style.display = 'none';
+                    document.getElementById('nom').parentElement.classList.remove('error');
+                }
+                
+                // Validation email
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailRegex.test(email)) {
+                    document.getElementById('emailError').textContent = 'Email valide requis';
+                    document.getElementById('emailError').style.display = 'block';
+                    document.getElementById('email').parentElement.classList.add('error');
+                    isValid = false;
+                } else {
+                    document.getElementById('emailError').style.display = 'none';
+                    document.getElementById('email').parentElement.classList.remove('error');
+                }
+                
+                if (!isValid) return;
+                
+                showLoadingOverlay();
+                
+                const submitButton = document.getElementById('submitButton');
+                const originalText = submitButton.textContent;
+                
+                submitButton.innerHTML = '<span class="spinner"></span>Envoi en cours...';
+                submitButton.disabled = true;
+                
+                trackEvent('Diagnostic Form Submission Started');
+                
+                const formData = new FormData(this);
+                formData.append('submission_time', new Date().toISOString());
+                formData.append('user_agent', navigator.userAgent);
+                formData.append('page_url', window.location.href);
+                formData.append('form_version', 'theo_optimized_v1.0');
+                formData.append('hourly_rate_used', HOURLY_RATE);
+                
+                fetch(this.action, {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                })
+                .then(response => {
+                    hideLoadingOverlay();
+                    if (response.ok) {
+                        trackEvent('Diagnostic Form Submission Success');
+                        showSuccessMessage();
+                    } else {
+                        throw new Error('Erreur serveur: ' + response.status);
+                    }
+                })
+                .catch(error => {
+                    hideLoadingOverlay();
+                    trackEvent('Form Submission Error', 'Diagnostic Form', error.message);
+                    console.error('Erreur envoi:', error);
+                    
+                    submitButton.innerHTML = 'Erreur - Réessayer';
+                    submitButton.style.background = '#dc2626';
+                    
+                    setTimeout(() => {
+                        submitButton.innerHTML = originalText;
+                        submitButton.style.background = '';
+                        submitButton.disabled = false;
+                    }, 3000);
+                });
+            });
+            
+            // Initialiser les boutons après un court délai
+            setTimeout(() => {
+                for (let i = 1; i <= totalSteps; i++) {
+                    updateButtonState(i);
+                }
+                console.log('Diagnostic initialisé avec succès');
+            }, 100);
+            
+            trackEvent('Diagnostic Started');
+        });
+        
+        // ===== GESTION D'ERREURS =====
+        window.addEventListener('error', (e) => {
+            console.error('Erreur JavaScript:', e.error);
+            trackEvent('JavaScript Error', 'Error', e.error.message);
+        });
+        
+        window.addEventListener('unhandledrejection', (e) => {
+            console.error('Promise rejetée:', e.reason);
+            trackEvent('Unhandled Promise Rejection', 'Error', e.reason);
+        });
+    </script>
+</body>
+</html>
