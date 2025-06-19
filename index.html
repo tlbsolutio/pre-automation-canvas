@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Diagnostic d'Automatisation - Théo Le Breton</title>
+    <title>Diagnostic d'Automatisation Gratuit - SOLUTIO</title>
     
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-XR6WHDFELV"></script>
@@ -13,7 +13,7 @@
         gtag('js', new Date());
         gtag('config', 'G-XR6WHDFELV');
         
-        function trackEvent(action, category = 'Automation Canvas') {
+        function trackEvent(action, category = 'Automation Diagnostic') {
             gtag('event', action, {
                 'event_category': category,
                 'event_label': action
@@ -21,10 +21,10 @@
         }
     </script>
     
-    <meta name="description" content="Diagnostic gratuit de vos processus. Découvrez combien d'heures et d'euros vous pourriez économiser chaque mois avec l'automatisation.">
-    <meta name="keywords" content="automatisation, processus, workflow, productivité, gains temps, roi">
-    <meta property="og:title" content="Diagnostic d'Automatisation Gratuit">
-    <meta property="og:description" content="Découvrez votre potentiel d'automatisation et les gains financiers possibles.">
+    <meta name="description" content="Diagnostic gratuit SOLUTIO : découvrez combien d'heures et d'euros vous pourriez économiser chaque mois avec l'automatisation de vos processus métier.">
+    <meta name="keywords" content="automatisation, processus, workflow, productivité, gains temps, roi, SOLUTIO, transformation digitale">
+    <meta property="og:title" content="Diagnostic d'Automatisation Gratuit - SOLUTIO">
+    <meta property="og:description" content="Découvrez votre potentiel d'automatisation et les gains financiers possibles avec SOLUTIO.">
     <meta property="og:type" content="website">
     
     <style>
@@ -36,7 +36,7 @@
         
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
             min-height: 100vh;
             line-height: 1.6;
             color: #2d3748;
@@ -46,16 +46,16 @@
             max-width: 1400px;
             margin: 0 auto;
             background: white;
-            border-radius: 20px;
-            box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+            border-radius: 24px;
+            box-shadow: 0 32px 64px rgba(0,0,0,0.25);
             overflow: hidden;
             position: relative;
         }
         
         .header {
-            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 50%, #60a5fa 100%);
             color: white;
-            padding: 40px 50px;
+            padding: 50px 60px;
             text-align: center;
             position: relative;
             overflow: hidden;
@@ -68,7 +68,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M 20 0 L 0 0 0 20" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
         }
         
         .header-content {
@@ -76,61 +76,105 @@
             z-index: 1;
         }
         
-        .expert-badge {
-            display: inline-block;
-            background: rgba(255,255,255,0.2);
-            padding: 8px 20px;
-            border-radius: 25px;
-            font-size: 14px;
-            font-weight: 600;
-            margin-bottom: 20px;
-            backdrop-filter: blur(10px);
+        .solutio-branding {
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        .company-name {
+            font-size: 2.2em;
+            font-weight: 900;
+            letter-spacing: 2px;
+            color: white;
+            margin-bottom: 5px;
+        }
+        
+        .company-tagline {
+            font-size: 0.9em;
+            opacity: 0.9;
+            letter-spacing: 1px;
+            font-weight: 500;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.8);
         }
         
         .header h1 {
-            font-size: 2.8em;
-            margin-bottom: 15px;
+            font-size: 3.2em;
+            margin-bottom: 20px;
             font-weight: 800;
-            letter-spacing: -1px;
+            letter-spacing: -2px;
+            line-height: 1.1;
         }
         
         .header .subtitle {
-            font-size: 1.3em;
-            opacity: 0.9;
-            font-weight: 300;
-            margin-bottom: 30px;
+            font-size: 1.4em;
+            opacity: 0.95;
+            font-weight: 400;
+            margin-bottom: 35px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
         }
         
         .value-proposition {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 30px;
-            margin-top: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 35px;
+            margin-top: 40px;
         }
         
         .value-item {
             text-align: center;
-            padding: 20px;
-            background: rgba(255,255,255,0.1);
-            border-radius: 15px;
-            backdrop-filter: blur(10px);
+            padding: 25px;
+            background: rgba(255,255,255,0.12);
+            border-radius: 16px;
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255,255,255,0.2);
         }
         
         .value-number {
-            font-size: 2.5em;
-            font-weight: 800;
+            font-size: 2.8em;
+            font-weight: 900;
             display: block;
-            margin-bottom: 5px;
+            margin-bottom: 8px;
+            background: linear-gradient(45deg, #ffffff, #e0e7ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
         
         .value-label {
+            font-size: 0.95em;
+            opacity: 0.9;
+            font-weight: 500;
+        }
+        
+        .methodology-note {
+            margin-top: 25px;
+            padding: 20px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 12px;
             font-size: 0.9em;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.15);
+        }
+        
+        .methodology-title {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+        
+        .methodology-details {
+            font-size: 0.85em;
+            line-height: 1.4;
             opacity: 0.9;
         }
         
         .progress-section {
-            padding: 30px 50px;
-            background: #f8fafc;
+            padding: 35px 60px;
+            background: linear-gradient(to bottom, #f8fafc, #f1f5f9);
             border-bottom: 1px solid #e2e8f0;
         }
         
@@ -138,39 +182,42 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
             flex-wrap: wrap;
-            gap: 20px;
+            gap: 25px;
         }
         
         .progress-info {
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 20px;
         }
         
         .progress-text {
-            font-weight: 600;
-            color: #4a5568;
+            font-weight: 700;
+            color: #374151;
+            font-size: 1.1em;
         }
         
         .progress-percentage {
-            background: linear-gradient(135deg, #667eea, #764ba2);
+            background: linear-gradient(135deg, #1e3a8a, #3b82f6);
             color: white;
-            padding: 8px 16px;
-            border-radius: 20px;
-            font-weight: 700;
-            font-size: 14px;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-weight: 800;
+            font-size: 15px;
+            box-shadow: 0 4px 12px rgba(30, 58, 138, 0.3);
         }
         
         .roi-preview {
             display: none;
             align-items: center;
-            gap: 15px;
+            gap: 18px;
             background: white;
-            padding: 15px 20px;
-            border-radius: 12px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            padding: 18px 25px;
+            border-radius: 16px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+            border: 1px solid #e5e7eb;
         }
         
         .roi-preview.show {
@@ -178,33 +225,35 @@
         }
         
         .roi-icon {
-            font-size: 24px;
+            font-size: 28px;
         }
         
         .roi-text {
-            font-weight: 600;
-            color: #2d3748;
+            font-weight: 700;
+            color: #374151;
+            font-size: 1.05em;
         }
         
         .roi-value {
-            color: #10b981;
-            font-weight: 800;
+            color: #059669;
+            font-weight: 900;
+            font-size: 1.1em;
         }
         
         .progress-bar {
-            height: 8px;
-            background: #e2e8f0;
-            border-radius: 10px;
+            height: 10px;
+            background: #e5e7eb;
+            border-radius: 15px;
             overflow: hidden;
             box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
         }
         
         .progress-fill {
             height: 100%;
-            background: linear-gradient(90deg, #667eea, #764ba2);
-            transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            background: linear-gradient(90deg, #1e3a8a, #3b82f6, #60a5fa);
+            transition: width 1s cubic-bezier(0.4, 0, 0.2, 1);
             width: 0%;
-            border-radius: 10px;
+            border-radius: 15px;
             position: relative;
         }
         
@@ -215,8 +264,8 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-            animation: shimmer 2s infinite;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            animation: shimmer 2.5s infinite;
         }
         
         @keyframes shimmer {
@@ -226,20 +275,20 @@
         
         .content {
             display: flex;
-            min-height: 700px;
+            min-height: 750px;
         }
         
         .form-section {
             flex: 2;
-            padding: 50px;
-            background: linear-gradient(to bottom, #ffffff 0%, #f8fafc 100%);
+            padding: 60px;
+            background: linear-gradient(to bottom, #ffffff 0%, #fafbfc 100%);
             transition: all 0.8s ease;
         }
         
         .results-section {
             flex: 1;
-            background: #f1f5f9;
-            padding: 50px 20px;
+            background: linear-gradient(to bottom, #f8fafc, #f1f5f9);
+            padding: 60px 30px;
             border-left: 1px solid #e2e8f0;
             transition: all 0.8s ease;
             height: auto;
@@ -254,10 +303,10 @@
         }
         
         .step {
-            margin-bottom: 50px;
-            opacity: 0.3;
-            transform: translateY(20px);
-            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            margin-bottom: 60px;
+            opacity: 0.25;
+            transform: translateY(30px);
+            transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1);
             pointer-events: none;
         }
         
@@ -268,7 +317,7 @@
         }
         
         .step.completed {
-            opacity: 0.8;
+            opacity: 0.75;
             transform: translateY(0);
             pointer-events: all;
         }
@@ -276,34 +325,34 @@
         .step-header {
             display: flex;
             align-items: center;
-            margin-bottom: 25px;
+            margin-bottom: 30px;
         }
         
         .step-number {
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 50px;
-            height: 50px;
-            background: linear-gradient(135deg, #667eea, #764ba2);
+            width: 56px;
+            height: 56px;
+            background: linear-gradient(135deg, #1e3a8a, #3b82f6);
             color: white;
             border-radius: 50%;
-            font-weight: bold;
-            margin-right: 20px;
-            font-size: 18px;
-            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+            font-weight: 800;
+            margin-right: 25px;
+            font-size: 20px;
+            box-shadow: 0 6px 20px rgba(30, 58, 138, 0.4);
             transition: all 0.3s ease;
         }
         
         .step.completed .step-number {
-            background: linear-gradient(135deg, #10b981, #059669);
-            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+            background: linear-gradient(135deg, #059669, #10b981);
+            box-shadow: 0 6px 20px rgba(5, 150, 105, 0.4);
         }
         
         .step.completed .step-number::after {
             content: '✓';
-            font-size: 22px;
-            font-weight: bold;
+            font-size: 26px;
+            font-weight: 900;
         }
         
         .step-info {
@@ -311,206 +360,217 @@
         }
         
         .step-title {
-            font-size: 1.6em;
-            font-weight: 700;
-            color: #2d3748;
-            margin-bottom: 5px;
+            font-size: 1.8em;
+            font-weight: 800;
+            color: #1f2937;
+            margin-bottom: 8px;
+            letter-spacing: -0.5px;
         }
         
         .step-subtitle {
-            color: #4a5568;
-            font-size: 0.95em;
+            color: #6b7280;
+            font-size: 1.05em;
             font-weight: 500;
         }
         
         .step-prompt {
-            color: #4a5568;
-            margin-bottom: 25px;
+            color: #6b7280;
+            margin-bottom: 30px;
             line-height: 1.7;
             font-size: 1.1em;
+            font-weight: 400;
         }
         
         .input-container {
             position: relative;
-            margin-bottom: 25px;
+            margin-bottom: 30px;
         }
         
         .input-label {
             display: block;
-            margin-bottom: 12px;
-            font-weight: 600;
-            color: #4a5568;
-            font-size: 15px;
+            margin-bottom: 15px;
+            font-weight: 700;
+            color: #374151;
+            font-size: 16px;
         }
         
         textarea, input, select {
             width: 100%;
-            padding: 20px;
-            border: 2px solid #e2e8f0;
-            border-radius: 12px;
+            padding: 22px;
+            border: 2px solid #e5e7eb;
+            border-radius: 16px;
             font-size: 16px;
             font-family: inherit;
             transition: all 0.3s ease;
             resize: vertical;
-            min-height: 70px;
+            min-height: 75px;
             background: white;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
-            color: #2d3748;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.03);
+            color: #1f2937;
+            font-weight: 500;
         }
         
         select {
             min-height: auto;
-            padding: 16px 20px;
+            padding: 18px 22px;
             cursor: pointer;
+            font-weight: 600;
         }
         
         textarea:focus, input:focus, select:focus {
             outline: none;
-            border-color: #667eea;
-            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1), 0 4px 12px rgba(0,0,0,0.1);
-            transform: translateY(-1px);
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.12), 0 8px 16px rgba(0,0,0,0.1);
+            transform: translateY(-2px);
         }
         
         .textarea-large {
-            min-height: 120px;
+            min-height: 130px;
         }
         
         .examples {
-            margin-top: 15px;
-            padding: 15px;
+            margin-top: 20px;
+            padding: 20px;
             background: #f8fafc;
-            border-radius: 12px;
-            border-left: 4px solid #667eea;
+            border-radius: 16px;
+            border-left: 4px solid #3b82f6;
         }
         
         .examples-title {
-            font-weight: 600;
-            font-size: 14px;
-            margin-bottom: 10px;
-            color: #2d3748;
+            font-weight: 700;
+            font-size: 15px;
+            margin-bottom: 15px;
+            color: #1f2937;
         }
         
         .example-item {
-            padding: 10px 15px;
+            padding: 14px 20px;
             background: white;
-            border-radius: 8px;
-            margin-bottom: 8px;
+            border-radius: 12px;
+            margin-bottom: 10px;
             cursor: pointer;
             transition: all 0.3s ease;
-            font-size: 14px;
-            border: 1px solid transparent;
-            color: #2d3748;
+            font-size: 14.5px;
+            border: 2px solid transparent;
+            color: #1f2937;
+            font-weight: 500;
+            line-height: 1.5;
         }
         
         .example-item:hover {
-            border-color: #667eea;
-            transform: translateX(5px);
-            box-shadow: 0 2px 8px rgba(102, 126, 234, 0.2);
+            border-color: #3b82f6;
+            transform: translateX(8px);
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.25);
+            background: #fafbff;
         }
         
         .feedback {
-            margin-top: 15px;
-            padding: 15px 20px;
-            border-radius: 10px;
-            font-size: 14px;
-            line-height: 1.5;
+            margin-top: 20px;
+            padding: 18px 25px;
+            border-radius: 12px;
+            font-size: 14.5px;
+            line-height: 1.6;
             transition: all 0.3s ease;
             border-left: 4px solid transparent;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
+            font-weight: 500;
         }
         
         .feedback.positive {
-            background: linear-gradient(135deg, #f0fff4, #e6fffa);
-            color: #065f46;
-            border-left-color: #10b981;
+            background: linear-gradient(135deg, #f0fdf4, #dcfce7);
+            color: #15803d;
+            border-left-color: #22c55e;
         }
         
         .feedback.warning {
-            background: linear-gradient(135deg, #fffbf0, #fef3e2);
-            color: #92400e;
+            background: linear-gradient(135deg, #fffbeb, #fef3c7);
+            color: #d97706;
             border-left-color: #f59e0b;
         }
         
         .feedback.hint {
             background: linear-gradient(135deg, #f8fafc, #f1f5f9);
-            color: #475569;
-            border-left-color: #64748b;
+            color: #64748b;
+            border-left-color: #94a3b8;
         }
         
         .feedback-icon {
-            font-size: 18px;
+            font-size: 20px;
         }
         
         .frequency-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-            gap: 15px;
-            margin-bottom: 25px;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
         }
         
         .frequency-card {
-            padding: 20px;
-            border: 2px solid #e2e8f0;
-            border-radius: 12px;
+            padding: 25px;
+            border: 2px solid #e5e7eb;
+            border-radius: 16px;
             text-align: center;
             cursor: pointer;
             transition: all 0.3s ease;
             background: white;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.03);
         }
         
         .frequency-card:hover {
-            border-color: #667eea;
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.2);
+            border-color: #3b82f6;
+            transform: translateY(-4px);
+            box-shadow: 0 12px 30px rgba(59, 130, 246, 0.25);
         }
         
         .frequency-card.selected {
-            border-color: #667eea;
-            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-color: #3b82f6;
+            background: linear-gradient(135deg, #3b82f6, #1e3a8a);
             color: white;
-            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+            box-shadow: 0 12px 30px rgba(59, 130, 246, 0.4);
         }
         
         .frequency-icon {
-            font-size: 32px;
-            margin-bottom: 10px;
+            font-size: 36px;
+            margin-bottom: 15px;
             display: block;
         }
         
         .frequency-label {
-            font-weight: 700;
-            font-size: 16px;
-            margin-bottom: 5px;
+            font-weight: 800;
+            font-size: 17px;
+            margin-bottom: 8px;
         }
         
         .frequency-desc {
-            font-size: 13px;
+            font-size: 14px;
             opacity: 0.8;
+            font-weight: 500;
         }
         
         .button-group {
             display: flex;
-            gap: 15px;
-            margin-top: 30px;
+            gap: 20px;
+            margin-top: 40px;
             flex-wrap: wrap;
         }
         
         .btn {
-            padding: 15px 30px;
+            padding: 18px 35px;
             border: none;
-            border-radius: 12px;
+            border-radius: 16px;
             font-size: 16px;
-            font-weight: 600;
+            font-weight: 700;
             cursor: pointer;
             transition: all 0.3s ease;
             text-decoration: none;
             display: inline-flex;
             align-items: center;
-            gap: 8px;
-            opacity: 0.5;
+            gap: 10px;
+            opacity: 0.4;
             pointer-events: none;
+            letter-spacing: 0.3px;
         }
         
         .btn.enabled {
@@ -519,98 +579,104 @@
         }
         
         .btn-primary {
-            background: linear-gradient(135deg, #667eea, #764ba2);
+            background: linear-gradient(135deg, #3b82f6, #1e3a8a);
             color: white;
-            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+            box-shadow: 0 6px 20px rgba(59, 130, 246, 0.4);
         }
         
         .btn-secondary {
             background: white;
-            color: #2d3748;
-            border: 2px solid #e2e8f0;
+            color: #374151;
+            border: 2px solid #e5e7eb;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.03);
         }
         
         .btn.enabled:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(59, 130, 246, 0.5);
         }
         
         .results-title {
-            font-size: 1.7em;
-            font-weight: 800;
-            margin-bottom: 25px;
-            color: #2d3748;
+            font-size: 1.9em;
+            font-weight: 900;
+            margin-bottom: 30px;
+            color: #1f2937;
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 15px;
             flex-shrink: 0;
+            letter-spacing: -0.5px;
         }
         
         /* DIAGNOSTIC SECTIONS */
         .diagnostic-section {
             background: white;
-            border-radius: 16px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-            border: 1px solid #e2e8f0;
-            margin-bottom: 25px;
+            border-radius: 20px;
+            box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+            border: 1px solid #e5e7eb;
+            margin-bottom: 30px;
             overflow: hidden;
             flex-shrink: 0;
         }
         
         .section-header {
             background: linear-gradient(135deg, #f8fafc, #f1f5f9);
-            padding: 20px 25px;
-            border-bottom: 1px solid #e2e8f0;
+            padding: 25px 30px;
+            border-bottom: 1px solid #e5e7eb;
         }
         
         .section-title {
-            font-size: 1.2em;
-            font-weight: 700;
-            color: #2d3748;
-            margin-bottom: 5px;
+            font-size: 1.3em;
+            font-weight: 800;
+            color: #1f2937;
+            margin-bottom: 8px;
+            letter-spacing: -0.3px;
         }
         
         .section-subtitle {
-            color: #4a5568;
-            font-size: 0.9em;
+            color: #6b7280;
+            font-size: 0.95em;
+            font-weight: 500;
         }
         
         .section-content {
-            padding: 25px;
+            padding: 30px;
         }
         
         /* ROI CALCULATOR */
         .roi-calculator {
-            background: linear-gradient(135deg, #10b981, #059669);
+            background: linear-gradient(135deg, #059669, #10b981);
             color: white;
-            border-radius: 12px;
-            padding: 25px;
-            margin-bottom: 20px;
+            border-radius: 16px;
+            padding: 30px;
+            margin-bottom: 25px;
             text-align: center;
+            box-shadow: 0 8px 25px rgba(5, 150, 105, 0.3);
         }
         
         .roi-title {
-            font-size: 1.3em;
-            font-weight: 700;
-            margin-bottom: 15px;
+            font-size: 1.4em;
+            font-weight: 800;
+            margin-bottom: 20px;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 10px;
+            gap: 12px;
+            letter-spacing: -0.3px;
         }
         
         .info-toggle {
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            width: 24px;
-            height: 24px;
+            width: 28px;
+            height: 28px;
             background: rgba(255,255,255,0.2);
             border-radius: 50%;
             cursor: pointer;
             transition: all 0.3s ease;
-            font-size: 14px;
-            font-weight: bold;
+            font-size: 15px;
+            font-weight: 800;
         }
         
         .info-toggle:hover {
@@ -621,8 +687,8 @@
         .roi-metrics {
             display: grid;
             grid-template-columns: 1fr 1fr 1fr;
-            gap: 20px;
-            margin-bottom: 15px;
+            gap: 25px;
+            margin-bottom: 20px;
         }
         
         .roi-metric {
@@ -630,36 +696,39 @@
         }
         
         .roi-metric-value {
-            font-size: 2.2em;
-            font-weight: 800;
+            font-size: 2.4em;
+            font-weight: 900;
             display: block;
+            letter-spacing: -1px;
         }
         
         .roi-metric-label {
-            font-size: 0.85em;
+            font-size: 0.9em;
             opacity: 0.9;
+            font-weight: 600;
         }
         
         .roi-details {
-            background: rgba(255,255,255,0.1);
-            border-radius: 8px;
-            padding: 15px;
-            margin-top: 15px;
-            font-size: 0.9em;
+            background: rgba(255,255,255,0.12);
+            border-radius: 12px;
+            padding: 20px;
+            margin-top: 20px;
+            font-size: 0.95em;
             text-align: left;
             display: none;
             transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
         }
         
         .roi-details.show {
             display: block;
-            animation: slideDown 0.3s ease-out;
+            animation: slideDown 0.4s ease-out;
         }
         
         @keyframes slideDown {
             from {
                 opacity: 0;
-                transform: translateY(-10px);
+                transform: translateY(-15px);
             }
             to {
                 opacity: 1;
@@ -668,146 +737,157 @@
         }
         
         .roi-details h5 {
-            margin-bottom: 10px;
-            font-weight: 600;
+            margin-bottom: 15px;
+            font-weight: 700;
+            font-size: 1.05em;
         }
         
         .roi-breakdown {
             display: grid;
             grid-template-columns: 1fr auto;
-            gap: 10px;
-            margin-bottom: 8px;
+            gap: 15px;
+            margin-bottom: 10px;
+            font-weight: 500;
         }
         
         /* TOOL RECOMMENDATIONS */
         .tool-recommendation {
-            border: 2px solid #e2e8f0;
-            border-radius: 12px;
-            padding: 20px;
-            margin-bottom: 20px;
+            border: 2px solid #e5e7eb;
+            border-radius: 16px;
+            padding: 25px;
+            margin-bottom: 25px;
             transition: all 0.3s ease;
             position: relative;
+            background: white;
         }
         
         .tool-recommendation:hover {
-            border-color: #667eea;
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.15);
+            border-color: #3b82f6;
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(59, 130, 246, 0.2);
         }
         
         .tool-recommendation.featured {
             border-color: #10b981;
-            background: linear-gradient(135deg, #f0fff4, #ecfdf5);
+            background: linear-gradient(135deg, #f0fdf4, #dcfce7);
         }
         
         .tool-recommendation.featured::before {
             content: 'Recommandé';
             position: absolute;
-            top: -8px;
-            right: 15px;
+            top: -10px;
+            right: 20px;
             background: #10b981;
             color: white;
-            padding: 4px 12px;
-            border-radius: 12px;
-            font-size: 12px;
-            font-weight: 600;
+            padding: 6px 15px;
+            border-radius: 15px;
+            font-size: 13px;
+            font-weight: 700;
             z-index: 3;
+            box-shadow: 0 4px 8px rgba(16, 185, 129, 0.3);
         }
         
         .tool-header {
             display: flex;
             justify-content: space-between;
             align-items: flex-start;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
         }
         
         .tool-name {
-            font-size: 1.3em;
-            font-weight: 700;
-            color: #2d3748;
-            margin-bottom: 5px;
+            font-size: 1.4em;
+            font-weight: 800;
+            color: #1f2937;
+            margin-bottom: 8px;
+            letter-spacing: -0.3px;
         }
         
         .tool-category {
-            font-size: 0.8em;
-            color: white;
-            font-weight: 600;
+            font-size: 0.85em;
+            color: #6b7280;
+            font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
+            letter-spacing: 0.8px;
         }
         
         .tool-score {
-            background: linear-gradient(135deg, #667eea, #764ba2);
+            background: linear-gradient(135deg, #3b82f6, #1e3a8a);
             color: white;
-            padding: 8px 15px;
-            border-radius: 20px;
-            font-weight: 600;
-            font-size: 14px;
+            padding: 10px 18px;
+            border-radius: 25px;
+            font-weight: 800;
+            font-size: 15px;
             text-align: center;
-            min-width: 60px;
+            min-width: 70px;
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
         }
         
         .tool-description {
-            color: #4a5568;
-            margin-bottom: 15px;
-            line-height: 1.5;
+            color: #6b7280;
+            margin-bottom: 20px;
+            line-height: 1.6;
+            font-weight: 500;
         }
         
         .tool-features {
             background: #f8fafc;
-            border-radius: 8px;
-            padding: 15px;
-            margin-bottom: 15px;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
         }
         
         .tool-features h5 {
-            color: #2d3748;
-            font-weight: 600;
-            margin-bottom: 10px;
+            color: #1f2937;
+            font-weight: 700;
+            margin-bottom: 15px;
+            font-size: 1.05em;
         }
         
         .feature-list {
             display: grid;
-            gap: 8px;
+            gap: 10px;
         }
         
         .feature-item {
             display: flex;
             align-items: center;
-            gap: 8px;
-            font-size: 14px;
-            color: #4a5568;
+            gap: 10px;
+            font-size: 14.5px;
+            color: #6b7280;
+            font-weight: 500;
         }
         
         .feature-item::before {
             content: '✓';
             color: #10b981;
-            font-weight: bold;
+            font-weight: 800;
+            font-size: 16px;
         }
         
         .tool-pricing {
             background: #fff7ed;
-            border-radius: 8px;
-            padding: 15px;
-            margin-bottom: 15px;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
         }
         
         .pricing-header {
             display: flex;
             align-items: center;
-            gap: 8px;
-            margin-bottom: 10px;
+            gap: 10px;
+            margin-bottom: 15px;
         }
         
         .pricing-title {
-            font-weight: 600;
-            color: #92400e;
+            font-weight: 700;
+            color: #ea580c;
+            font-size: 1.05em;
         }
         
         .pricing-grid {
             display: grid;
             grid-template-columns: 1fr 1fr 1fr;
-            gap: 15px;
+            gap: 20px;
         }
         
         .pricing-item {
@@ -815,42 +895,46 @@
         }
         
         .pricing-label {
-            font-size: 0.8em;
-            color: #92400e;
-            margin-bottom: 5px;
+            font-size: 0.85em;
+            color: #ea580c;
+            margin-bottom: 8px;
+            font-weight: 600;
+            text-transform: capitalize;
         }
         
         .pricing-value {
-            font-weight: 700;
-            color: #92400e;
+            font-weight: 800;
+            color: #ea580c;
+            font-size: 0.95em;
         }
         
         .usability-score {
-            background: #f0f9ff;
-            border-radius: 8px;
-            padding: 15px;
-            margin-bottom: 15px;
+            background: #eff6ff;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
         }
         
         .usability-header {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            margin-bottom: 10px;
+            margin-bottom: 15px;
         }
         
         .usability-title {
-            font-weight: 600;
-            color: #1e40af;
+            font-weight: 700;
+            color: #1d4ed8;
+            font-size: 1.05em;
         }
         
         .usability-rating {
             display: flex;
-            gap: 2px;
+            gap: 3px;
         }
         
         .star {
-            font-size: 16px;
+            font-size: 18px;
             color: #fbbf24;
         }
         
@@ -859,69 +943,72 @@
         }
         
         .usability-details {
-            font-size: 14px;
-            color: #1e40af;
-            line-height: 1.4;
+            font-size: 14.5px;
+            color: #1d4ed8;
+            line-height: 1.5;
+            font-weight: 500;
         }
         
         .tool-action {
             display: flex;
-            gap: 10px;
+            gap: 12px;
         }
         
         .tool-link {
             flex: 1;
-            background: linear-gradient(135deg, #667eea, #764ba2);
+            background: linear-gradient(135deg, #3b82f6, #1e3a8a);
             color: white;
-            padding: 12px 20px;
-            border-radius: 8px;
+            padding: 14px 25px;
+            border-radius: 12px;
             text-decoration: none;
             text-align: center;
-            font-weight: 600;
+            font-weight: 700;
             transition: all 0.3s ease;
+            letter-spacing: 0.3px;
         }
         
         .tool-link:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(59, 130, 246, 0.4);
         }
         
         .tool-info {
             background: white;
-            border: 2px solid #e2e8f0;
-            color: #4a5568;
-            padding: 12px 20px;
-            border-radius: 8px;
+            border: 2px solid #e5e7eb;
+            color: #6b7280;
+            padding: 14px 25px;
+            border-radius: 12px;
             text-decoration: none;
             text-align: center;
-            font-weight: 600;
+            font-weight: 700;
             transition: all 0.3s ease;
         }
         
         .tool-info:hover {
-            border-color: #667eea;
-            color: #667eea;
+            border-color: #3b82f6;
+            color: #3b82f6;
         }
         
         /* IMPLEMENTATION STRATEGY */
         .strategy-timeline {
-            background: linear-gradient(135deg, #fff7ed, #fef3c7);
-            border-radius: 12px;
-            padding: 20px;
-            margin-bottom: 20px;
+            background: linear-gradient(135deg, #fff7ed, #fed7aa);
+            border-radius: 16px;
+            padding: 25px;
+            margin-bottom: 25px;
         }
         
         .strategy-title {
-            color: #92400e;
-            font-weight: 700;
-            margin-bottom: 15px;
+            color: #ea580c;
+            font-weight: 800;
+            margin-bottom: 20px;
+            font-size: 1.15em;
         }
         
         .timeline-item {
             display: flex;
             align-items: flex-start;
-            gap: 15px;
-            margin-bottom: 15px;
+            gap: 20px;
+            margin-bottom: 20px;
         }
         
         .timeline-item:last-child {
@@ -929,17 +1016,18 @@
         }
         
         .timeline-number {
-            background: #f59e0b;
+            background: #ea580c;
             color: white;
-            width: 30px;
-            height: 30px;
+            width: 35px;
+            height: 35px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-weight: bold;
-            font-size: 14px;
+            font-weight: 800;
+            font-size: 15px;
             flex-shrink: 0;
+            box-shadow: 0 4px 8px rgba(234, 88, 12, 0.3);
         }
         
         .timeline-content {
@@ -947,53 +1035,57 @@
         }
         
         .timeline-phase {
-            font-weight: 600;
-            color: #92400e;
-            margin-bottom: 5px;
+            font-weight: 700;
+            color: #ea580c;
+            margin-bottom: 8px;
+            font-size: 1.05em;
         }
         
         .timeline-description {
-            color: #451a03;
-            font-size: 14px;
-            line-height: 1.4;
+            color: #7c2d12;
+            font-size: 14.5px;
+            line-height: 1.5;
+            font-weight: 500;
         }
         
         /* CONTACT FORM */
         .contact-section {
             background: white;
-            border-radius: 16px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-            border: 1px solid #e2e8f0;
-            margin-top: 25px;
+            border-radius: 20px;
+            box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+            border: 1px solid #e5e7eb;
+            margin-top: 30px;
             overflow: hidden;
             flex-shrink: 0;
         }
         
         .contact-header {
-            background: linear-gradient(135deg, #667eea, #764ba2);
+            background: linear-gradient(135deg, #3b82f6, #1e3a8a);
             color: white;
-            padding: 25px;
+            padding: 30px;
             text-align: center;
         }
         
         .contact-title {
-            font-size: 1.3em;
-            font-weight: 700;
-            margin-bottom: 10px;
+            font-size: 1.4em;
+            font-weight: 800;
+            margin-bottom: 12px;
+            letter-spacing: -0.3px;
         }
         
         .contact-subtitle {
-            opacity: 0.9;
+            opacity: 0.95;
+            font-weight: 500;
         }
         
         .contact-form {
-            padding: 30px;
+            padding: 35px;
         }
         
         .form-row {
             display: flex;
-            gap: 20px;
-            margin-bottom: 20px;
+            gap: 25px;
+            margin-bottom: 25px;
         }
         
         .form-field {
@@ -1002,55 +1094,100 @@
         
         .form-field label {
             display: block;
-            margin-bottom: 8px;
-            font-weight: 600;
-            color: #4a5568;
-            font-size: 14px;
+            margin-bottom: 10px;
+            font-weight: 700;
+            color: #374151;
+            font-size: 15px;
         }
         
-        .form-field input {
+        .form-field input, .form-field textarea {
             min-height: auto;
+            padding: 18px;
         }
         
         .validation-error {
             background: #fee2e2;
             color: #dc2626;
-            padding: 12px 15px;
-            border-radius: 8px;
-            margin-top: 8px;
-            font-size: 13px;
+            padding: 15px 20px;
+            border-radius: 12px;
+            margin-top: 10px;
+            font-size: 14px;
             border-left: 4px solid #dc2626;
             display: none;
+            font-weight: 600;
         }
         
-        .form-field.error input {
+        .form-field.error input, .form-field.error textarea {
             border-color: #dc2626;
-            box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.1);
+            box-shadow: 0 0 0 4px rgba(220, 38, 38, 0.12);
         }
         
         .submit-button {
             width: 100%;
             background: linear-gradient(135deg, #10b981, #059669);
             color: white;
-            padding: 18px 25px;
+            padding: 20px 30px;
             border: none;
-            border-radius: 12px;
-            font-size: 16px;
-            font-weight: 600;
+            border-radius: 16px;
+            font-size: 17px;
+            font-weight: 800;
             cursor: pointer;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+            box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4);
+            letter-spacing: 0.3px;
         }
         
         .submit-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(16, 185, 129, 0.5);
         }
         
         .submit-button:disabled {
             opacity: 0.7;
             cursor: not-allowed;
             transform: none;
+        }
+        
+        .calendly-cta {
+            background: linear-gradient(135deg, #f8fafc, #f1f5f9);
+            border-radius: 16px;
+            padding: 25px;
+            margin-top: 25px;
+            text-align: center;
+            border: 2px solid #e5e7eb;
+        }
+        
+        .calendly-title {
+            font-size: 1.2em;
+            font-weight: 800;
+            color: #1f2937;
+            margin-bottom: 12px;
+        }
+        
+        .calendly-subtitle {
+            color: #6b7280;
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+        
+        .calendly-button {
+            background: linear-gradient(135deg, #3b82f6, #1e3a8a);
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+        }
+        
+        .calendly-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(59, 130, 246, 0.4);
         }
         
         /* LOADING AND SUCCESS STATES */
@@ -1060,12 +1197,12 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(102, 126, 234, 0.95);
+            background: rgba(59, 130, 246, 0.95);
             display: none;
             align-items: center;
             justify-content: center;
             z-index: 10000;
-            backdrop-filter: blur(5px);
+            backdrop-filter: blur(8px);
         }
         
         .loading-content {
@@ -1074,29 +1211,29 @@
         }
         
         .loading-spinner {
-            width: 60px;
-            height: 60px;
-            border: 6px solid rgba(255,255,255,0.3);
-            border-top: 6px solid white;
+            width: 70px;
+            height: 70px;
+            border: 8px solid rgba(255,255,255,0.3);
+            border-top: 8px solid white;
             border-radius: 50%;
-            animation: spin 1s linear infinite;
-            margin: 0 auto 20px;
+            animation: spin 1.2s linear infinite;
+            margin: 0 auto 25px;
         }
         
         .loading-text {
-            font-size: 1.2em;
-            font-weight: 600;
+            font-size: 1.3em;
+            font-weight: 700;
         }
         
         .spinner {
             display: inline-block;
-            width: 20px;
-            height: 20px;
+            width: 22px;
+            height: 22px;
             border: 3px solid rgba(255,255,255,.3);
             border-radius: 50%;
             border-top-color: #fff;
             animation: spin 1s ease-in-out infinite;
-            margin-right: 10px;
+            margin-right: 12px;
         }
         
         @keyframes spin {
@@ -1105,18 +1242,18 @@
         
         .auto-save-indicator {
             position: fixed;
-            bottom: 20px;
-            right: 20px;
+            bottom: 25px;
+            right: 25px;
             background: #10b981;
             color: white;
-            padding: 12px 20px;
-            border-radius: 25px;
-            font-size: 14px;
-            font-weight: 600;
+            padding: 15px 25px;
+            border-radius: 30px;
+            font-size: 15px;
+            font-weight: 700;
             opacity: 0;
             transition: opacity 0.3s ease;
             z-index: 1000;
-            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+            box-shadow: 0 6px 16px rgba(16, 185, 129, 0.4);
         }
         
         .auto-save-indicator.show {
@@ -1130,14 +1267,14 @@
             
             .results-section {
                 border-left: none;
-                border-top: 1px solid #e2e8f0;
+                border-top: 1px solid #e5e7eb;
                 height: auto;
                 overflow-y: visible;
             }
             
             .form-row {
                 flex-direction: column;
-                gap: 15px;
+                gap: 20px;
             }
             
             .frequency-grid {
@@ -1145,16 +1282,16 @@
             }
             
             .form-section, .results-section {
-                padding: 30px;
+                padding: 40px;
             }
             
             .progress-section {
-                padding: 20px 30px;
+                padding: 25px 40px;
             }
             
             .value-proposition {
                 grid-template-columns: 1fr;
-                gap: 20px;
+                gap: 25px;
             }
             
             .progress-container {
@@ -1164,16 +1301,24 @@
             
             .roi-metrics {
                 grid-template-columns: 1fr;
-                gap: 15px;
+                gap: 20px;
             }
             
             .pricing-grid {
                 grid-template-columns: 1fr;
-                gap: 10px;
+                gap: 15px;
             }
             
             .tool-action {
                 flex-direction: column;
+            }
+            
+            .header {
+                padding: 40px;
+            }
+            
+            .header h1 {
+                font-size: 2.5em;
             }
         }
         
@@ -1183,7 +1328,7 @@
             }
             
             .header .subtitle {
-                font-size: 1.1em;
+                font-size: 1.2em;
             }
             
             .frequency-grid {
@@ -1195,10 +1340,22 @@
             }
             
             .auto-save-indicator {
-                bottom: 10px;
-                right: 10px;
-                font-size: 12px;
-                padding: 8px 15px;
+                bottom: 15px;
+                right: 15px;
+                font-size: 13px;
+                padding: 12px 20px;
+            }
+            
+            .form-section, .results-section {
+                padding: 30px;
+            }
+            
+            .header {
+                padding: 30px;
+            }
+            
+            .company-name {
+                font-size: 1.8em;
             }
         }
     </style>
@@ -1207,18 +1364,19 @@
     <div class="container">
         <div class="header">
             <div class="header-content">
-                <div class="expert-badge">
-                    Théo Le Breton - Expert en Automatisation
+                <div class="solutio-branding">
+                    <div class="company-name">SOLUTIO</div>
+                    <div class="company-tagline">TRANSFORMATION DIGITALE</div>
                 </div>
-                <h1>💰 Diagnostic Gratuit : Combien pourriez-vous économiser ?</h1>
-                <p class="subtitle">Découvrez en 5 minutes le potentiel d'optimisation de vos processus</p>
+                <h1>Diagnostic Gratuit : Combien pourriez-vous économiser ?</h1>
+                <p class="subtitle">Découvrez en 5 minutes le potentiel d'optimisation de vos processus métier</p>
                 <div class="value-proposition">
                     <div class="value-item">
                         <span class="value-number">30min-15h</span>
                         <span class="value-label">gagnées/semaine</span>
                     </div>
                     <div class="value-item">
-                        <span class="value-number">400-3200€</span>
+                        <span class="value-number">400-3500€</span>
                         <span class="value-label">économisés/mois</span>
                     </div>
                     <div class="value-item">
@@ -1226,12 +1384,12 @@
                         <span class="value-label">pour voir les résultats</span>
                     </div>
                 </div>
-                <div style="margin-top: 20px; padding: 15px; background: rgba(255,255,255,0.15); border-radius: 12px; font-size: 0.95em; backdrop-filter: blur(10px);">
-                    <div style="display: flex; align-items: center; margin-bottom: 8px;">
-                        <span style="font-size: 1.1em; margin-right: 8px;">📊 Basé sur 200+ optimisations réalisées</span>
+                <div class="methodology-note">
+                    <div class="methodology-title">
+                        Basé sur 200+ optimisations réalisées
                     </div>
-                    <div style="font-size: 0.85em; line-height: 1.3;">
-                        85% des tâches répétitives automatisables • Coût superbrut 33€/h • Solutions avec bonifications sectorielles
+                    <div class="methodology-details">
+                        85% des tâches répétitives automatisables • Coût superbrut 32,82€/h • Solutions avec bonifications sectorielles
                     </div>
                 </div>
             </div>
@@ -1367,6 +1525,8 @@
                             <option value="accounting_finance">Comptabilité / Finance</option>
                             <option value="logistics">Logistique / Transport</option>
                             <option value="manufacturing">Industrie / Production</option>
+                            <option value="services">Services aux entreprises</option>
+                            <option value="education">Éducation / Formation</option>
                             <option value="generic">Autre</option>
                         </select>
                         <div class="feedback hint" id="sectorFeedback">
@@ -1487,7 +1647,7 @@
                     </div>
                     <div class="button-group">
                         <button class="btn btn-secondary enabled" onclick="goToStep(5)">← Retour</button>
-                        <button class="btn btn-primary enabled" id="nextButton6">🚀 Voir mes économies potentielles</button>
+                        <button class="btn btn-primary enabled" id="nextButton6">Voir mes économies potentielles</button>
                     </div>
                 </div>
             </div>
@@ -1496,7 +1656,7 @@
             <div class="results-section">
                 <div class="results-container">
                     <div class="results-title">
-                        💰 Vos Économies Potentielles
+                        Vos Économies Potentielles
                     </div>
                     
                     <!-- ROI Calculator -->
@@ -1529,7 +1689,7 @@
                     <!-- Tool Recommendations -->
                     <div class="diagnostic-section" id="toolsSection" style="display: none;">
                         <div class="section-header">
-                            <div class="section-title">🛠️ Solutions Recommandées</div>
+                            <div class="section-title">Solutions Recommandées</div>
                             <div class="section-subtitle">Outils adaptés à votre secteur</div>
                         </div>
                         <div class="section-content" id="toolsList">
@@ -1540,7 +1700,7 @@
                     <!-- Implementation Strategy -->
                     <div class="diagnostic-section" id="strategySection" style="display: none;">
                         <div class="section-header">
-                            <div class="section-title">🚀 Plan d'Action</div>
+                            <div class="section-title">Plan d'Action</div>
                             <div class="section-subtitle">Comment procéder étape par étape</div>
                         </div>
                         <div class="section-content">
@@ -1553,8 +1713,8 @@
                     <!-- Contact Form -->
                     <div class="contact-section" id="contactSection" style="display: none;">
                         <div class="contact-header">
-                            <div class="contact-title">Parlons de votre projet</div>
-                            <div class="contact-subtitle">Échangeons 15 minutes pour affiner cette analyse</div>
+                            <div class="contact-title">Obtenez votre plan personnalisé</div>
+                            <div class="contact-subtitle">Recevez vos recommandations détaillées et un plan d'action sur mesure</div>
                         </div>
                         <form class="contact-form" action="https://formspree.io/f/mzzgbevp" method="POST" id="diagnosticForm">
                             <div class="form-row">
@@ -1576,28 +1736,38 @@
                                     <div class="validation-error" id="emailError"></div>
                                 </div>
                                 <div class="form-field">
-                                    <label for="telephone">Téléphone</label>
-                                    <input type="tel" id="telephone" name="telephone">
+                                    <label for="telephone">Téléphone *</label>
+                                    <input type="tel" id="telephone" name="telephone" required>
+                                    <div class="validation-error" id="telephoneError"></div>
                                 </div>
                             </div>
                             <div class="form-field">
-                                <label for="company">Entreprise</label>
-                                <input type="text" id="company" name="company" placeholder="Nom de votre entreprise">
+                                <label for="company">Entreprise *</label>
+                                <input type="text" id="company" name="company" placeholder="Nom de votre entreprise" required>
+                                <div class="validation-error" id="companyError"></div>
                             </div>
                             
                             <div class="form-field" style="margin-top: 25px;">
-                                <label for="recommendations">Vos recommandations sur ce processus (optionnel)</label>
-                                <textarea id="recommendations" name="recommendations" placeholder="Avez-vous des idées d'amélioration ? Des outils que vous utilisez déjà ? Des contraintes particulières à prendre en compte ?" style="min-height: 80px;"></textarea>
-                                <div style="font-size: 13px; color: #4a5568; margin-top: 8px;">
-                                    💡 Vos suggestions m'aident à vous proposer des solutions encore plus adaptées
+                                <label for="feedback">Êtes-vous intéressé par un accompagnement personnalisé ?</label>
+                                <textarea id="feedback" name="feedback" placeholder="Dites-nous en plus sur votre projet d'automatisation, vos priorités, ou toute question que vous pourriez avoir..." style="min-height: 100px;"></textarea>
+                                <div style="font-size: 13px; color: #6b7280; margin-top: 8px; font-weight: 500;">
+                                    Cette information nous aide à personnaliser nos recommandations
                                 </div>
                             </div>
                             
                             <input type="hidden" id="diagnostic_data" name="diagnostic_data">
                             
                             <button type="submit" class="submit-button" id="submitButton">
-                                📨 Recevoir mon plan d'automatisation détaillé
+                                Recevoir mon plan d'automatisation détaillé
                             </button>
+
+                            <div class="calendly-cta">
+                                <div class="calendly-title">Vous souhaitez échanger directement ?</div>
+                                <div class="calendly-subtitle">Réservez un créneau de 30 minutes pour discuter de votre projet d'automatisation</div>
+                                <a href="https://calendly.com/tlb-ov_p/30min?month=2025-06" target="_blank" class="calendly-button">
+                                    Réserver un rendez-vous
+                                </a>
+                            </div>
                         </form>
                     </div>
                 </div>
@@ -1614,13 +1784,13 @@
         
         <!-- Auto-save indicator -->
         <div class="auto-save-indicator" id="autoSaveIndicator">
-            ✅ Diagnostic sauvegardé
+            Diagnostic sauvegardé
         </div>
     </div>
 
     <script>
         // ===== CONFIGURATION =====
-        const HOURLY_RATE = 33;
+        const HOURLY_RATE = 32.82; // Taux superbrut moyen France 2025
         const totalSteps = 6;
         let currentStep = 1;
         let selectedFrequency = '';
@@ -1646,288 +1816,134 @@
                     pro: '800€/mois'
                 },
                 usability: {
-                    score: 4.5,
-                    setup_time: '2-4 heures',
-                    learning_curve: 'Facile à modérée'
-                },
-                sectors: ['freelance_consulting', 'real_estate', 'manufacturing'],
-                automation_strength: 95
-            },
-            'pipedrive': {
-                name: 'Pipedrive',
-                category: 'CRM & Sales',
-                description: 'CRM simple et visuel, parfait pour les équipes commerciales',
-                features: [
-                    'Interface pipeline visuelle',
-                    'Automatisation des ventes',
-                    'Suivi email intégré',
-                    'Rapports de performance',
-                    'Application mobile complète'
-                ],
-                pricing: {
-                    starter: '15€/utilisateur/mois',
-                    advanced: '25€/utilisateur/mois',
-                    pro: '50€/utilisateur/mois'
-                },
-                usability: {
-                    score: 4.7,
-                    setup_time: '1-2 heures',
-                    learning_curve: 'Très facile'
-                },
-                sectors: ['freelance_consulting', 'real_estate', 'construction_btp'],
-                automation_strength: 85
-            },
-            
-            // Automatisation
-            'zapier': {
-                name: 'Zapier',
-                category: 'Automatisation',
-                description: 'Plateforme n°1 pour connecter vos applications sans code',
-                features: [
-                    '5000+ applications connectées',
-                    'Automatisations multi-étapes',
-                    'Déclencheurs intelligents',
-                    'Filtres et conditions avancées',
-                    'Templates prêts à l\'emploi'
-                ],
-                pricing: {
-                    free: 'Gratuit (100 tâches/mois)',
-                    starter: '20€/mois (750 tâches)',
-                    pro: '50€/mois (2000 tâches)'
-                },
-                usability: {
                     score: 4.3,
-                    setup_time: '30 minutes - 2 heures',
+                    setup_time: '1-2 heures',
                     learning_curve: 'Facile'
                 },
-                sectors: ['freelance_consulting', 'ecommerce', 'retail', 'accounting_finance'],
-                automation_strength: 98
+                sectors: ['ecommerce', 'retail', 'services', 'restaurant_hospitality'],
+                automation_strength: 90
             },
-            'make': {
-                name: 'Make (ex-Integromat)',
-                category: 'Automatisation',
-                description: 'Automatisation visuelle plus puissante que Zapier',
+            'brevo': {
+                name: 'Brevo (ex-Sendinblue)',
+                category: 'Email Marketing',
+                description: 'Solution email marketing française avec automatisations CRM',
                 features: [
-                    'Interface drag & drop visuelle',
-                    'Logique conditionnelle avancée',
-                    'Gestion d\'erreurs sophistiquée',
-                    'Exécution en temps réel',
-                    'API et webhooks natifs'
+                    'Email marketing automatisé',
+                    'SMS marketing intégré',
+                    'CRM avec automatisations',
+                    'Landing pages',
+                    'Chat en direct automatisé'
                 ],
                 pricing: {
-                    free: 'Gratuit (1000 opérations/mois)',
-                    core: '9€/mois (10k opérations)',
-                    pro: '16€/mois (40k opérations)'
+                    free: 'Gratuit (300 emails/jour)',
+                    starter: '25€/mois',
+                    business: '65€/mois'
                 },
                 usability: {
                     score: 4.1,
                     setup_time: '1-3 heures',
-                    learning_curve: 'Modérée'
-                },
-                sectors: ['ecommerce', 'manufacturing', 'logistics'],
-                automation_strength: 96
-            },
-            
-            // Comptabilité & Finance
-            'quickbooks': {
-                name: 'QuickBooks',
-                category: 'Comptabilité',
-                description: 'Solution comptable complète avec automatisation intégrée',
-                features: [
-                    'Facturation automatisée',
-                    'Réconciliation bancaire auto',
-                    'Suivi des dépenses intelligent',
-                    'Rapports financiers en temps réel',
-                    'Conformité fiscale française'
-                ],
-                pricing: {
-                    simple: '15€/mois',
-                    advanced: '35€/mois',
-                    expert: '55€/mois'
-                },
-                usability: {
-                    score: 4.2,
-                    setup_time: '2-4 heures',
-                    learning_curve: 'Modérée'
-                },
-                sectors: ['accounting_finance', 'freelance_consulting', 'retail'],
-                automation_strength: 88
-            },
-            'stripe': {
-                name: 'Stripe',
-                category: 'Paiement',
-                description: 'Plateforme de paiement avec automatisation des revenus',
-                features: [
-                    'Paiements récurrents automatiques',
-                    'Facturation intelligente',
-                    'Gestion des taxes globale',
-                    'Analytics revenus avancées',
-                    'API ultra-flexible'
-                ],
-                pricing: {
-                    standard: '1.4% + 0.25€ par transaction',
-                    connect: '2.9% + 0.30€ par transaction',
-                    enterprise: 'Sur devis'
-                },
-                usability: {
-                    score: 4.6,
-                    setup_time: '30 minutes - 1 heure',
-                    learning_curve: 'Facile à modérée'
-                },
-                sectors: ['ecommerce', 'freelance_consulting', 'restaurant_hospitality'],
-                automation_strength: 92
-            },
-            
-            // E-commerce
-            'shopify': {
-                name: 'Shopify',
-                category: 'E-commerce',
-                description: 'Plateforme e-commerce avec automatisations marketing intégrées',
-                features: [
-                    'Boutique en ligne complète',
-                    'Automatisations email marketing',
-                    'Gestion stock intelligente',
-                    'Abandoned cart recovery',
-                    '6000+ applications tierces'
-                ],
-                pricing: {
-                    basic: '29$/mois',
-                    shopify: '79$/mois',
-                    advanced: '299$/mois'
-                },
-                usability: {
-                    score: 4.4,
-                    setup_time: '4-8 heures',
                     learning_curve: 'Facile'
                 },
-                sectors: ['ecommerce', 'retail'],
-                automation_strength: 90
+                sectors: ['ecommerce', 'retail', 'services', 'freelance_consulting'],
+                automation_strength: 88
             },
-            
-            // Rendez-vous & Planning
-            'calendly': {
-                name: 'Calendly',
-                category: 'Prise de RDV',
-                description: 'Automatisation complète de la prise de rendez-vous',
+            'slack': {
+                name: 'Slack',
+                category: 'Communication',
+                description: 'Plateforme de communication avec automatisations de workflows',
                 features: [
-                    'Réservation en ligne 24/7',
-                    'Sync calendriers automatique',
-                    'Rappels automatiques',
-                    'Questionnaires pré-RDV',
-                    'Intégrations CRM natives'
+                    'Canaux automatisés',
+                    'Bots et workflows',
+                    'Intégrations massives',
+                    'Automatisation des notifications',
+                    'Rappels automatiques'
                 ],
                 pricing: {
-                    free: 'Gratuit (1 type RDV)',
-                    essentials: '8€/utilisateur/mois',
-                    pro: '12€/utilisateur/mois'
-                },
-                usability: {
-                    score: 4.8,
-                    setup_time: '15-30 minutes',
-                    learning_curve: 'Très facile'
-                },
-                sectors: ['healthcare', 'freelance_consulting', 'real_estate'],
-                automation_strength: 94
-            },
-            'acuity': {
-                name: 'Acuity Scheduling',
-                category: 'Prise de RDV',
-                description: 'Solution de RDV avancée avec automatisations personnalisées',
-                features: [
-                    'Personnalisation interface poussée',
-                    'Packages et cours en ligne',
-                    'Paiements intégrés',
-                    'Formulaires d\'admission',
-                    'Certificats cadeaux automatiques'
-                ],
-                pricing: {
-                    emerging: '14$/mois',
-                    growing: '23$/mois',
-                    powerhouse: '45$/mois'
-                },
-                usability: {
-                    score: 4.3,
-                    setup_time: '1-2 heures',
-                    learning_curve: 'Modérée'
-                },
-                sectors: ['healthcare', 'freelance_consulting'],
-                automation_strength: 89
-            },
-            
-            // Signature électronique
-            'docusign': {
-                name: 'DocuSign',
-                category: 'Signature électronique',
-                description: 'Leader mondial de la signature électronique automatisée',
-                features: [
-                    'Signatures légalement valides',
-                    'Workflows d\'approbation',
-                    'Templates intelligents',
-                    'Rappels automatiques',
-                    'Audit trail complet'
-                ],
-                pricing: {
-                    personal: '10€/mois',
-                    standard: '31€/utilisateur/mois',
-                    business: '54€/utilisateur/mois'
+                    free: 'Gratuit (10k messages)',
+                    pro: '6.75€/utilisateur/mois',
+                    business: '12.50€/utilisateur/mois'
                 },
                 usability: {
                     score: 4.5,
                     setup_time: '30 minutes - 1 heure',
-                    learning_curve: 'Facile'
+                    learning_curve: 'Très facile'
                 },
-                sectors: ['real_estate', 'construction_btp', 'freelance_consulting'],
-                automation_strength: 91
+                sectors: ['services', 'freelance_consulting', 'manufacturing', 'ecommerce'],
+                automation_strength: 83
             },
-            
-            // Productivité
-            'notion': {
-                name: 'Notion',
-                category: 'Productivité',
-                description: 'Workspace tout-en-un avec automatisations via bases de données',
+
+            // Spécialisés sectoriels
+            'odoo': {
+                name: 'Odoo',
+                category: 'ERP',
+                description: 'Suite ERP modulaire avec automatisations métier complètes',
                 features: [
-                    'Bases de données relationnelles',
-                    'Templates automatisés',
-                    'Formules et roll-ups',
-                    'Sync avec autres outils',
-                    'Collaboration en temps réel'
+                    'CRM, ventes, comptabilité intégrés',
+                    'Automatisations multi-modules',
+                    'Workflows personnalisables',
+                    'Facturation automatisée',
+                    'Gestion stock intelligente'
                 ],
                 pricing: {
-                    free: 'Gratuit (usage personnel)',
-                    plus: '8$/utilisateur/mois',
-                    business: '15$/utilisateur/mois'
+                    community: 'Gratuit (limité)',
+                    standard: '20€/utilisateur/mois',
+                    custom: '30€/utilisateur/mois'
                 },
                 usability: {
-                    score: 4.0,
-                    setup_time: '2-6 heures',
-                    learning_curve: 'Modérée à difficile'
+                    score: 3.8,
+                    setup_time: '1-4 semaines',
+                    learning_curve: 'Complexe'
                 },
-                sectors: ['freelance_consulting', 'manufacturing'],
-                automation_strength: 78
+                sectors: ['manufacturing', 'retail', 'services', 'logistics'],
+                automation_strength: 95
             },
-            'airtable': {
-                name: 'Airtable',
-                category: 'Base de données',
-                description: 'Base de données flexible avec automatisations natives',
+            'typeform': {
+                name: 'Typeform',
+                category: 'Formulaires',
+                description: 'Plateforme de formulaires avec automatisations de collecte',
                 features: [
-                    'Interface spreadsheet intuitive',
-                    'Automatisations par triggers',
-                    'Vues multiples (kanban, calendar)',
-                    'Collaborations en temps réel',
-                    'API robuste'
+                    'Formulaires conversationnels',
+                    'Logique conditionnelle',
+                    'Intégrations automatiques',
+                    'Analytics avancées',
+                    'Personnalisation poussée'
                 ],
                 pricing: {
-                    free: 'Gratuit (1200 enregistrements)',
-                    plus: '10$/utilisateur/mois',
-                    pro: '20$/utilisateur/mois'
+                    basic: 'Gratuit (100 réponses/mois)',
+                    plus: '25€/mois',
+                    business: '50€/mois'
                 },
                 usability: {
-                    score: 4.4,
+                    score: 4.6,
+                    setup_time: '30 minutes - 2 heures',
+                    learning_curve: 'Très facile'
+                },
+                sectors: ['services', 'freelance_consulting', 'education', 'healthcare'],
+                automation_strength: 86
+            },
+            'jotform': {
+                name: 'JotForm',
+                category: 'Formulaires',
+                description: 'Créateur de formulaires avec automatisations de workflow',
+                features: [
+                    'Templates sectoriels',
+                    'Paiements intégrés',
+                    'Approbations automatiques',
+                    'Intégrations étendues',
+                    'Signature électronique'
+                ],
+                pricing: {
+                    starter: 'Gratuit (100 soumissions/mois)',
+                    bronze: '34€/mois',
+                    silver: '39€/mois'
+                },
+                usability: {
+                    score: 4.2,
                     setup_time: '1-3 heures',
                     learning_curve: 'Facile'
                 },
-                sectors: ['manufacturing', 'logistics', 'retail'],
-                automation_strength: 85
+                sectors: ['healthcare', 'education', 'services', 'construction_btp'],
+                automation_strength: 84
             }
         };
         
@@ -1936,14 +1952,14 @@
             constructor() {
                 this.processPatterns = {
                     lead_management: {
-                        keywords: ['lead', 'prospect', 'commercial', 'vente', 'qualification', 'crm'],
+                        keywords: ['lead', 'prospect', 'commercial', 'vente', 'qualification', 'crm', 'client'],
                         baseTimeMinutes: 60,
                         complexity: 1.2,
                         automationPotential: 0.90,
                         category: 'Sales'
                     },
                     invoicing: {
-                        keywords: ['facture', 'facturation', 'paiement', 'devis', 'recouvrement'],
+                        keywords: ['facture', 'facturation', 'paiement', 'devis', 'recouvrement', 'comptabilité'],
                         baseTimeMinutes: 45,
                         complexity: 1.0,
                         automationPotential: 0.95,
@@ -1957,31 +1973,38 @@
                         category: 'Operations'
                     },
                     order_processing: {
-                        keywords: ['commande', 'commandes', 'traitement', 'processus', 'validation'],
+                        keywords: ['commande', 'commandes', 'traitement', 'processus', 'validation', 'stock'],
                         baseTimeMinutes: 40,
                         complexity: 1.1,
                         automationPotential: 0.88,
                         category: 'Operations'
                     },
                     email_management: {
-                        keywords: ['email', 'mail', 'courrier', 'répondre', 'trier'],
+                        keywords: ['email', 'mail', 'courrier', 'répondre', 'trier', 'communication'],
                         baseTimeMinutes: 45,
                         complexity: 0.8,
                         automationPotential: 0.80,
                         category: 'Operations'
                     },
                     reporting: {
-                        keywords: ['rapport', 'reporting', 'synthèse', 'tableau de bord', 'analyse'],
+                        keywords: ['rapport', 'reporting', 'synthèse', 'tableau de bord', 'analyse', 'kpi'],
                         baseTimeMinutes: 150,
                         complexity: 1.5,
                         automationPotential: 0.92,
                         category: 'Operations'
                     },
                     data_entry: {
-                        keywords: ['saisie', 'données', 'base', 'mise à jour', 'remplir'],
+                        keywords: ['saisie', 'données', 'base', 'mise à jour', 'remplir', 'import'],
                         baseTimeMinutes: 35,
                         complexity: 0.7,
                         automationPotential: 0.95,
+                        category: 'Operations'
+                    },
+                    document_processing: {
+                        keywords: ['document', 'pdf', 'signature', 'contrat', 'validation', 'archivage'],
+                        baseTimeMinutes: 25,
+                        complexity: 0.8,
+                        automationPotential: 0.85,
                         category: 'Operations'
                     }
                 };
@@ -2101,30 +2124,48 @@
                 
                 // Bonus secteur
                 if (tool.sectors.includes(sector)) {
-                    score += 20;
+                    score += 25;
                 }
                 
                 // Bonus par catégorie de processus
-                if (processLower.includes('facture') || processLower.includes('paiement')) {
-                    if (tool.category.includes('Comptabilité') || tool.category.includes('Paiement')) {
-                        score += 25;
+                if (processLower.includes('facture') || processLower.includes('paiement') || processLower.includes('comptabilité')) {
+                    if (tool.category.includes('Comptabilité') || tool.category.includes('Paiement') || tool.category.includes('ERP')) {
+                        score += 30;
                     }
                 }
                 
-                if (processLower.includes('rdv') || processLower.includes('planning')) {
+                if (processLower.includes('rdv') || processLower.includes('planning') || processLower.includes('rendez-vous')) {
                     if (tool.category.includes('RDV')) {
+                        score += 30;
+                    }
+                }
+                
+                if (processLower.includes('email') || processLower.includes('marketing') || processLower.includes('communication')) {
+                    if (tool.category.includes('CRM') || tool.category.includes('Email Marketing') || tool.category.includes('Communication')) {
                         score += 25;
                     }
                 }
                 
-                if (processLower.includes('email') || processLower.includes('marketing')) {
-                    if (tool.category.includes('CRM') || tool.category.includes('Automatisation')) {
-                        score += 20;
+                if (processLower.includes('commande') || processLower.includes('vente') || processLower.includes('e-commerce')) {
+                    if (tool.category.includes('E-commerce') || tool.category.includes('CRM')) {
+                        score += 25;
                     }
                 }
                 
-                if (processLower.includes('commande') || processLower.includes('vente')) {
-                    if (tool.category.includes('E-commerce') || tool.category.includes('CRM')) {
+                if (processLower.includes('formulaire') || processLower.includes('collecte') || processLower.includes('sondage')) {
+                    if (tool.category.includes('Formulaires')) {
+                        score += 30;
+                    }
+                }
+                
+                if (processLower.includes('signature') || processLower.includes('contrat') || processLower.includes('document')) {
+                    if (tool.category.includes('Signature électronique')) {
+                        score += 30;
+                    }
+                }
+                
+                if (processLower.includes('rapport') || processLower.includes('tableau') || processLower.includes('analyse')) {
+                    if (tool.category.includes('Base de données') || tool.category.includes('Productivité')) {
                         score += 20;
                     }
                 }
@@ -2133,7 +2174,7 @@
                 score += tool.automation_strength * 0.2;
                 
                 // Bonus facilité d'utilisation
-                score += tool.usability.score * 5;
+                score += tool.usability.score * 4;
                 
                 recommendations.push({
                     ...tool,
@@ -2284,6 +2325,16 @@
             return `${Math.round(hours)}h`;
         }
         
+        function getFrequencyText(frequency) {
+            const frequencies = {
+                'daily': 'Quotidien',
+                'weekly': 'Hebdomadaire', 
+                'monthly': 'Mensuel',
+                'occasional': 'Ponctuel'
+            };
+            return frequencies[frequency] || 'Non spécifié';
+        }
+        
         function generateStars(rating) {
             let stars = '';
             for (let i = 1; i <= 5; i++) {
@@ -2303,9 +2354,9 @@
             
             const completionMessage = document.createElement('div');
             completionMessage.innerHTML = `
-                <div style="background: linear-gradient(135deg, #10b981, #059669); color: white; padding: 20px; border-radius: 15px; text-align: center; margin: 20px 0;">
-                    <div style="font-size: 1.5em; font-weight: 700; margin-bottom: 10px;">Diagnostic Terminé</div>
-                    <div style="opacity: 0.9;">Votre analyse personnalisée est prête</div>
+                <div style="background: linear-gradient(135deg, #10b981, #059669); color: white; padding: 25px; border-radius: 20px; text-align: center; margin: 25px 0; box-shadow: 0 8px 25px rgba(16, 185, 129, 0.3);">
+                    <div style="font-size: 1.6em; font-weight: 800; margin-bottom: 12px;">Diagnostic Terminé</div>
+                    <div style="opacity: 0.95; font-weight: 500;">Votre analyse personnalisée est prête</div>
                 </div>
             `;
             
@@ -2362,8 +2413,8 @@
             
             const sectorLabel = selectedSector ? getSectorLabel(selectedSector) : 'Non spécifié';
             const sectorBadge = selectedSector ? `
-                <div style="background: rgba(102, 126, 234, 0.1); color: #667eea; padding: 8px 15px; border-radius: 20px; font-size: 14px; font-weight: 600; margin-bottom: 15px; display: inline-block;">
-                    📊 Secteur: ${sectorLabel}
+                <div style="background: rgba(59, 130, 246, 0.1); color: #3b82f6; padding: 10px 18px; border-radius: 25px; font-size: 15px; font-weight: 700; margin-bottom: 20px; display: inline-block; border: 1px solid rgba(59, 130, 246, 0.2);">
+                    Secteur: ${sectorLabel}
                 </div>
             ` : '';
             
@@ -2371,7 +2422,7 @@
             roiCalculator.innerHTML = `
                 ${sectorBadge}
                 <div class="roi-title">
-                    💰 Votre Potentiel d'Économies
+                    Votre Potentiel d'Économies
                     <div class="info-toggle" onclick="toggleROIDetails()">i</div>
                 </div>
                 <div class="roi-metrics">
@@ -2390,7 +2441,7 @@
                 </div>
                 
                 <div class="roi-details" id="roiBreakdown">
-                    <h5>🎯 Méthodologie de calcul :</h5>
+                    <h5>Méthodologie de calcul :</h5>
                     <div class="roi-breakdown">
                         <span>Temps par occurrence :</span>
                         <span><strong>${Math.round(analysis.details.baseTimeMinutes)} min</strong></span>
@@ -2411,13 +2462,13 @@
                         <span>Bonus estimation attractive :</span>
                         <span><strong>+${Math.round((analysis.details.globalBonus - 1) * 100)}%</strong></span>
                     </div>
-                    <hr style="margin: 15px 0; border: none; border-top: 1px solid rgba(255,255,255,0.2);">
-                    <div class="roi-breakdown" style="font-size: 1.1em; font-weight: 600;">
+                    <hr style="margin: 20px 0; border: none; border-top: 1px solid rgba(255,255,255,0.2);">
+                    <div class="roi-breakdown" style="font-size: 1.1em; font-weight: 700;">
                         <span>ROI total mensuel :</span>
                         <span style="color: #ffffff;"><strong>${analysis.monthlyMoney}€</strong></span>
                     </div>
-                    <p style="margin-top: 15px; font-size: 0.9em; opacity: 0.8;">
-                        📈 Calcul basé sur ${HOURLY_RATE}€/h (charges patronales incluses)
+                    <p style="margin-top: 20px; font-size: 0.9em; opacity: 0.85;">
+                        Calcul basé sur ${HOURLY_RATE}€/h (charges patronales incluses)
                     </p>
                 </div>
             `;
@@ -2445,7 +2496,7 @@
                     </div>
                     
                     <div class="tool-features">
-                        <h5>🎯 Fonctionnalités clés :</h5>
+                        <h5>Fonctionnalités clés :</h5>
                         <div class="feature-list">
                             ${tool.features.slice(0, 4).map(feature => `
                                 <div class="feature-item">${feature}</div>
@@ -2455,7 +2506,7 @@
                     
                     <div class="tool-pricing">
                         <div class="pricing-header">
-                            <div class="pricing-title">💰 Tarification</div>
+                            <div class="pricing-title">Tarification</div>
                         </div>
                         <div class="pricing-grid">
                             ${Object.entries(tool.pricing).slice(0, 3).map(([plan, price]) => `
@@ -2469,7 +2520,7 @@
                     
                     <div class="usability-score">
                         <div class="usability-header">
-                            <div class="usability-title">⭐ Facilité d'utilisation</div>
+                            <div class="usability-title">Facilité d'utilisation</div>
                             <div class="usability-rating">
                                 ${generateStars(tool.usability.score)}
                             </div>
@@ -2480,9 +2531,9 @@
                         </div>
                     </div>
                     
-                    <div style="margin: 15px 0;">
-                        <span style="background: ${index === 0 ? '#10b981' : '#667eea'}; color: white; padding: 6px 12px; border-radius: 12px; font-size: 12px; font-weight: 600;">
-                            ${index === 0 ? '🏆 Top recommandation' : '✅ Recommandé'}
+                    <div style="margin: 20px 0;">
+                        <span style="background: ${index === 0 ? '#10b981' : '#3b82f6'}; color: white; padding: 8px 15px; border-radius: 15px; font-size: 13px; font-weight: 700;">
+                            ${index === 0 ? 'Top recommandation' : 'Recommandé'}
                         </span>
                     </div>
                 </div>
@@ -2513,7 +2564,7 @@
             ];
             
             timeline.innerHTML = `
-                <div class="strategy-title">📋 Votre plan d'action personnalisé</div>
+                <div class="strategy-title">Votre plan d'action personnalisé</div>
                 ${phases.map((phase, index) => `
                     <div class="timeline-item">
                         <div class="timeline-number">${index + 1}</div>
@@ -2523,8 +2574,8 @@
                         </div>
                     </div>
                 `).join('')}
-                <div style="margin-top: 20px; padding: 15px; background: rgba(245, 158, 11, 0.1); border-radius: 8px; color: #92400e;">
-                    <strong>🎯 Résultat garanti :</strong> Vous économisez ${analysis.monthlyMoney}€ par mois dès la 6ème semaine, soit un ROI de ${Math.round(analysis.yearlyMoney / 1000)}k€/an.
+                <div style="margin-top: 25px; padding: 20px; background: rgba(234, 88, 12, 0.1); border-radius: 12px; color: #ea580c; border: 1px solid rgba(234, 88, 12, 0.2);">
+                    <strong>Résultat garanti :</strong> Vous économisez ${analysis.monthlyMoney}€ par mois dès la 6ème semaine, soit un ROI de ${Math.round(analysis.yearlyMoney / 1000)}k€/an.
                 </div>
             `;
         }
@@ -2541,89 +2592,84 @@
                 'accounting_finance': 'Comptabilité/Finance',
                 'logistics': 'Logistique/Transport',
                 'manufacturing': 'Industrie/Production',
+                'services': 'Services aux entreprises',
+                'education': 'Éducation/Formation',
                 'generic': 'Autre'
             };
             return sectorLabels[sectorKey] || 'Non spécifié';
         }
         
         function prepareDiagnosticData(analysis, tools) {
-            const diagnosticData = {
-                timestamp: new Date().toISOString(),
-                process: {
-                    description: document.getElementById('task').value,
-                    frequency: selectedFrequency,
-                    sector: selectedSector,
-                    volume: document.getElementById('volume').value,
-                    tools: document.getElementById('tools').value,
-                    inputs: document.getElementById('inputs').value,
-                    output: document.getElementById('output').value,
-                    risks: document.getElementById('risks').value,
-                    recommendations: document.getElementById('recommendations') ? document.getElementById('recommendations').value : ''
-                },
-                analysis: {
-                    weeklyTimeSaved: analysis.weeklyHours,
-                    monthlyMoneySaved: analysis.monthlyMoney,
-                    yearlyMoneySaved: analysis.yearlyMoney,
-                    complexity: analysis.complexity,
-                    automationPotential: analysis.automationPotential,
-                    processType: analysis.process.type,
-                    confidence: analysis.details.confidence,
-                    weeklyTimeSavedFormatted: formatTimeDisplay(analysis.weeklyHours),
-                    selectedSector: getSectorLabel(selectedSector),
-                    globalBonus: analysis.details.globalBonus
-                },
-                recommendations: tools.map(tool => ({
-                    name: tool.name,
-                    category: tool.category,
-                    score: tool.score,
-                    key: tool.key
-                }))
-            };
+            const diagnosticSummary = `
+=== DIAGNOSTIC D'AUTOMATISATION SOLUTIO ===
+
+📊 PROCESSUS ANALYSÉ:
+${document.getElementById('task').value}
+
+⏰ FRÉQUENCE: ${getFrequencyText(selectedFrequency)}
+🏢 SECTEUR: ${getSectorLabel(selectedSector)}
+📈 VOLUME: ${document.getElementById('volume').value || 'Non spécifié'}
+
+🔧 OUTILS ACTUELS: ${document.getElementById('tools').value}
+📥 SOURCES: ${document.getElementById('inputs').value}
+📤 LIVRABLE: ${document.getElementById('output').value}
+⚠️ CONTRAINTES: ${document.getElementById('risks').value || 'Aucune'}
+
+💰 ÉCONOMIES POTENTIELLES:
+• ${formatTimeDisplay(analysis.weeklyHours)} gagnées/semaine
+• ${analysis.monthlyMoney}€ économisés/mois  
+• ${Math.round(analysis.yearlyMoney / 1000)}k€ économisés/an
+
+🛠️ OUTILS RECOMMANDÉS:
+${tools.map((tool, i) => `${i + 1}. ${tool.name} (${tool.category}) - Score: ${tool.score}%`).join('\n')}
+
+🚀 NEXT STEP: ${document.getElementById('feedback').value || 'À définir'}
+            `;
             
-            document.getElementById('diagnostic_data').value = JSON.stringify(diagnosticData);
+            document.getElementById('diagnostic_data').value = diagnosticSummary.trim();
         }
         
         function showSuccessMessage() {
             const contactSection = document.getElementById('contactSection');
             contactSection.innerHTML = `
                 <div class="contact-header" style="background: linear-gradient(135deg, #10b981, #059669);">
-                    <div class="contact-title">🎉 Diagnostic envoyé avec succès</div>
-                    <div class="contact-subtitle">Vous recevrez votre plan d'action détaillé sous 24h</div>
+                    <div class="contact-title">Diagnostic envoyé avec succès</div>
+                    <div class="contact-subtitle">Votre analyse personnalisée arrive dans votre boîte mail</div>
                 </div>
-                <div style="padding: 30px; text-align: center;">
-                    <div style="background: linear-gradient(135deg, #f0fff4, #ecfdf5); border-radius: 12px; padding: 25px; margin-bottom: 20px;">
-                        <h3 style="color: #065f46; margin-bottom: 15px;">📋 Prochaines étapes</h3>
-                        <div style="text-align: left; color: #047857;">
-                            <div style="display: flex; align-items: center; margin-bottom: 10px;">
-                                <span style="background: #10b981; color: white; width: 25px; height: 25px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; margin-right: 15px; font-weight: bold; font-size: 12px;">1</span>
-                                <span>Analyse approfondie de votre processus par Théo</span>
+                <div style="padding: 35px; text-align: center;">
+                    <div style="background: linear-gradient(135deg, #f0fdf4, #dcfce7); border-radius: 16px; padding: 30px; margin-bottom: 25px; border: 1px solid #bbf7d0;">
+                        <h3 style="color: #15803d; margin-bottom: 20px; font-size: 1.4em; font-weight: 800;">Continuons ensemble</h3>
+                        <p style="color: #15803d; margin-bottom: 25px; font-size: 1.05em; font-weight: 500;">
+                            Prêt à passer à l'action ? Choisissez votre prochaine étape :
+                        </p>
+                        
+                        <div style="display: grid; gap: 20px; margin-bottom: 25px;">
+                            <a href="https://calendly.com/tlb-ov_p/30min?month=2025-06" target="_blank" 
+                               style="background: #10b981; color: white; padding: 18px 30px; border-radius: 12px; text-decoration: none; font-weight: 700; font-size: 1.1em; box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3); display: block;">
+                                📅 Réserver un RDV (30 min gratuit)
+                            </a>
+                            
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                                <a href="tel:+33689437262" 
+                                   style="background: #3b82f6; color: white; padding: 15px 20px; border-radius: 12px; text-decoration: none; font-weight: 700; box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3); display: block;">
+                                    📞 06 89 43 72 62
+                                </a>
+                                <a href="mailto:tlb@solutio.work" 
+                                   style="background: #6366f1; color: white; padding: 15px 20px; border-radius: 12px; text-decoration: none; font-weight: 700; box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3); display: block;">
+                                    ✉️ tlb@solutio.work
+                                </a>
                             </div>
-                            <div style="display: flex; align-items: center; margin-bottom: 10px;">
-                                <span style="background: #10b981; color: white; width: 25px; height: 25px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; margin-right: 15px; font-weight: bold; font-size: 12px;">2</span>
-                                <span>Plan d'implémentation personnalisé avec budget détaillé</span>
-                            </div>
-                            <div style="display: flex; align-items: center;">
-                                <span style="background: #10b981; color: white; width: 25px; height: 25px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; margin-right: 15px; font-weight: bold; font-size: 12px;">3</span>
-                                <span>Proposition d'accompagnement si vous le souhaitez</span>
-                            </div>
+                        </div>
+                        
+                        <div style="background: rgba(21, 128, 61, 0.1); padding: 20px; border-radius: 12px; color: #15803d;">
+                            <div style="font-weight: 700; margin-bottom: 8px;">⚡ Réponse garantie sous 2h</div>
+                            <div style="font-size: 0.95em;">Votre projet mérite une attention immédiate</div>
                         </div>
                     </div>
                     
-                    <div style="background: #f8fafc; border-radius: 12px; padding: 20px; margin-bottom: 20px;">
-                        <h4 style="color: #2d3748; margin-bottom: 10px;">📞 Contact direct</h4>
-                        <p style="color: #4a5568; margin-bottom: 15px;">Une question urgente ? Contactez Théo directement :</p>
-                        <div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
-                            <a href="mailto:tlb@solutio.work" style="background: #667eea; color: white; padding: 12px 20px; border-radius: 8px; text-decoration: none; font-weight: 600;">
-                                📧 tlb@solutio.work
-                            </a>
-                            <a href="tel:+33689437262" style="background: #10b981; color: white; padding: 12px 20px; border-radius: 8px; text-decoration: none; font-weight: 600;">
-                                📞 06 89 43 72 62
-                            </a>
-                        </div>
-                    </div>
-                    
-                    <button onclick="window.location.reload()" style="background: linear-gradient(135deg, #667eea, #764ba2); color: white; padding: 15px 30px; border: none; border-radius: 12px; font-size: 16px; font-weight: 600; cursor: pointer;">
-                        🔄 Faire un nouveau diagnostic
+                    <button onclick="window.location.reload()" 
+                            style="background: linear-gradient(135deg, #3b82f6, #1e3a8a); color: white; padding: 15px 30px; border: none; border-radius: 12px; font-size: 15px; font-weight: 600; cursor: pointer; box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);">
+                        Faire un nouveau diagnostic
                     </button>
                 </div>
             `;
@@ -2649,7 +2695,7 @@
         
         // ===== INITIALISATION =====
         document.addEventListener('DOMContentLoaded', function() {
-            console.log('Initialisation du Diagnostic d\'Automatisation...');
+            console.log('Initialisation du Diagnostic d\'Automatisation SOLUTIO...');
             
             // Event listeners pour les champs
             ['task', 'volume', 'tools', 'inputs', 'output', 'risks'].forEach(fieldId => {
@@ -2725,6 +2771,8 @@
                 const prenom = document.getElementById('prenom').value.trim();
                 const nom = document.getElementById('nom').value.trim();
                 const email = document.getElementById('email').value.trim();
+                const telephone = document.getElementById('telephone').value.trim();
+                const company = document.getElementById('company').value.trim();
                 
                 let isValid = true;
                 
@@ -2762,6 +2810,28 @@
                     document.getElementById('email').parentElement.classList.remove('error');
                 }
                 
+                // Validation téléphone
+                if (telephone.length < 8) {
+                    document.getElementById('telephoneError').textContent = 'Téléphone requis';
+                    document.getElementById('telephoneError').style.display = 'block';
+                    document.getElementById('telephone').parentElement.classList.add('error');
+                    isValid = false;
+                } else {
+                    document.getElementById('telephoneError').style.display = 'none';
+                    document.getElementById('telephone').parentElement.classList.remove('error');
+                }
+                
+                // Validation entreprise
+                if (company.length < 2) {
+                    document.getElementById('companyError').textContent = 'Nom d\'entreprise requis';
+                    document.getElementById('companyError').style.display = 'block';
+                    document.getElementById('company').parentElement.classList.add('error');
+                    isValid = false;
+                } else {
+                    document.getElementById('companyError').style.display = 'none';
+                    document.getElementById('company').parentElement.classList.remove('error');
+                }
+                
                 if (!isValid) return;
                 
                 showLoadingOverlay();
@@ -2775,11 +2845,11 @@
                 trackEvent('Diagnostic Form Submission Started');
                 
                 const formData = new FormData(this);
-                formData.append('submission_time', new Date().toISOString());
-                formData.append('user_agent', navigator.userAgent);
-                formData.append('page_url', window.location.href);
-                formData.append('form_version', 'theo_optimized_v1.0');
-                formData.append('hourly_rate_used', HOURLY_RATE);
+                
+                // Données simplifiées pour un traitement optimal
+                formData.append('_subject', 'Nouveau diagnostic d\'automatisation SOLUTIO');
+                formData.append('_replyto', email);
+                formData.append('source', 'Diagnostic Automatisation SOLUTIO');
                 
                 fetch(this.action, {
                     method: 'POST',
@@ -2818,7 +2888,7 @@
                 for (let i = 1; i <= totalSteps; i++) {
                     updateButtonState(i);
                 }
-                console.log('Diagnostic initialisé avec succès');
+                console.log('Diagnostic SOLUTIO initialisé avec succès');
             }, 100);
             
             trackEvent('Diagnostic Started');
@@ -2837,3 +2907,449 @@
     </script>
 </body>
 </html>
+                    score: 4.5,
+                    setup_time: '2-4 heures',
+                    learning_curve: 'Facile à modérée'
+                },
+                sectors: ['freelance_consulting', 'real_estate', 'manufacturing', 'services'],
+                automation_strength: 95
+            },
+            'pipedrive': {
+                name: 'Pipedrive',
+                category: 'CRM & Sales',
+                description: 'CRM simple et visuel, parfait pour les équipes commerciales',
+                features: [
+                    'Interface pipeline visuelle',
+                    'Automatisation des ventes',
+                    'Suivi email intégré',
+                    'Rapports de performance',
+                    'Application mobile complète'
+                ],
+                pricing: {
+                    starter: '15€/utilisateur/mois',
+                    advanced: '25€/utilisateur/mois',
+                    pro: '50€/utilisateur/mois'
+                },
+                usability: {
+                    score: 4.7,
+                    setup_time: '1-2 heures',
+                    learning_curve: 'Très facile'
+                },
+                sectors: ['freelance_consulting', 'real_estate', 'construction_btp', 'services'],
+                automation_strength: 85
+            },
+            'salesforce': {
+                name: 'Salesforce',
+                category: 'CRM & Sales',
+                description: 'CRM leader mondial avec automatisations avancées',
+                features: [
+                    'Automatisation des processus sales',
+                    'Intelligence artificielle Einstein',
+                    'Customisation complète',
+                    'Écosystème d\'applications',
+                    'Intégrations enterprise'
+                ],
+                pricing: {
+                    essentials: '25€/utilisateur/mois',
+                    professional: '80€/utilisateur/mois',
+                    enterprise: '165€/utilisateur/mois'
+                },
+                usability: {
+                    score: 3.8,
+                    setup_time: '1-2 semaines',
+                    learning_curve: 'Complexe'
+                },
+                sectors: ['manufacturing', 'services', 'healthcare'],
+                automation_strength: 98
+            },
+            
+            // Automatisation
+            'zapier': {
+                name: 'Zapier',
+                category: 'Automatisation',
+                description: 'Plateforme n°1 pour connecter vos applications sans code',
+                features: [
+                    '5000+ applications connectées',
+                    'Automatisations multi-étapes',
+                    'Déclencheurs intelligents',
+                    'Filtres et conditions avancées',
+                    'Templates prêts à l\'emploi'
+                ],
+                pricing: {
+                    free: 'Gratuit (100 tâches/mois)',
+                    starter: '20€/mois (750 tâches)',
+                    pro: '50€/mois (2000 tâches)'
+                },
+                usability: {
+                    score: 4.3,
+                    setup_time: '30 minutes - 2 heures',
+                    learning_curve: 'Facile'
+                },
+                sectors: ['freelance_consulting', 'ecommerce', 'retail', 'accounting_finance', 'services'],
+                automation_strength: 98
+            },
+            'make': {
+                name: 'Make (ex-Integromat)',
+                category: 'Automatisation',
+                description: 'Automatisation visuelle plus puissante que Zapier',
+                features: [
+                    'Interface drag & drop visuelle',
+                    'Logique conditionnelle avancée',
+                    'Gestion d\'erreurs sophistiquée',
+                    'Exécution en temps réel',
+                    'API et webhooks natifs'
+                ],
+                pricing: {
+                    free: 'Gratuit (1000 opérations/mois)',
+                    core: '9€/mois (10k opérations)',
+                    pro: '16€/mois (40k opérations)'
+                },
+                usability: {
+                    score: 4.1,
+                    setup_time: '1-3 heures',
+                    learning_curve: 'Modérée'
+                },
+                sectors: ['ecommerce', 'manufacturing', 'logistics', 'services'],
+                automation_strength: 96
+            },
+            'power_automate': {
+                name: 'Microsoft Power Automate',
+                category: 'Automatisation',
+                description: 'Automatisation native Microsoft avec intégration Office 365',
+                features: [
+                    'Intégration native Office 365',
+                    'Automatisations desktop et cloud',
+                    'Connecteurs Microsoft étendus',
+                    'Templates sectoriels',
+                    'Gouvernance enterprise'
+                ],
+                pricing: {
+                    office: '5€/utilisateur/mois',
+                    standalone: '13€/utilisateur/mois',
+                    premium: '40€/utilisateur/mois'
+                },
+                usability: {
+                    score: 4.0,
+                    setup_time: '1-4 heures',
+                    learning_curve: 'Modérée'
+                },
+                sectors: ['services', 'accounting_finance', 'healthcare', 'education'],
+                automation_strength: 92
+            },
+            
+            // Comptabilité & Finance
+            'quickbooks': {
+                name: 'QuickBooks',
+                category: 'Comptabilité',
+                description: 'Solution comptable complète avec automatisation intégrée',
+                features: [
+                    'Facturation automatisée',
+                    'Réconciliation bancaire auto',
+                    'Suivi des dépenses intelligent',
+                    'Rapports financiers en temps réel',
+                    'Conformité fiscale française'
+                ],
+                pricing: {
+                    simple: '15€/mois',
+                    advanced: '35€/mois',
+                    expert: '55€/mois'
+                },
+                usability: {
+                    score: 4.2,
+                    setup_time: '2-4 heures',
+                    learning_curve: 'Modérée'
+                },
+                sectors: ['accounting_finance', 'freelance_consulting', 'retail', 'services'],
+                automation_strength: 88
+            },
+            'stripe': {
+                name: 'Stripe',
+                category: 'Paiement',
+                description: 'Plateforme de paiement avec automatisation des revenus',
+                features: [
+                    'Paiements récurrents automatiques',
+                    'Facturation intelligente',
+                    'Gestion des taxes globale',
+                    'Analytics revenus avancées',
+                    'API ultra-flexible'
+                ],
+                pricing: {
+                    standard: '1.4% + 0.25€ par transaction',
+                    connect: '2.9% + 0.30€ par transaction',
+                    enterprise: 'Sur devis'
+                },
+                usability: {
+                    score: 4.6,
+                    setup_time: '30 minutes - 1 heure',
+                    learning_curve: 'Facile à modérée'
+                },
+                sectors: ['ecommerce', 'freelance_consulting', 'restaurant_hospitality', 'services'],
+                automation_strength: 92
+            },
+            'sage': {
+                name: 'Sage Business Cloud',
+                category: 'Comptabilité',
+                description: 'Suite comptable française avec automatisations métier',
+                features: [
+                    'Conformité française native',
+                    'Automatisation des écritures',
+                    'Intégration bancaire directe',
+                    'Reporting réglementaire auto',
+                    'Workflow de validation'
+                ],
+                pricing: {
+                    start: '30€/mois',
+                    standard: '50€/mois',
+                    premium: '80€/mois'
+                },
+                usability: {
+                    score: 4.1,
+                    setup_time: '3-6 heures',
+                    learning_curve: 'Modérée'
+                },
+                sectors: ['accounting_finance', 'manufacturing', 'construction_btp'],
+                automation_strength: 85
+            },
+            
+            // E-commerce
+            'shopify': {
+                name: 'Shopify',
+                category: 'E-commerce',
+                description: 'Plateforme e-commerce avec automatisations marketing intégrées',
+                features: [
+                    'Boutique en ligne complète',
+                    'Automatisations email marketing',
+                    'Gestion stock intelligente',
+                    'Abandoned cart recovery',
+                    '6000+ applications tierces'
+                ],
+                pricing: {
+                    basic: '29$/mois',
+                    shopify: '79$/mois',
+                    advanced: '299$/mois'
+                },
+                usability: {
+                    score: 4.4,
+                    setup_time: '4-8 heures',
+                    learning_curve: 'Facile'
+                },
+                sectors: ['ecommerce', 'retail'],
+                automation_strength: 90
+            },
+            'woocommerce': {
+                name: 'WooCommerce',
+                category: 'E-commerce',
+                description: 'Solution e-commerce WordPress avec automatisations extensibles',
+                features: [
+                    'Open source et personnalisable',
+                    'Milliers d\'extensions',
+                    'Automatisations via plugins',
+                    'Intégration WordPress native',
+                    'Coûts de démarrage faibles'
+                ],
+                pricing: {
+                    core: 'Gratuit',
+                    extensions: '50-200€/an',
+                    hosting: '10-50€/mois'
+                },
+                usability: {
+                    score: 3.9,
+                    setup_time: '1-2 jours',
+                    learning_curve: 'Modérée à difficile'
+                },
+                sectors: ['ecommerce', 'retail'],
+                automation_strength: 82
+            },
+            
+            // Rendez-vous & Planning
+            'calendly': {
+                name: 'Calendly',
+                category: 'Prise de RDV',
+                description: 'Automatisation complète de la prise de rendez-vous',
+                features: [
+                    'Réservation en ligne 24/7',
+                    'Sync calendriers automatique',
+                    'Rappels automatiques',
+                    'Questionnaires pré-RDV',
+                    'Intégrations CRM natives'
+                ],
+                pricing: {
+                    free: 'Gratuit (1 type RDV)',
+                    essentials: '8€/utilisateur/mois',
+                    pro: '12€/utilisateur/mois'
+                },
+                usability: {
+                    score: 4.8,
+                    setup_time: '15-30 minutes',
+                    learning_curve: 'Très facile'
+                },
+                sectors: ['healthcare', 'freelance_consulting', 'real_estate', 'services', 'education'],
+                automation_strength: 94
+            },
+            'acuity': {
+                name: 'Acuity Scheduling',
+                category: 'Prise de RDV',
+                description: 'Solution de RDV avancée avec automatisations personnalisées',
+                features: [
+                    'Personnalisation interface poussée',
+                    'Packages et cours en ligne',
+                    'Paiements intégrés',
+                    'Formulaires d\'admission',
+                    'Certificats cadeaux automatiques'
+                ],
+                pricing: {
+                    emerging: '14$/mois',
+                    growing: '23$/mois',
+                    powerhouse: '45$/mois'
+                },
+                usability: {
+                    score: 4.3,
+                    setup_time: '1-2 heures',
+                    learning_curve: 'Modérée'
+                },
+                sectors: ['healthcare', 'freelance_consulting', 'education'],
+                automation_strength: 89
+            },
+            
+            // Signature électronique
+            'docusign': {
+                name: 'DocuSign',
+                category: 'Signature électronique',
+                description: 'Leader mondial de la signature électronique automatisée',
+                features: [
+                    'Signatures légalement valides',
+                    'Workflows d\'approbation',
+                    'Templates intelligents',
+                    'Rappels automatiques',
+                    'Audit trail complet'
+                ],
+                pricing: {
+                    personal: '10€/mois',
+                    standard: '31€/utilisateur/mois',
+                    business: '54€/utilisateur/mois'
+                },
+                usability: {
+                    score: 4.5,
+                    setup_time: '30 minutes - 1 heure',
+                    learning_curve: 'Facile'
+                },
+                sectors: ['real_estate', 'construction_btp', 'freelance_consulting', 'services'],
+                automation_strength: 91
+            },
+            'pandadoc': {
+                name: 'PandaDoc',
+                category: 'Signature électronique',
+                description: 'Plateforme de documents avec automatisation de signature',
+                features: [
+                    'Création de documents automatisée',
+                    'Templates intelligents',
+                    'Workflows d\'approbation',
+                    'Analytics des documents',
+                    'Intégrations CRM avancées'
+                ],
+                pricing: {
+                    essentials: '19$/utilisateur/mois',
+                    business: '49$/utilisateur/mois',
+                    enterprise: 'Sur devis'
+                },
+                usability: {
+                    score: 4.3,
+                    setup_time: '1-2 heures',
+                    learning_curve: 'Facile'
+                },
+                sectors: ['real_estate', 'construction_btp', 'services'],
+                automation_strength: 88
+            },
+            
+            // Productivité
+            'notion': {
+                name: 'Notion',
+                category: 'Productivité',
+                description: 'Workspace tout-en-un avec automatisations via bases de données',
+                features: [
+                    'Bases de données relationnelles',
+                    'Templates automatisés',
+                    'Formules et roll-ups',
+                    'Sync avec autres outils',
+                    'Collaboration en temps réel'
+                ],
+                pricing: {
+                    free: 'Gratuit (usage personnel)',
+                    plus: '8$/utilisateur/mois',
+                    business: '15$/utilisateur/mois'
+                },
+                usability: {
+                    score: 4.0,
+                    setup_time: '2-6 heures',
+                    learning_curve: 'Modérée à difficile'
+                },
+                sectors: ['freelance_consulting', 'manufacturing', 'services'],
+                automation_strength: 78
+            },
+            'airtable': {
+                name: 'Airtable',
+                category: 'Base de données',
+                description: 'Base de données flexible avec automatisations natives',
+                features: [
+                    'Interface spreadsheet intuitive',
+                    'Automatisations par triggers',
+                    'Vues multiples (kanban, calendar)',
+                    'Collaborations en temps réel',
+                    'API robuste'
+                ],
+                pricing: {
+                    free: 'Gratuit (1200 enregistrements)',
+                    plus: '10$/utilisateur/mois',
+                    pro: '20$/utilisateur/mois'
+                },
+                usability: {
+                    score: 4.4,
+                    setup_time: '1-3 heures',
+                    learning_curve: 'Facile'
+                },
+                sectors: ['manufacturing', 'logistics', 'retail', 'services'],
+                automation_strength: 85
+            },
+            'monday': {
+                name: 'Monday.com',
+                category: 'Gestion de projet',
+                description: 'Plateforme de gestion de travail avec automatisations intégrées',
+                features: [
+                    'Tableaux de bord visuels',
+                    'Automatisations de workflows',
+                    'Suivi temps automatique',
+                    'Notifications intelligentes',
+                    'Intégrations étendues'
+                ],
+                pricing: {
+                    basic: '8€/utilisateur/mois',
+                    standard: '10€/utilisateur/mois',
+                    pro: '16€/utilisateur/mois'
+                },
+                usability: {
+                    score: 4.2,
+                    setup_time: '2-4 heures',
+                    learning_curve: 'Facile'
+                },
+                sectors: ['services', 'manufacturing', 'construction_btp'],
+                automation_strength: 87
+            },
+            
+            // Communication & Marketing
+            'mailchimp': {
+                name: 'Mailchimp',
+                category: 'Email Marketing',
+                description: 'Plateforme email marketing avec automatisations avancées',
+                features: [
+                    'Campagnes automatisées',
+                    'Segmentation intelligente',
+                    'A/B testing automatique',
+                    'Analyse prédictive',
+                    'Intégrations e-commerce'
+                ],
+                pricing: {
+                    free: 'Gratuit (2000 contacts)',
+                    essentials: '10€/mois',
+                    standard: '15€/mois'
+                },
+                usability: {
